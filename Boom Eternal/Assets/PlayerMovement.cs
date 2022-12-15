@@ -28,6 +28,6 @@ public class PlayerMovement : MonoBehaviour
     
     void FixedUpdate() {
         //fikseeritud max kiirusega
-        rb.velocity = new Vector2(inputX, inputY).normalized * speed; 
+        rb.velocity = new Vector2(inputX, inputY).normalized * speed;
     }
 }
