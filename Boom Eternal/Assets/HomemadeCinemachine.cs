@@ -15,5 +15,6 @@ public class HomemadeCinemachine : MonoBehaviour
     void Update()
     {
         transform.position = new Vector3(player.transform.position.x, player.transform.position.y, -10);
+        //hiljem lisan lerpi nii, et kaamera asub mängija ja crosshairi vahel
     }
 }
