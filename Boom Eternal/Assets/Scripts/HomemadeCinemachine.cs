@@ -16,6 +16,7 @@ public class HomemadeCinemachine : MonoBehaviour
     void Start()
     {
         aimingAndShooting = player.GetComponent<AimingAndShooting>();    
+        transform.position = player.transform.position;
     }
 
     // Update is called once per frame
@@ -23,6 +24,13 @@ public class HomemadeCinemachine : MonoBehaviour
     {
         cameraPos2D = aimingAndShooting.aimingVector * aimingAndShooting.aimingProgress * maxDisplacementRadius;
         cameraPos2D += new Vector2(player.transform.position.x, player.transform.position.y);
-        transform.position = new Vector3(cameraPos2D.x, cameraPos2D.y, -10);
+        //transform.position = new Vector3(cameraPos2D.x, cameraPos2D.y, -10); ASEMEL:
+        //kinda cranky implementation, pole kindel kas teeb smoothimaks, aga fps-i eriti ei vähendanud, vist
+        Vector3 newPos;
+        newPos.x = Mathf.SmoothStep(transform.position.x, cameraPos2D.x , Time.deltaTime * 7000f);
+        newPos.y = Mathf.SmoothStep(transform.position.y, cameraPos2D.y , Time.deltaTime * 7000f);
+        newPos.z = -10f;
+        transform.position = newPos;
+        
     }
 }

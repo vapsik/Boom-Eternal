@@ -46,11 +46,14 @@ public class AimingAndShooting : MonoBehaviour
         
         crosshairPosition.x = mouseX;
         crosshairPosition.y = mouseY;
-        
         crosshair.rectTransform.position = crosshairPosition;
         
-        aimingVector = new Vector2(crosshairPosition.x - centerOfTheCanvas.x, crosshairPosition.y - centerOfTheCanvas.y).normalized; 
+        Vector2 playerPosOnCanvas = GlobalReferences.mainCamera.WorldToScreenPoint(transform.position);       
+        //kui vaja kasutada crosshairi reaalset positisooni:
+        //Vector3 crosshairRealPosition = GlobalReferences.mainCamera.ScreenToWorldPoint(crosshair.rectTransform.position);
         
+        aimingVector = new Vector2(crosshairPosition.x - playerPosOnCanvas.x, crosshairPosition.y - playerPosOnCanvas.y).normalized;
         aimingProgress = (crosshairPosition - centerOfTheCanvas).magnitude/(centerOfTheCanvas.magnitude); 
+        Debug.Log(aimingProgress);
     }
 }
