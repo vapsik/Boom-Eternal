@@ -10,7 +10,8 @@ public class PlayerMovement : MonoBehaviour
     public float speed;
     Rigidbody2D rb;
     void Awake() {
-        rb = gameObject.GetComponent<Rigidbody2D>();   
+        rb = gameObject.GetComponent<Rigidbody2D>();
+        GlobalReferences.thePlayer = gameObject;
     }
 
     // Start is called before the first frame update
