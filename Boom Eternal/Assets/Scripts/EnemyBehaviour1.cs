@@ -8,10 +8,15 @@ public class EnemyBehaviour1 : MonoBehaviour
     bool lineOfSight;
     public float detectionRadius;    
     float counter = 0;
+    float time;
+    bool isRunning = false;
+
     [SerializeField]
     float maxBehaviourTime = 4f; //phmst max aeg, mille jooksul ta teeb midagi (4 sekundit jooksu suvalises suunas, 4 sekundit seistes tulistamist, 4 sekundit ns passimist jms)
     GameObject player;
     Vector2 enemyToPlayerVector;
+
+    
     void Start()
     {
         player = GlobalReferences.thePlayer;
@@ -24,7 +29,17 @@ public class EnemyBehaviour1 : MonoBehaviour
         if(enemyToPlayerVector.magnitude < detectionRadius){
             // kordamööda:
             // kui lineOfSight = true, siis tulistab Random(0, maxBehaviourTime) aja kestel mängijat
-            // kui laskmine läbi või lineOfSight = false jookseb suvalises suunas mängija sihis
+            if (lineOfSight)
+            {
+                Debug.Log("tulistan");
+            }
+            else
+            {
+                //Random.Range(0f, maxBehaviourTime);
+                Debug.Log("jooksen suunas");
+
+            }
+            // kui laskmine läbi või lineOfSight = false jookseb suvalises suunas mängija 
         }
 
         // praegu ei arvesta see sellega, et vastasel endal ka collider:
