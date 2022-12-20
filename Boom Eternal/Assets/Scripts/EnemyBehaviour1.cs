@@ -12,7 +12,10 @@ public class EnemyBehaviour1 : MonoBehaviour
     bool isRunning = false;
 
     [SerializeField]
-    float maxBehaviourTime = 4f; //phmst max aeg, mille jooksul ta teeb midagi (4 sekundit jooksu suvalises suunas, 4 sekundit seistes tulistamist, 4 sekundit ns passimist jms)
+    float maxBehaviourTime = 4f, speed = 2f; //phmst max aeg, mille jooksul ta teeb midagi (4 sekundit jooksu suvalises suunas, 4 sekundit seistes tulistamist, 4 sekundit ns passimist jms)
+    [SerializeField]
+    bool monkeMode = true;
+    
     GameObject player;
     Vector2 enemyToPlayerVector;
 
@@ -26,7 +29,12 @@ public class EnemyBehaviour1 : MonoBehaviour
     void Update()
     {
         enemyToPlayerVector = player.transform.position - transform.position;
-        if(enemyToPlayerVector.magnitude < detectionRadius){
+        if (monkeMode && lineOfSight)
+        {
+            transform.Translate(enemyToPlayerVector.normalized * speed * Time.deltaTime);
+        }   
+        
+        /*if(enemyToPlayerVector.magnitude < detectionRadius){
             // kordamööda:
             // kui lineOfSight = true, siis tulistab Random(0, maxBehaviourTime) aja kestel mängijat
             if (lineOfSight)
@@ -40,7 +48,7 @@ public class EnemyBehaviour1 : MonoBehaviour
 
             }
             // kui laskmine läbi või lineOfSight = false jookseb suvalises suunas mängija 
-        }
+        }*/
 
         // praegu ei arvesta see sellega, et vastasel endal ka collider:
         RaycastHit2D hit = Physics2D.Raycast(transform.position, enemyToPlayerVector.normalized);
