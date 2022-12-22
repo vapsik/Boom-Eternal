@@ -10,6 +10,16 @@ public class Enemy : MonoBehaviour
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         System.Random random = new System.Random();
-        spriteRenderer.color = new Color(random.Next(256), 0, 0);
+        spriteRenderer.color = new Color(random.Next(256) / 256, 0, 0);
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.tag == GlobalReferences.Tags.PlayerBullet)
+        {
+            Destroy(gameObject);
+            Destroy(other.gameObject);
+        }
+    }
+
 }

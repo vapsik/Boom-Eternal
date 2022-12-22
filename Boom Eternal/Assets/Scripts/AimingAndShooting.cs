@@ -13,6 +13,7 @@ public class AimingAndShooting : MonoBehaviour
     float sensX, sensY;
     public GameObject testBulletPrefab;
     public Transform gunBarrel;
+    public Transform playerBullets;
     private Vector3 crosshairPosition, centerOfTheCanvas = Vector3.zero; 
 
     [HideInInspector]
@@ -64,7 +65,7 @@ public class AimingAndShooting : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Mouse0)){
             aimingVectorFromBarrel = new Vector2(crosshairPosition.x - barrelPosOnCanvas.x, crosshairPosition.y - barrelPosOnCanvas.y).normalized;
             //selline instantiate'imine toimib ainult puhul ümara kuuli puhul: 
-            GameObject bullet = Instantiate(testBulletPrefab, gunBarrel.position, Quaternion.identity);
+            GameObject bullet = Instantiate(testBulletPrefab, gunBarrel.position, Quaternion.identity, playerBullets.transform);
             bullet.GetComponent<Rigidbody2D>().velocity = aimingVectorFromBarrel * 12f;
             ////kuulikujulise kuuli puhul:
             //GameObject bullet = Instantiate(testBulletPrefab, gunBarrel.position, Quaternion.identity);

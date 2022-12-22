@@ -8,4 +8,11 @@ public static class GlobalReferences
     public static GameObject thePlayer;
     public static int hp;
     public static int score;
+
+
+    public static class Tags
+    {
+        public const string PlayerBullet = "Bullet";
+    }
+
 }

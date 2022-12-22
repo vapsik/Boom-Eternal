@@ -1,41 +1,64 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class EnemySpawner : MonoBehaviour
 {
 
     public Enemy enemyPrefab;
+    public Tilemap floorTiles;
+    public Tilemap wallTiles;
+    public Tilemap ceilingTiles;
 
     private void Awake()
     {
         StartCoroutine(SpawnLoop());
     }
 
-
     IEnumerator SpawnLoop()
     {
-        for (int i = 0; i < 20; i++)
-        {
-            Enemy enemy = Instantiate(enemyPrefab);
+        yield return new WaitForSeconds(0f);
 
-            Camera camera = GlobalReferences.mainCamera;
+        for (int i = 0; i < 50; i++)
+        {
+            /*Camera camera = GlobalReferences.mainCamera;
             float height = camera.orthographicSize;
             float width = height * camera.aspect;
-            float distance = (height + width) * 0.75f;
+            float distance = (height + width) * 0.75f;*/
 
-            System.Random random = new System.Random();
-            float angle = Mathf.Deg2Rad * random.Next(360);
+            for (int j = 0; j < 100; j++)
+            {
+                float angle = UnityEngine.Random.Range(0f, 2f * (float)Math.PI);
+                float distance = 4f;
 
-            Vector3 vec = enemy.transform.position;
-            vec.x = (float)Math.Sin(angle) * distance;
-            vec.y = (float)Math.Cos(angle) * distance;
-            enemy.transform.position = vec;
+                Vector3 vec = GlobalReferences.thePlayer.transform.position;
+                vec.x += (float)Math.Sin(angle) * distance;
+                vec.y += (float)Math.Cos(angle) * distance;
 
-            yield return new WaitForSeconds(2f);
+                if (CanSpawnAt(vec))
+                {
+                    Instantiate(enemyPrefab, vec, new Quaternion(), transform);
+                    break;
+                }
+            }
+
+            yield return new WaitForSeconds(1f);
         }
     }
 
+    bool CanSpawnAt(Vector2 position)
+    {
+        if (!floorTiles.HasTile(floorTiles.WorldToCell(position)))
+            return false;
+        if (wallTiles.HasTile(wallTiles.WorldToCell(position)))
+            return false;
+        if (ceilingTiles.HasTile(ceilingTiles.WorldToCell(position)))
+            return false;
+
+        return true;
+    }
 
 }
