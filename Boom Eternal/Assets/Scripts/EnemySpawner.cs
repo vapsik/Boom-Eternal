@@ -13,6 +13,9 @@ public class EnemySpawner : MonoBehaviour
     public Tilemap wallTiles;
     public Tilemap ceilingTiles;
 
+    public float minDistance = 3f;
+    public float maxDistance = 5f;
+
     private void Awake()
     {
         StartCoroutine(SpawnLoop());
@@ -32,7 +35,7 @@ public class EnemySpawner : MonoBehaviour
             for (int j = 0; j < 100; j++)
             {
                 float angle = UnityEngine.Random.Range(0f, 2f * (float)Math.PI);
-                float distance = 4f;
+                float distance = UnityEngine.Random.Range(minDistance, maxDistance);
 
                 Vector3 vec = GlobalReferences.thePlayer.transform.position;
                 vec.x += (float)Math.Sin(angle) * distance;
