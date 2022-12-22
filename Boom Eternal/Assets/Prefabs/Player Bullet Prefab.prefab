@@ -86,8 +86,8 @@ GameObject:
   - component: {fileID: -2170672810795056811}
   - component: {fileID: 266047278668699306}
   m_Layer: 0
-  m_Name: Test Projectile
-  m_TagString: Untagged
+  m_Name: Player Bullet Prefab
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -207,3 +207,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3129a4d2e9c816429006a5776229d82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxBulletDuration: 10
