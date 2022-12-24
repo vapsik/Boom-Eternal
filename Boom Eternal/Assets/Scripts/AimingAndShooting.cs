@@ -10,9 +10,10 @@ public class AimingAndShooting : MonoBehaviour
     [SerializeField]
     Image crosshair;
     [SerializeField]
-    float sensX, sensY;
+    float sensX, sensY, reach; // reach ehk siruulatus
     public GameObject testBulletPrefab;
     public Transform gunBarrel;
+    public GameObject gun;
     public Transform playerBullets;
     private Vector3 crosshairPosition, centerOfTheCanvas = Vector3.zero; 
 
@@ -60,7 +61,10 @@ public class AimingAndShooting : MonoBehaviour
         aimingVector = new Vector2(crosshairPosition.x - playerPosOnCanvas.x, crosshairPosition.y - playerPosOnCanvas.y).normalized;
         aimingProgress = (crosshairPosition - centerOfTheCanvas).magnitude/(centerOfTheCanvas.magnitude); 
         //Debug.Log(aimingProgress);
-
+        Vector3 gunPos = transform.position;
+        gunPos.x += reach * aimingVector.x;
+        gunPos.y += reach* aimingVector.y;
+        gun.transform.position = gunPos;
         //tulistamise osa:
         if(Input.GetKeyDown(KeyCode.Mouse0)){
             aimingVectorFromBarrel = new Vector2(crosshairPosition.x - barrelPosOnCanvas.x, crosshairPosition.y - barrelPosOnCanvas.y).normalized;
