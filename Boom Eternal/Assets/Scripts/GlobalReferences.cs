@@ -6,7 +6,7 @@ public static class GlobalReferences
 {
     public static Camera mainCamera;
     public static GameObject thePlayer;
-    public static int hp;
+    public static int hp = 5;
     public static int score;
 
 

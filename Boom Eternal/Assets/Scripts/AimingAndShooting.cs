@@ -70,6 +70,7 @@ public class AimingAndShooting : MonoBehaviour
             ////kuulikujulise kuuli puhul:
             //GameObject bullet = Instantiate(testBulletPrefab, gunBarrel.position, Quaternion.identity);
             //bullet.transform.LookAt(transform.position + 10000f * aimingVectorFromBarrel); //(?)
+            bullet.GetComponent<Bullet>().affectsTarget = "Enemy"; //iseendale dammi ei tee
         }
     }
 }

@@ -11,6 +11,8 @@ public class EnemyBehaviour1 : MonoBehaviour
     float time;
     bool isRunning = false;
 
+    [SerializeField] LayerMask layerMask;
+
     [SerializeField]
     float maxBehaviourTime = 4f, speed = 2f; //phmst max aeg, mille jooksul ta teeb midagi (4 sekundit jooksu suvalises suunas, 4 sekundit seistes tulistamist, 4 sekundit ns passimist jms)
     [SerializeField]
@@ -32,8 +34,8 @@ public class EnemyBehaviour1 : MonoBehaviour
         if (monkeMode && lineOfSight)
         {
             transform.Translate(enemyToPlayerVector.normalized * speed * Time.deltaTime);
-        }   
-        
+        }
+
         /*if(enemyToPlayerVector.magnitude < detectionRadius){
             // kordamööda:
             // kui lineOfSight = true, siis tulistab Random(0, maxBehaviourTime) aja kestel mängijat
@@ -51,15 +53,20 @@ public class EnemyBehaviour1 : MonoBehaviour
         }*/
 
         // praegu ei arvesta see sellega, et vastasel endal ka collider:
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, enemyToPlayerVector.normalized);
-        if(hit == true && hit.transform.tag == "Player"){
-            lineOfSight = true;
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, enemyToPlayerVector.normalized, Mathf.Infinity, layerMask);
+        Debug.DrawRay(transform.position, enemyToPlayerVector.normalized, Color.red);
+        if(hit.transform != null)
+        {
+            if (hit.transform.tag == "Player")
+            {
+                lineOfSight = true;
+            }
+            else
+            {
+                lineOfSight = false;
+            }
+            Debug.Log("lineOfSight: " + lineOfSight);
+            Debug.Log(hit.transform.tag);
         }
-        else{
-            lineOfSight = false;
-        }
-
-        Debug.Log("lineOfSight: " + lineOfSight);
-        Debug.Log(hit.transform.tag);
     }
 }
