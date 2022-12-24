@@ -23,12 +23,12 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        inputX = Input.GetAxisRaw("Horizontal");
-        inputY = Input.GetAxisRaw("Vertical");
     }
     
     void FixedUpdate() {
         //fikseeritud max kiirusega
+        inputX = Input.GetAxisRaw("Horizontal");
+        inputY = Input.GetAxisRaw("Vertical");
         rb.velocity = new Vector2(inputX, inputY).normalized * speed;
     }
 }
