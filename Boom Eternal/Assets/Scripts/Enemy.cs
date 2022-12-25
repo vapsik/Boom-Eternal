@@ -8,12 +8,12 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>();
+        /*spriteRenderer = GetComponent<SpriteRenderer>();
         System.Random random = new System.Random();
-        spriteRenderer.color = new Color(random.Next(256) / 256, 0, 0);
+        spriteRenderer.color = new Color(random.Next(256) / 256, 0, 0);*/
     }
 
-    /* järgnev koodilõik on hea debuggimiseks aga ei konformeeru kusti hp süsteemiga
+    /* jï¿½rgnev koodilï¿½ik on hea debuggimiseks aga ei konformeeru kusti hp sï¿½steemiga
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == GlobalReferences.Tags.PlayerBullet)
