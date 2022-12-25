@@ -55,9 +55,8 @@ public class AimingAndShooting : MonoBehaviour
         
         Vector2 playerPosOnCanvas = GlobalReferences.mainCamera.WorldToScreenPoint(transform.position);
         Vector2 barrelPosOnCanvas = GlobalReferences.mainCamera.WorldToScreenPoint(gunBarrel.position);
-        
         //kui vaja kasutada crosshairi reaalset positisooni:
-        //Vector3 crosshairRealPosition = GlobalReferences.mainCamera.ScreenToWorldPoint(crosshair.rectTransform.position);
+        Vector3 crosshairRealPosition = GlobalReferences.mainCamera.ScreenToWorldPoint(crosshair.rectTransform.position);
         
         aimingVector = new Vector2(crosshairPosition.x - playerPosOnCanvas.x, crosshairPosition.y - playerPosOnCanvas.y).normalized;
         aimingProgress = (crosshairPosition - centerOfTheCanvas).magnitude/(centerOfTheCanvas.magnitude); 
@@ -69,8 +68,9 @@ public class AimingAndShooting : MonoBehaviour
         gunPos.y += reach * aimingVector.y;
         gun.transform.position = gunPos;
         */
-        
-        gun.transform.rotation = Quaternion.Euler(0,0,Mathf.Atan(aimingVector.y/aimingVector.x)*180f/(Mathf.PI));
+
+        //gun.transform.LookAt(crosshairRealPosition, Vector3.back);
+        gun.transform.rotation = Quaternion.Euler(0,0,Mathf.Atan(aimingVector.y/aimingVector.x)*Mathf.Rad2Deg);
 
         //tulistamise osa:
         if(Input.GetKeyDown(KeyCode.Mouse0)){

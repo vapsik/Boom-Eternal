@@ -5,11 +5,14 @@ using UnityEngine;
 public class PlayerAnimationSystem : MonoBehaviour
 {
     bool lookLeft = true;
+    float pantingCounter = 0;
     AimingAndShooting aimingAndShooting;
     Rigidbody2D rb;
 
     [SerializeField]
     private GameObject gunObject;
+    [SerializeField]
+    Animator animator;
 
     private Vector3 playerScale;
     private float initialXScale;
@@ -49,10 +52,14 @@ public class PlayerAnimationSystem : MonoBehaviour
         }
         
         transform.localScale = playerScale;
-    }
 
-    private void OnDrawGizmos() {
-        Gizmos.DrawLine(transform.position, transform.position + transform.forward * 5f);
-        Gizmos.color = Color.red;
+        //peaks selle osa (animaatori bash) vist hiljem pigem sisendi järgi tegema, sest jääl võiks tehniliselt ka hingeldada
+        bool movementInput = Mathf.Abs(Input.GetAxisRaw("Horizontal")) == 1 || Mathf.Abs(Input.GetAxisRaw("Vertical")) == 1 ? true : false;
+        animator.SetBool("MovementInput", movementInput);
+        if(rb.velocity.magnitude <= 0.1f)
+            pantingCounter += Time.deltaTime;
+        else
+            pantingCounter = 0;
+        animator.SetFloat("PantingCounter", pantingCounter);
     }
 }
