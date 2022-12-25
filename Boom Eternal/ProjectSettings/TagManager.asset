@@ -6,15 +6,16 @@ TagManager:
   tags:
   - Wall
   - Bullet
+  - Enemy
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
   - Enemy
-  - 
+  - Invisible
   - 
   - 
   - 

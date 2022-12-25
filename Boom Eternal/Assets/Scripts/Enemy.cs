@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
         spriteRenderer.color = new Color(random.Next(256) / 256, 0, 0);
     }
 
+    /* järgnev koodilõik on hea debuggimiseks aga ei konformeeru kusti hp süsteemiga
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == GlobalReferences.Tags.PlayerBullet)
@@ -21,5 +22,6 @@ public class Enemy : MonoBehaviour
             Destroy(other.gameObject);
         }
     }
+    */
 
 }
