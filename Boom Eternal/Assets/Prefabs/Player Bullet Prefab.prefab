@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5732205314605080112}
   - component: {fileID: 8069654660431169183}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Parametric Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: -2170672810795056811}
   - component: {fileID: 266047278668699306}
   - component: {fileID: -6831541934800444396}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player Bullet Prefab
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -208,6 +208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3129a4d2e9c816429006a5776229d82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  affectsTarget: 
   maxBulletDuration: 10
 --- !u!114 &-6831541934800444396
 MonoBehaviour:
