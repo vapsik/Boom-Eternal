@@ -8,7 +8,8 @@ using UnityEngine.Tilemaps;
 public class EnemySpawner : MonoBehaviour
 {
 
-    public Enemy enemyPrefab;
+    public GameObject[] randomEnemyPrefab;
+    [SerializeField] bool spawnRandomly = true;
     public Tilemap floorTiles;
     public Tilemap wallTiles;
     public Tilemap ceilingTiles;
@@ -43,8 +44,14 @@ public class EnemySpawner : MonoBehaviour
 
                 if (CanSpawnAt(vec))
                 {
-                    Instantiate(enemyPrefab, vec, new Quaternion(), transform);
-                    break;
+                    if(spawnRandomly){
+                        Instantiate(randomEnemyPrefab[UnityEngine.Random.Range(0,randomEnemyPrefab.Length)], vec, new Quaternion(), transform);
+                        break;
+                    }
+                    else{
+                        //skoori järgi võtta see millist enemy't spawnida
+                    }
+                    
                 }
             }
 
