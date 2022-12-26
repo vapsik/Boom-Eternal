@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PlayerAnimationSystem : MonoBehaviour
 {
-    bool lookLeft = true;
+    [SerializeField] bool lookLeft = true;
     float pantingCounter = 0;
     AimingAndShooting aimingAndShooting;
     Rigidbody2D rb;
 
     [SerializeField]
-    private GameObject gunObject;
+    private GameObject gunObject; //kui on
     [SerializeField]
     Animator animator;
 
@@ -33,9 +33,6 @@ public class PlayerAnimationSystem : MonoBehaviour
     {
         //idk see ei tööta smh:
         //Vector2 lookDir = 10f * aimingDirection + new Vector2(transform.position.x, transform.position.y);
-        
-
-
         //vasakule-paremale scaling
         if(aimingAndShooting.aimingVector.x > 0){
             lookLeft = false;

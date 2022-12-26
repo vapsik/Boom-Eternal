@@ -114,13 +114,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e18d9dcc9b0cc14dabb546bffa44b2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRadius: 0
+  bulletPrefab: {fileID: 6138206662412576712, guid: 3a51264a979599a489cb500bd4273bbb, type: 3}
+  shootingRadius: 7.5
+  shootingDuration: 0.2
   layerMask:
     serializedVersion: 2
     m_Bits: 9
   maxBehaviourTime: 4
   speed: 1
   monkeMode: 1
+  canShoot: 1
 --- !u!114 &1333859005802756456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -261,7 +264,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShadowGroup: 0
-  m_HasRenderer: 0
+  m_HasRenderer: 1
   m_UseRendererSilhouette: 1
   m_CastsShadows: 1
   m_SelfShadows: 0
@@ -273,7 +276,7 @@ MonoBehaviour:
   - {x: -0.25, y: 0.22070312, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: -76526
+  m_InstanceId: 27436
 --- !u!114 &2991268718270455286
 MonoBehaviour:
   m_ObjectHideFlags: 0

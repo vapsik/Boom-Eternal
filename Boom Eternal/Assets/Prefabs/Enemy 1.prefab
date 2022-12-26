@@ -115,13 +115,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e18d9dcc9b0cc14dabb546bffa44b2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionRadius: 0
+  bulletPrefab: {fileID: 6138206662412576712, guid: 3a51264a979599a489cb500bd4273bbb, type: 3}
+  shootingRadius: 7.5
+  shootingDuration: 0.1
+  shootingSlowDown: 0.5
+  reloadingDuration: 1.5
+  bulletsPerMagazine: 12
   layerMask:
     serializedVersion: 2
     m_Bits: 9
   maxBehaviourTime: 4
   speed: 1
   monkeMode: 1
+  canShoot: 1
 --- !u!114 &1333859005802756456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -274,7 +280,7 @@ MonoBehaviour:
   - {x: -0.25, y: 0.22070312, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 23110
+  m_InstanceId: 43904
 --- !u!60 &-2247162936644241139
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -320,3 +326,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 721b88c0c3db82647b648d326aa1a7a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lookLeft: 1
+  animator: {fileID: 0}

@@ -13,18 +13,23 @@ public class AimingAndShooting : MonoBehaviour
     float sensX, sensY, reach; // reach ehk siruulatus
     public GameObject testBulletPrefab;
     public Transform gunBarrel;
-    public GameObject gun;
+    public GameObject gunPivot;
     public Transform playerBullets;
     private Vector3 crosshairPosition, centerOfTheCanvas = Vector3.zero; 
+    private int bulletCount;
 
     [HideInInspector]
     public Vector2 aimingVector, aimingVectorFromBarrel; // on ühikvektor, mis näitab, mis suunas sihitakse
     [HideInInspector]
     public float aimingProgress; // näitab, mis murdosa maksimaalsest keskpunkti-crosshairi nihkest on praegu saavutatud
 
+    [SerializeField] bool spinningGunOnHand = true;
+
     // Start is called before the first frame update
     void Start()
     {
+        bulletCount = GlobalReferences.maxBulletCount;
+
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         
@@ -68,12 +73,15 @@ public class AimingAndShooting : MonoBehaviour
         gunPos.y += reach * aimingVector.y;
         gun.transform.position = gunPos;
         */
-
-        //gun.transform.LookAt(crosshairRealPosition, Vector3.back);
-        gun.transform.rotation = Quaternion.Euler(0,0,Mathf.Atan(aimingVector.y/aimingVector.x)*Mathf.Rad2Deg);
+        if(spinningGunOnHand){
+            //gun.transform.LookAt(crosshairRealPosition, Vector3.back);
+            gunPivot.transform.rotation = Quaternion.Euler(0,0,Mathf.Atan(aimingVector.y/aimingVector.x)*Mathf.Rad2Deg);
+        }
+        
 
         //tulistamise osa:
-        if(Input.GetKeyDown(KeyCode.Mouse0)){
+        
+        if(Input.GetKeyDown(KeyCode.Mouse0) && bulletCount > 0){
             aimingVectorFromBarrel = new Vector2(crosshairPosition.x - barrelPosOnCanvas.x, crosshairPosition.y - barrelPosOnCanvas.y).normalized;
             //selline instantiate'imine toimib ainult puhul ümara kuuli puhul: 
             GameObject bullet = Instantiate(testBulletPrefab, gunBarrel.position, Quaternion.identity, playerBullets.transform);
@@ -82,6 +90,9 @@ public class AimingAndShooting : MonoBehaviour
             //GameObject bullet = Instantiate(testBulletPrefab, gunBarrel.position, Quaternion.identity);
             //bullet.transform.LookAt(transform.position + 10000f * aimingVectorFromBarrel); //(?)
             bullet.GetComponent<Bullet>().affectsTarget = "Enemy"; //iseendale dammi ei tee
+
+            bulletCount -= 1;
         }
+        GlobalReferences.bulletCount = bulletCount;
     }
 }
