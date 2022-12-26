@@ -7,16 +7,19 @@ using UnityEngine.Tilemaps;
 
 public class EnemySpawner : MonoBehaviour
 {
-
+    //suvalistame spawnimist:
     public GameObject[] randomEnemyPrefab;
     [SerializeField] bool spawnRandomly = true;
+    //spawnimiste vahelised intervallid:
+    public float minSpawnInterval = 4f, maxSpawnInterval = 5f;
+    
     public Tilemap floorTiles;
     public Tilemap wallTiles;
     public Tilemap ceilingTiles;
 
     public float minDistance = 3f;
     public float maxDistance = 5f;
-
+    
     private void Awake()
     {
         StartCoroutine(SpawnLoop());
@@ -24,7 +27,7 @@ public class EnemySpawner : MonoBehaviour
 
     IEnumerator SpawnLoop()
     {
-        yield return new WaitForSeconds(0f);
+        yield return new WaitForSeconds(2f);
 
         for (int i = 0; i < 50; i++)
         {
@@ -55,7 +58,7 @@ public class EnemySpawner : MonoBehaviour
                 }
             }
 
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(UnityEngine.Random.Range(minSpawnInterval, maxSpawnInterval));
         }
     }
 
