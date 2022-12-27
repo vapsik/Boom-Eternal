@@ -8,7 +8,7 @@ using UnityEngine.Tilemaps;
 public class EnemySpawner : MonoBehaviour
 {
     //suvalistame spawnimist:
-    public GameObject[] randomEnemyPrefab;
+    GameObject[] randomEnemyPrefab;
     [SerializeField] bool spawnRandomly = true;
     //spawnimiste vahelised intervallid:
     public float minSpawnInterval = 4f, maxSpawnInterval = 5f;
@@ -23,6 +23,10 @@ public class EnemySpawner : MonoBehaviour
     private void Awake()
     {
         StartCoroutine(SpawnLoop());
+    }
+    private void Start()
+    {
+        randomEnemyPrefab = GlobalReferences.listOfEnemyPrefabs;
     }
 
     IEnumerator SpawnLoop()
@@ -54,7 +58,6 @@ public class EnemySpawner : MonoBehaviour
                     else{
                         //skoori järgi võtta see millist enemy't spawnida
                     }
-                    
                 }
             }
 

@@ -31,6 +31,8 @@ public class Bullet : MonoBehaviour
             if (affectsTarget == "Player")
             {
                 GlobalReferences.hp -= 1;
+                //eat lead:
+                GlobalReferences.AddAmmo(true);
                 Destroy(gameObject);
                 //proc slowdown ja invuln l?bi PlayerResources
             }

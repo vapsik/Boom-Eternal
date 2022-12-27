@@ -5,7 +5,7 @@ using UnityEngine;
 public class HomemadeCinemachine : MonoBehaviour
 {
     AimingAndShooting aimingAndShooting;
-    public GameObject player;
+    GameObject player;
     [SerializeField]
     private float maxDisplacementRadius = 10f;
     private Vector2 cameraPos2D;
@@ -15,6 +15,7 @@ public class HomemadeCinemachine : MonoBehaviour
     }
     void Start()
     {
+        player = GlobalReferences.thePlayer;
         aimingAndShooting = player.GetComponent<AimingAndShooting>();    
         transform.position = player.transform.position;
     }
@@ -22,6 +23,7 @@ public class HomemadeCinemachine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        player = GlobalReferences.thePlayer;
         cameraPos2D = aimingAndShooting.aimingVector * aimingAndShooting.aimingProgress * maxDisplacementRadius;
         cameraPos2D += new Vector2(player.transform.position.x, player.transform.position.y);
         transform.position = new Vector3(cameraPos2D.x, cameraPos2D.y, -10); //ASEMEL:

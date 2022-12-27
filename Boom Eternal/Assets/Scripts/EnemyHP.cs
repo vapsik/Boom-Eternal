@@ -7,8 +7,10 @@ public class EnemyHP : MonoBehaviour
     public int hp;
     public float spawnDistance;
     public int maxDropAmount;
-
-    // Update is called once per frame
+    GameObject testAmmoDropPrefab;
+    void Start(){
+        testAmmoDropPrefab = GlobalReferences.ammoDropPrefab;
+    }
     public void OnDamageTaken() //siia saab knockbacki ka lisada
     {
         if (hp <= 0)
@@ -21,6 +23,8 @@ public class EnemyHP : MonoBehaviour
             for (int i = 0; i < Mathf.Min(dropAmount, maxDropAmount); i++)
             {
                 //instantiate ammo drop
+                GameObject ammoDrop = Instantiate(testAmmoDropPrefab, new Vector2(gameObject.transform.position.x
+                + Random.Range(-1.5f, 1.5f), gameObject.transform.position.y + Random.Range(-1.5f, 1.5f)), Quaternion.identity);
             }
             Destroy(gameObject);
         }

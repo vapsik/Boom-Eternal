@@ -16,7 +16,6 @@ public class AimingAndShooting : MonoBehaviour
     public GameObject gunPivot;
     public Transform playerBullets;
     private Vector3 crosshairPosition, centerOfTheCanvas = Vector3.zero; 
-    private int bulletCount;
 
     [HideInInspector]
     public Vector2 aimingVector, aimingVectorFromBarrel; // on ühikvektor, mis näitab, mis suunas sihitakse
@@ -28,7 +27,7 @@ public class AimingAndShooting : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        bulletCount = GlobalReferences.maxBulletCount;
+        GlobalReferences.bulletCount = GlobalReferences.maxBulletCount;
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -48,6 +47,8 @@ public class AimingAndShooting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        sensX = sensY = GlobalReferences.Settings.sensitivity;
+
         //järgnev kood töötab, sest Canvas UI Scale Mode = Scale With Screen Size
         mouseX += sensX * Time.deltaTime * Input.GetAxis("Mouse X");
         mouseX = Mathf.Clamp(mouseX, 8f, resolutionX - 8f);
@@ -65,34 +66,24 @@ public class AimingAndShooting : MonoBehaviour
         
         aimingVector = new Vector2(crosshairPosition.x - playerPosOnCanvas.x, crosshairPosition.y - playerPosOnCanvas.y).normalized;
         aimingProgress = (crosshairPosition - centerOfTheCanvas).magnitude/(centerOfTheCanvas.magnitude); 
-        //Debug.Log(aimingProgress);
-        //ei tee siiski seda:
-        /*
-        Vector3 gunPos = transform.position;
-        gunPos.x += reach * aimingVector.x;
-        gunPos.y += reach * aimingVector.y;
-        gun.transform.position = gunPos;
-        */
+        
         if(spinningGunOnHand){
             //gun.transform.LookAt(crosshairRealPosition, Vector3.back);
             gunPivot.transform.rotation = Quaternion.Euler(0,0,Mathf.Atan(aimingVector.y/aimingVector.x)*Mathf.Rad2Deg);
         }
         
-
         //tulistamise osa:
-        
-        if(Input.GetKeyDown(KeyCode.Mouse0) && bulletCount > 0){
+        if(Input.GetKeyDown(KeyCode.Mouse0) && GlobalReferences.bulletCount > 0 && !GlobalReferences.onPause){
             aimingVectorFromBarrel = new Vector2(crosshairPosition.x - barrelPosOnCanvas.x, crosshairPosition.y - barrelPosOnCanvas.y).normalized;
             //selline instantiate'imine toimib ainult puhul ümara kuuli puhul: 
             GameObject bullet = Instantiate(testBulletPrefab, gunBarrel.position, Quaternion.identity, playerBullets.transform);
             bullet.GetComponent<Rigidbody2D>().velocity = aimingVectorFromBarrel * 12f;
             ////kuulikujulise kuuli puhul:
             //GameObject bullet = Instantiate(testBulletPrefab, gunBarrel.position, Quaternion.identity);
-            //bullet.transform.LookAt(transform.position + 10000f * aimingVectorFromBarrel); //(?)
+            //bullet.transform.rotation = Quaternion.Euler(0,0,Mathf.Atan(aimingVector.y/aimingVector.x)*Mathf.Rad2Deg);
             bullet.GetComponent<Bullet>().affectsTarget = "Enemy"; //iseendale dammi ei tee
 
-            bulletCount -= 1;
+            GlobalReferences.bulletCount -= 1;
         }
-        GlobalReferences.bulletCount = bulletCount;
     }
 }

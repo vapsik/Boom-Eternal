@@ -117,6 +117,9 @@ MonoBehaviour:
   bulletPrefab: {fileID: 6138206662412576712, guid: 3a51264a979599a489cb500bd4273bbb, type: 3}
   shootingRadius: 7.5
   shootingDuration: 2
+  shootingSlowDown: 0.5
+  reloadingDuration: 2
+  bulletsPerMagazine: 12
   layerMask:
     serializedVersion: 2
     m_Bits: 9
@@ -217,7 +220,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2034928674955330399}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
   m_Name: 
