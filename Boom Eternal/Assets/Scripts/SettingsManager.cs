@@ -11,8 +11,10 @@ public class SettingsManager : MonoBehaviour
         //et algsed näidud ühtiksid slideri näiduga:
         sensSlider.value = GlobalReferences.Settings.sensitivity;
         volumeSlider.value = GlobalReferences.Settings.volume;
+        sensSlider.minValue = 500f;
+        sensSlider.maxValue = 10000f;
     }
-    void Update(){
+    public void OnChange(){
         GlobalReferences.Settings.sensitivity = sensSlider.value;
         GlobalReferences.Settings.volume = volumeSlider.value;
     }

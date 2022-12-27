@@ -5,16 +5,20 @@ using UnityEngine.SceneManagement;
 
 public class StartMenuManager : MonoBehaviour
 {
+    [SerializeField] GameObject startMenuPanel, settingsMenuPanel;
     public void StartGame()
     {
         SceneManager.LoadScene("FirstLevel");
     }
     public void OpenSettings()
     {
-        SceneManager.LoadScene("SettingsMenu");
+        startMenuPanel.SetActive(false);
+        settingsMenuPanel.SetActive(true);
     }
-    public void BackToStartMenu(){
-        SceneManager.LoadScene("StartMenu");
+    public void BackToStartMenu()
+    {
+        startMenuPanel.SetActive(true);
+        settingsMenuPanel.SetActive(false);
     }
     public void QuitGame()
     {

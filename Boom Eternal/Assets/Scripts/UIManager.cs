@@ -2,15 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] TMPro.TextMeshProUGUI hpText, scoreText, bulletsText;
     [SerializeField] GameObject pauseMenu;
+    [SerializeField] Image crosshair;
     [HideInInspector] public bool onPause = false;
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        GlobalReferences.crosshair = crosshair;
     }
 
     // Update is called once per frame

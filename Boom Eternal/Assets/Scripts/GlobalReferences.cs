@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public static class GlobalReferences 
 {
     public static Camera mainCamera;
     public static GameObject thePlayer;
     public static bool onPause = false;
     public static int score = 0;
+    public static Image crosshair;
     
     public static int hp = 15;
     public static int maxHP = 15;

@@ -7,7 +7,6 @@ public class AimingAndShooting : MonoBehaviour
 {
     private float mouseX, mouseY;
     private int resolutionX, resolutionY;
-    [SerializeField]
     Image crosshair;
     [SerializeField]
     float sensX, sensY, reach; // reach ehk siruulatus
@@ -28,6 +27,7 @@ public class AimingAndShooting : MonoBehaviour
     void Start()
     {
         GlobalReferences.bulletCount = GlobalReferences.maxBulletCount;
+        crosshair = GlobalReferences.crosshair;
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
