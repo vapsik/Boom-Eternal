@@ -7,9 +7,8 @@ public class AimingAndShooting : MonoBehaviour
 {
     private float mouseX, mouseY;
     private int resolutionX, resolutionY;
-    Image crosshair;
-    [SerializeField]
-    float sensX, sensY, reach; // reach ehk siruulatus
+    [SerializeField] Image crosshair;
+    [SerializeField] float sensX, sensY, reach; // reach ehk siruulatus
     public GameObject testBulletPrefab;
     public Transform gunBarrel;
     public GameObject gunPivot;
@@ -27,7 +26,7 @@ public class AimingAndShooting : MonoBehaviour
     void Start()
     {
         GlobalReferences.bulletCount = GlobalReferences.maxBulletCount;
-        crosshair = GlobalReferences.crosshair;
+        //crosshair = GlobalReferences.crosshair; on vist siiski aeglane
 
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;

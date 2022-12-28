@@ -7,6 +7,7 @@ public class EnemyBehaviour1 : MonoBehaviour
     // siia tuleb lihtsaim enemy behaviour: liigub ringi suvaliselt mängija ümber ja laseb suvaliste intervallide taga 3 kuuli
     [SerializeField] GameObject bulletPrefab;
     bool lineOfSight = false, shooting = false;
+    public float detectonRadius = 15f;
     public float shootingRadius = 7.5f;    
     public float shootingDuration = 2f;
     public float shootingSlowDown = 0.5f; // aeglustus laskmise ja sihtimise ajal
@@ -39,7 +40,7 @@ public class EnemyBehaviour1 : MonoBehaviour
         if(enemyToPlayerVector.magnitude < shootingRadius && canShoot){
             // kordamööda:
             // kui lineOfSight = true, siis tulistab Random(0, maxBehaviourTime) aja kestel mängijat
-            if (lineOfSight && counter < Time.time)
+            if (lineOfSight && counter < Time.time && enemyToPlayerVector.magnitude < detectonRadius)
             {
                 
                 Debug.Log("tulistan");

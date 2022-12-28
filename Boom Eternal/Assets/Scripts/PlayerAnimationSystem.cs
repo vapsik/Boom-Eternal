@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerAnimationSystem : MonoBehaviour
 {
     [SerializeField] bool lookLeft = true;
-    float pantingCounter = 0;
+    float pantingCounter = 0; //RIP Pengu
     AimingAndShooting aimingAndShooting;
     Rigidbody2D rb;
 

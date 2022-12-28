@@ -8,16 +8,20 @@ public class SceneReferencer : MonoBehaviour
 {
     [SerializeField] GameObject ammoDropPrefab;
     [SerializeField] GameObject[] listOfEnemyPrefabs;
-    [SerializeField] bool ligthsOff = true;
+    [SerializeField] bool lightsOff = true;
+    [SerializeField] GameObject levelEndCollider;
     void Awake(){
         GlobalReferences.ammoDropPrefab = ammoDropPrefab;
         GlobalReferences.listOfEnemyPrefabs = listOfEnemyPrefabs;
     }
     void Start(){
-        if(ligthsOff){
+        if(lightsOff){
             foreach(var el in listOfEnemyPrefabs){
                 el.GetComponent<Light2D>().enabled = false;
             }
         }
+    }
+    public void LoadNextScene(){
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

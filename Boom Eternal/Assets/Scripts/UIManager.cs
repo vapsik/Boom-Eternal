@@ -10,10 +10,10 @@ public class UIManager : MonoBehaviour
     [SerializeField] Image crosshair;
     [HideInInspector] public bool onPause = false;
     // Start is called before the first frame update
-    void Awake()
+    /*void Awake()
     {
         GlobalReferences.crosshair = crosshair;
-    }
+    }*/
 
     // Update is called once per frame
     void Update()
