@@ -30,8 +30,10 @@ public class Bullet : MonoBehaviour
         {
             if (affectsTarget == "Player")
             {
-                GlobalReferences.hp -= 1;
-                //eat lead:
+                if(!GlobalReferences.thePlayerIsInvincible){
+                    GlobalReferences.hp -= 1;
+                }
+                //eat lead, töötab ka :
                 GlobalReferences.AddAmmo(true);
                 Destroy(gameObject);
                 //proc slowdown ja invuln l?bi PlayerResources

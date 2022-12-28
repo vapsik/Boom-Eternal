@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DOC PUBLIC '-//KDE//DTD krita 2.0//EN' 'http://www.calligra.org/DTD/krita-2.0.dtd'>
+<DOC xmlns="http://www.calligra.org/DTD/krita" kritaVersion="5.0.2" editor="Krita" syntaxVersion="2.0">
+ <IMAGE description="" mime="application/x-kra" profile="sRGB-elle-V2-srgbtrc.icc" width="32" height="48" name="document_4" y-res="600" colorspacename="RGBA" x-res="600">
+  <layers>
+   <layer onionskin="0" y="0" visible="1" filename="layer2" intimeline="1" channelflags="" nodetype="paintlayer" compositeop="normal" name="Paint Layer 4" channellockflags="1111" opacity="255" collapsed="0" uuid="{f9805577-470e-49e9-ad74-ce4c271d2cca}" colorlabel="0" colorspacename="RGBA" locked="0" x="0"/>
+   <layer collapsed="0" nodetype="paintlayer" opacity="255" colorlabel="0" onionskin="0" visible="0" channellockflags="1111" y="0" compositeop="normal" selected="true" intimeline="0" locked="0" x="0" colorspacename="RGBA" name="Paint Layer 4 (pasted)" filename="layer3" uuid="{f8991ff5-818e-4af3-81e8-442b77092420}" channelflags=""/>
+   <layer onionskin="0" y="0" visible="0" filename="layer4" intimeline="1" channelflags="" nodetype="paintlayer" compositeop="normal" name="Paint Layer 3" channellockflags="1111" opacity="255" collapsed="0" uuid="{cd8af437-fb29-4fcf-b32e-d40460f82895}" colorlabel="0" colorspacename="RGBA" locked="0" x="0"/>
+   <layer onionskin="0" y="7" visible="1" filename="layer5" intimeline="1" channelflags="" nodetype="paintlayer" compositeop="normal" name="Paint Layer 1" channellockflags="1111" opacity="255" collapsed="0" uuid="{44561273-7166-4197-bc5b-60565f70878b}" colorlabel="0" colorspacename="RGBA" locked="0" x="0"/>
+   <layer onionskin="0" y="8" visible="0" filename="layer6" intimeline="1" channelflags="" nodetype="paintlayer" compositeop="normal" name="Background" channellockflags="1111" opacity="255" collapsed="0" uuid="{e89a7052-60cc-49b1-80b1-4079426887b5}" colorlabel="0" colorspacename="RGBA" locked="1" x="0"/>
+  </layers>
+  <ProjectionBackgroundColor ColorData="AAAAAA=="/>
+  <GlobalAssistantsColor SimpleColorData="176,176,176,255"/>
+  <Palettes/>
+  <resources/>
+  <animation>
+   <framerate value="24" type="value"/>
+   <range type="timerange" from="0" to="100"/>
+   <currentTime value="0" type="value"/>
+  </animation>
+ </IMAGE>
+</DOC>

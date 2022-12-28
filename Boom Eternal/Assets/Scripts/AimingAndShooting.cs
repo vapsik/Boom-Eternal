@@ -9,7 +9,7 @@ public class AimingAndShooting : MonoBehaviour
     private int resolutionX, resolutionY;
     [SerializeField] Image crosshair;
     [SerializeField] float sensX, sensY, reach; // reach ehk siruulatus
-    public GameObject testBulletPrefab;
+    GameObject playerBulletPrefab;
     public Transform gunBarrel;
     public GameObject gunPivot;
     public Transform playerBullets;
@@ -20,8 +20,8 @@ public class AimingAndShooting : MonoBehaviour
     [HideInInspector]
     public float aimingProgress; // näitab, mis murdosa maksimaalsest keskpunkti-crosshairi nihkest on praegu saavutatud
 
-    [SerializeField] bool spinningGunOnHand = true;
-
+    [SerializeField] bool spinningGunOnHand = true, clamped = true;
+    [SerializeField] float minAngle, maxAngle;
     // Start is called before the first frame update
     void Start()
     {
@@ -68,14 +68,18 @@ public class AimingAndShooting : MonoBehaviour
         
         if(spinningGunOnHand){
             //gun.transform.LookAt(crosshairRealPosition, Vector3.back);
-            gunPivot.transform.rotation = Quaternion.Euler(0,0,Mathf.Atan(aimingVector.y/aimingVector.x)*Mathf.Rad2Deg);
+            float angle = Mathf.Atan(aimingVector.y/aimingVector.x)*Mathf.Rad2Deg;
+            if(clamped){
+                angle = Mathf.Clamp(angle, minAngle, maxAngle);
+            }
+            gunPivot.transform.rotation = Quaternion.Euler(0,0,angle);
         }
         
         //tulistamise osa:
         if(Input.GetKeyDown(KeyCode.Mouse0) && GlobalReferences.bulletCount > 0 && !GlobalReferences.onPause){
             aimingVectorFromBarrel = new Vector2(crosshairPosition.x - barrelPosOnCanvas.x, crosshairPosition.y - barrelPosOnCanvas.y).normalized;
             //selline instantiate'imine toimib ainult puhul ümara kuuli puhul: 
-            GameObject bullet = Instantiate(testBulletPrefab, gunBarrel.position, Quaternion.identity, playerBullets.transform);
+            GameObject bullet = Instantiate(GlobalReferences.playerBulletPrefabs[0], gunBarrel.position, Quaternion.identity, playerBullets.transform);
             bullet.GetComponent<Rigidbody2D>().velocity = aimingVectorFromBarrel * 12f;
             ////kuulikujulise kuuli puhul:
             //GameObject bullet = Instantiate(testBulletPrefab, gunBarrel.position, Quaternion.identity);

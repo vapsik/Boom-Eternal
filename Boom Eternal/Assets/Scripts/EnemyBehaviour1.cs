@@ -5,11 +5,9 @@ using UnityEngine;
 public class EnemyBehaviour1 : MonoBehaviour
 {
     // siia tuleb lihtsaim enemy behaviour: liigub ringi suvaliselt mängija ümber ja laseb suvaliste intervallide taga 3 kuuli
-    [SerializeField] GameObject bulletPrefab;
     bool lineOfSight = false, shooting = false;
-    public float detectonRadius = 15f;
-    public float shootingRadius = 7.5f;    
-    public float shootingDuration = 2f;
+    public float detectionRadius = 15f, shootingRadius = 7.5f, shootingDuration = 2f, detonationRadius = 3f;
+    public int numberOfRicochets = 16; 
     public float shootingSlowDown = 0.5f; // aeglustus laskmise ja sihtimise ajal
     public float reloadingDuration = 2f;
     public int bulletsPerMagazine = 12;
@@ -22,7 +20,7 @@ public class EnemyBehaviour1 : MonoBehaviour
     [SerializeField]
     float maxBehaviourTime = 4f, speed = 2f; //phmst max aeg, mille jooksul ta teeb midagi (4 sekundit jooksu suvalises suunas, 4 sekundit seistes tulistamist, 4 sekundit ns passimist jms)
     [SerializeField] bool monkeMode = true;
-    [SerializeField] bool canShoot = false;
+    [SerializeField] bool canShoot = false, isGranade = false;
     
     GameObject player;
     Vector2 enemyToPlayerVector;
@@ -37,14 +35,13 @@ public class EnemyBehaviour1 : MonoBehaviour
     void Update()
     {
         enemyToPlayerVector = player.transform.position - transform.position;
-        if(enemyToPlayerVector.magnitude < shootingRadius && canShoot){
+        if(enemyToPlayerVector.magnitude < shootingRadius && canShoot && !isGranade){
             // kordamööda:
             // kui lineOfSight = true, siis tulistab Random(0, maxBehaviourTime) aja kestel mängijat
-            if (lineOfSight && counter < Time.time && enemyToPlayerVector.magnitude < detectonRadius)
+            if (lineOfSight && counter < Time.time)
             {
-                
                 Debug.Log("tulistan");
-                GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+                GameObject bullet = Instantiate(GlobalReferences.enemyBulletPrefabs[0], transform.position, Quaternion.identity);
                 bullet.GetComponent<Rigidbody2D>().velocity = enemyToPlayerVector.normalized * 10f;
                 bullet.GetComponent<Bullet>().affectsTarget = "Player";
                 bulletCounter += 1;
@@ -73,15 +70,17 @@ public class EnemyBehaviour1 : MonoBehaviour
         else {
             shooting = false;
         }
-        
 
         if (monkeMode && lineOfSight)
         {
-            if(shooting){
+            if(shooting || !isGranade){
                 transform.Translate(enemyToPlayerVector.normalized * shootingSlowDown * speed * Time.deltaTime);
             }
-            else{
+            else if(enemyToPlayerVector.magnitude < detectionRadius){
                 transform.Translate(enemyToPlayerVector.normalized * speed * Time.deltaTime);
+            }
+            if(enemyToPlayerVector.magnitude < detonationRadius && isGranade){
+                Detonate(numberOfRicochets);
             }
         }
 
@@ -89,6 +88,8 @@ public class EnemyBehaviour1 : MonoBehaviour
         RaycastHit2D hit = Physics2D.Raycast(transform.position, enemyToPlayerVector.normalized, Mathf.Infinity, layerMask);
         Debug.DrawRay(transform.position, enemyToPlayerVector, Color.red);
         Debug.DrawRay(transform.position, enemyToPlayerVector.normalized * shootingRadius, Color.blue);
+        Debug.DrawRay(transform.position, enemyToPlayerVector.normalized * detectionRadius, Color.yellow);
+        Debug.DrawRay(transform.position, enemyToPlayerVector.normalized * detonationRadius, Color.red);
         if(hit.transform != null)
         {
             if (hit.transform.tag == "Player")
@@ -101,6 +102,17 @@ public class EnemyBehaviour1 : MonoBehaviour
             }
             Debug.Log("lineOfSight: " + lineOfSight);
             Debug.Log(hit.transform.tag + " " + transform.position);
+        }
+    }
+    public void Detonate(int numberOfRicochets){
+        for(int i = 0; i < numberOfRicochets; i++){
+            float angle = 360f / numberOfRicochets;
+            GameObject bullet = Instantiate(GlobalReferences.enemyBulletPrefabs[0], transform.position, Quaternion.identity);
+            Vector2 directionVector = new Vector2(Mathf.Cos((i * angle) * Mathf.Deg2Rad), Mathf.Sin((i * angle) * Mathf.Deg2Rad));
+            bullet.GetComponent<Rigidbody2D>().velocity = directionVector * 10f;
+            bullet.GetComponent<Bullet>().affectsTarget = "Player";
+            bullet.transform.rotation = Quaternion.Euler(0, 0, angle * i);
+            Destroy(gameObject);
         }
     }
 }

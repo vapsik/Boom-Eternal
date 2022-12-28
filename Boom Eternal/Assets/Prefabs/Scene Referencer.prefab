@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &645174635098641855
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 645174635098641853}
+  - component: {fileID: 645174635098641854}
+  m_Layer: 0
+  m_Name: Scene Referencer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &645174635098641853
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 645174635098641855}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &645174635098641854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 645174635098641855}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b87c0b9ad8a7da1479e553a59ea6e810, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ammoDropPrefab: {fileID: 7412913991942196602, guid: 83e480629aeb8c74486818dafec2deb7, type: 3}
+  listOfEnemyPrefabs:
+  - {fileID: 2034928674955330399, guid: 10712ca0dcea5964f9f2227ec451324a, type: 3}
+  - {fileID: 2034928674955330399, guid: 12c0051e2f959ff4d87d9b6b5bba0d96, type: 3}
+  - {fileID: 2034928674955330399, guid: 6c927fb57b7517241b477dfadcee229e, type: 3}
+  - {fileID: 2034928674955330399, guid: c577755f5a592dc49b992e735f3cdf0b, type: 3}
+  - {fileID: 2034928674955330399, guid: 891b046a0f390324d8b4cdf87e89f479, type: 3}
+  lightsOff: 0
+  levelEndCollider: {fileID: 0}
+  playerBulletPrefabs:
+  - {fileID: 6138206662412576712, guid: ad39b959380f9a8479025b3e9d7acb8a, type: 3}
+  enemyBulletPrefabs:
+  - {fileID: 6138206662412576712, guid: 3a51264a979599a489cb500bd4273bbb, type: 3}

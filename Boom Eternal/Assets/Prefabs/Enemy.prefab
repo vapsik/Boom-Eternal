@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: -6569854689304138260}
   - component: {fileID: 1333859005802756456}
   - component: {fileID: -21358614612331649}
-  - component: {fileID: 1917744265289970585}
   - component: {fileID: 3959303671832627536}
   - component: {fileID: -4795496186441579181}
   - component: {fileID: -1527121394864993066}
@@ -114,9 +113,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e18d9dcc9b0cc14dabb546bffa44b2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 6138206662412576712, guid: 3a51264a979599a489cb500bd4273bbb, type: 3}
+  detectionRadius: 15
   shootingRadius: 7.5
   shootingDuration: 2
+  detonationRadius: 3
+  numberOfRicochets: 16
   shootingSlowDown: 0.5
   reloadingDuration: 2
   bulletsPerMagazine: 12
@@ -124,9 +125,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 9
   maxBehaviourTime: 4
-  speed: 1
+  speed: 5
   monkeMode: 1
   canShoot: 0
+  isGranade: 1
 --- !u!114 &1333859005802756456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,25 +196,6 @@ PolygonCollider2D:
       - {x: 0.265625, y: -0.4375}
       - {x: 0.29296875, y: -0.390625}
       - {x: 0.30859375, y: -0.36328125}
---- !u!95 &1917744265289970585
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2034928674955330399}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9085cc3270a5eb442a12120c903e4910, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &3959303671832627536
 MonoBehaviour:
   m_ObjectHideFlags: 0

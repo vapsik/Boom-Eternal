@@ -8,6 +8,9 @@ public static class GlobalReferences
     public static GameObject thePlayer;
     public static bool onPause = false;
     public static int score = 0;
+    public static bool thePlayerIsInvincible;
+    //Scene Referencer seab selle
+    public static GameObject[] playerBulletPrefabs, enemyBulletPrefabs;
     
     public static int hp = 15;
     public static int maxHP = 15;

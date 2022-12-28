@@ -6,7 +6,8 @@ public class PlayerMovement : MonoBehaviour
 {
     float inputX;
     float inputY;
-
+    // jääl kõndimise asjandus:
+    bool onIce = false; Vector2 lastFrameInput; float inputDelay = 0.05f, inputDelayCounter; List<Vector2> savedInputs; int i = 0;
     public float speed;
     Rigidbody2D rb;
     //leaping stuff:
@@ -36,17 +37,20 @@ public class PlayerMovement : MonoBehaviour
             dodgeDirection = aimingAndShooting.aimingVector;
             dodgeTimer = Time.time + dodgeDuration;
             // invincibility peale
+            GlobalReferences.thePlayerIsInvincible = true;
         }
     }
     
     void FixedUpdate() {
-        if(!isDodgeLeaping){
+        
+        inputX = Input.GetAxisRaw("Horizontal");
+        inputY = Input.GetAxisRaw("Vertical");
+        Vector2 movementInput = new Vector2(inputX, inputY);
+        if(!isDodgeLeaping && !onIce){
             // fikseeritud max kiirusega
-            inputX = Input.GetAxisRaw("Horizontal");
-            inputY = Input.GetAxisRaw("Vertical");
-            rb.velocity = new Vector2(inputX, inputY).normalized * speed;
+            rb.velocity = movementInput.normalized * speed;
         }
-        else{
+        if(isDodgeLeaping && !onIce){
             if(dodgeTimer > Time.time){
                 rb.velocity = 10f * dodgeDirection;
             }
@@ -54,7 +58,39 @@ public class PlayerMovement : MonoBehaviour
                 rb.velocity = Vector2.zero;
                 isDodgeLeaping = false;
                 // invincibility maha
+                GlobalReferences.thePlayerIsInvincible = false;
             }
+        }
+        // ei tea kas järgmise lõigu peaks panema Update-i???
+        if(onIce){
+            // jääle mineku algus:
+            if(movementInput.magnitude != 0 && lastFrameInput == Vector2.zero){
+                lastFrameInput = movementInput;
+                inputDelayCounter = Time.time + inputDelay;
+                savedInputs = new List<Vector2>();
+            }
+            else if (inputDelayCounter < Time.time && movementInput != lastFrameInput && movementInput != Vector2.zero){
+                lastFrameInput = savedInputs[i] != Vector2.zero ? savedInputs[i] : lastFrameInput;
+                i += 1;
+            }
+            rb.velocity = lastFrameInput.normalized * speed;
+            savedInputs.Add(movementInput);
+        }
+        else if(lastFrameInput.magnitude > 0){
+            lastFrameInput = Vector2.zero;
+            savedInputs.Clear();
+            i = 0;
+        }
+        Debug.Log("on ice = " + onIce);
+    }
+    private void OnTriggerStay2D(Collider2D other) {
+        if(other.transform.tag == "Ice"){
+            onIce = true;
+        }
+    }
+    private void OnTriggerExit2D(Collider2D other) {
+        if(other.transform.tag == "Ice"){
+            onIce = false;
         }
     }
 }

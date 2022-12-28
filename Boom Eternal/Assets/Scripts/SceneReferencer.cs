@@ -9,15 +9,28 @@ public class SceneReferencer : MonoBehaviour
     [SerializeField] GameObject ammoDropPrefab;
     [SerializeField] GameObject[] listOfEnemyPrefabs;
     [SerializeField] bool lightsOff = true;
-    [SerializeField] GameObject levelEndCollider;
+    [SerializeField] GameObject[] playerBulletPrefabs, enemyBulletPrefabs;
     void Awake(){
         GlobalReferences.ammoDropPrefab = ammoDropPrefab;
         GlobalReferences.listOfEnemyPrefabs = listOfEnemyPrefabs;
+        GlobalReferences.playerBulletPrefabs = playerBulletPrefabs;
+        GlobalReferences.enemyBulletPrefabs = enemyBulletPrefabs;
     }
     void Start(){
         if(lightsOff){
-            foreach(var el in listOfEnemyPrefabs){
+            foreach(var el in GlobalReferences.listOfEnemyPrefabs){
                 el.GetComponent<Light2D>().enabled = false;
+            }
+            foreach(var el in GlobalReferences.playerBulletPrefabs){
+                el.GetComponent<Light2D>().intensity = 0.05f;
+            }
+        }
+        else{
+            foreach(var el in GlobalReferences.listOfEnemyPrefabs){
+                el.GetComponent<Light2D>().enabled = true;
+            }
+            foreach(var el in GlobalReferences.playerBulletPrefabs){
+                el.GetComponent<Light2D>().intensity = 0.5f;
             }
         }
     }

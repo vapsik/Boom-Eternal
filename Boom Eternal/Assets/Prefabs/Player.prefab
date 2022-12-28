@@ -251,7 +251,7 @@ Transform:
   m_GameObject: {fileID: 1109487290325655164}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 29.3, y: 43.6, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0}
   m_Children:
   - {fileID: 1109487289049602500}
   - {fileID: 1109487288505350990}
@@ -385,6 +385,9 @@ MonoBehaviour:
   aimingVectorFromBarrel: {x: 0, y: 0}
   aimingProgress: 0
   spinningGunOnHand: 1
+  clamped: 1
+  minAngle: 0
+  maxAngle: 0
 --- !u!114 &1109487290325655141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -507,7 +510,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2, y: 1}
+    oldSize: {x: 4, y: 2}
     newSize: {x: 1, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
