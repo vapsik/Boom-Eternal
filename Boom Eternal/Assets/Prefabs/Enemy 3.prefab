@@ -114,10 +114,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e18d9dcc9b0cc14dabb546bffa44b2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 6138206662412576712, guid: 3a51264a979599a489cb500bd4273bbb, type: 3}
-  detectonRadius: 15
+  detectionRadius: 15
   shootingRadius: 7.5
   shootingDuration: 0.4
+  detonationRadius: 3
+  numberOfRicochets: 16
   shootingSlowDown: 0.5
   reloadingDuration: 2
   bulletsPerMagazine: 12
@@ -129,6 +130,12 @@ MonoBehaviour:
   monkeMode: 1
   canShoot: 1
   isGranade: 0
+  gunPivot: {fileID: 0}
+  gunBarrel: {fileID: 0}
+  spinningGun: 0
+  clamped: 1
+  maxAngle: 0
+  minAngle: 0
 --- !u!114 &1333859005802756456
 MonoBehaviour:
   m_ObjectHideFlags: 0

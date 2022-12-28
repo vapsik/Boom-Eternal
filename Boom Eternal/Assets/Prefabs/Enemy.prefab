@@ -129,6 +129,12 @@ MonoBehaviour:
   monkeMode: 1
   canShoot: 0
   isGranade: 1
+  gunPivot: {fileID: 0}
+  gunBarrel: {fileID: 0}
+  spinningGun: 0
+  clamped: 1
+  maxAngle: 0
+  minAngle: 0
 --- !u!114 &1333859005802756456
 MonoBehaviour:
   m_ObjectHideFlags: 0

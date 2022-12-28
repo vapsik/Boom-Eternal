@@ -12,11 +12,11 @@ public static class GlobalReferences
     //Scene Referencer seab selle
     public static GameObject[] playerBulletPrefabs, enemyBulletPrefabs;
     
-    public static int hp = 15;
-    public static int maxHP = 15;
+    public static int hp;
+    public static int maxHP;
 
-    public static int bulletCount = 0;
-    public static int maxBulletCount = 20;
+    public static int bulletCount;
+    public static int maxBulletCount;
 
     public static GameObject ammoDropPrefab;
     public static GameObject[] listOfEnemyPrefabs;

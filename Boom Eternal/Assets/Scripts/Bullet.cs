@@ -22,11 +22,11 @@ public class Bullet : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.transform.tag == "Wall" || other.transform.tag == "Ceiling")
+        if (other.CompareTag("Wall") || other.CompareTag("Ceiling"))
         {
             Destroy(gameObject);
         }
-        if (other.transform.tag == affectsTarget)
+        if (other.CompareTag(affectsTarget))
         {
             if (affectsTarget == "Player")
             {
