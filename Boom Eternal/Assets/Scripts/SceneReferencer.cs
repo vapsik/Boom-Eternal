@@ -6,7 +6,7 @@ using UnityEngine.Experimental.Rendering.Universal;
 public class SceneReferencer : MonoBehaviour
 // ma pole veel kindel selles, mida veel võiks see skript teha ja kas see võiks jääda esimeselt levelilt viitajaks või igal stseenil olla kasulik
 {
-    [SerializeField] GameObject ammoDropPrefab;
+    [SerializeField] GameObject ammoDropPrefab, healthKitPrefab;
     [SerializeField] GameObject[] listOfEnemyPrefabs;
     [SerializeField] bool iterateLights = false, lightsOff = true;
     [SerializeField] GameObject[] playerBulletPrefabs, enemyBulletPrefabs;

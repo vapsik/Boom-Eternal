@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -6301664153798701332}
   - component: {fileID: 6230637475168298663}
   - component: {fileID: 5222488729795873177}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Ammo Drop
   m_TagString: Untagged
   m_Icon: {fileID: 0}

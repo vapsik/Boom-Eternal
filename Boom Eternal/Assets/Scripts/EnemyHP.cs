@@ -7,7 +7,7 @@ public class EnemyHP : MonoBehaviour
     public int hp;
     public float spawnDistance;
     public int maxDropAmount;
-    GameObject testAmmoDropPrefab;
+    GameObject testAmmoDropPrefab, healthKitPrefab;
     void Start(){
         testAmmoDropPrefab = GlobalReferences.ammoDropPrefab;
     }
@@ -25,6 +25,11 @@ public class EnemyHP : MonoBehaviour
                 //instantiate ammo drop
                 GameObject ammoDrop = Instantiate(testAmmoDropPrefab, new Vector2(gameObject.transform.position.x
                 + Random.Range(-1.5f, 1.5f), gameObject.transform.position.y + Random.Range(-1.5f, 1.5f)), Quaternion.identity);
+                // praegu 100% tõenäosus healthkiti dropimiseks, kui hp <= 0.5 * maxHP
+                if(GlobalReferences.hp <= GlobalReferences.maxHP * 0.5){
+                    GameObject hpAdd = Instantiate(healthKitPrefab, new Vector2(gameObject.transform.position.x
+                + Random.Range(-1.5f, 1.5f), gameObject.transform.position.y + Random.Range(-1.5f, 1.5f)), Quaternion.identity);
+                }
             }
             Destroy(gameObject);
         }
