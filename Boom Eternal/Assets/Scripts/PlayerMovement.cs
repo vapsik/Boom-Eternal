@@ -81,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
             savedInputs.Clear();
             i = 0;
         }
-        Debug.Log("on ice = " + onIce);
+        //Debug.Log("on ice = " + onIce);
     }
     private void OnTriggerStay2D(Collider2D other) {
         if(other.transform.tag == "Ice"){

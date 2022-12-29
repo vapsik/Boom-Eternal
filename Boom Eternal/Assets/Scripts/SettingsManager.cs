@@ -19,6 +19,6 @@ public class SettingsManager : MonoBehaviour
         GlobalReferences.Settings.volume = volumeSlider.value;
     }
     void Update(){
-        Debug.Log(GlobalReferences.Settings.sensitivity + " vs. " + sensSlider.value);
+        //Debug.Log(GlobalReferences.Settings.sensitivity + " vs. " + sensSlider.value);
     }
 }

@@ -163,7 +163,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -263,7 +263,6 @@ MonoBehaviour:
   sensX: 6000
   sensY: 6000
   reach: 0.34
-  testBulletPrefab: {fileID: 6138206662412576712, guid: ad39b959380f9a8479025b3e9d7acb8a, type: 3}
   gunBarrel: {fileID: 2645120674507776953}
   gunPivot: {fileID: 7887256498166972213}
   playerBullets: {fileID: 0}
@@ -359,7 +358,7 @@ MonoBehaviour:
   - {x: -0.41, y: 0, z: 0}
   m_ShapePathHash: -1100962395
   m_Mesh: {fileID: 0}
-  m_InstanceId: -1938
+  m_InstanceId: 62734
 --- !u!95 &2645120675254371985
 Animator:
   serializedVersion: 3
@@ -455,7 +454,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

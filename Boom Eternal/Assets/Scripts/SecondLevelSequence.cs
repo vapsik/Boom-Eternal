@@ -8,6 +8,7 @@ public class SecondLevelSequence : MonoBehaviour
     [SerializeField] Transform[] setsOfEnemies;
     [SerializeField] DoorRotate[] doors;
     [SerializeField] Transform lastDoor;
+    [SerializeField] float lastDoorDetectionRadius = 1f;
     // Exclusive to Second Scene:
     float initialIntensity = 0.85f, finalIntensity = 0.5f;
     Light2D globalLight; Color finalColor;
@@ -17,6 +18,7 @@ public class SecondLevelSequence : MonoBehaviour
         GlobalReferences.hp = GlobalReferences.hp == 0 ? 15 : GlobalReferences.hp;
         GlobalReferences.bulletCount = GlobalReferences.bulletCount == 0 ? 20 : GlobalReferences.bulletCount;
         GlobalReferences.maxBulletCount = GlobalReferences.maxBulletCount == 0 ? 20 : GlobalReferences.maxBulletCount;
+        GlobalReferences.maxHP = GlobalReferences.maxHP == 0 ? 15 : GlobalReferences.maxHP;
     }
     // Start() currently only exclusive to Second Scene:
     void Start(){
@@ -54,9 +56,10 @@ public class SecondLevelSequence : MonoBehaviour
             b -= Time.deltaTime * 0.1f;
             globalLight.color = new Color(globalLight.color.r, globalLight.color.g, b, 1f);
         }
-
-        if((lastDoor.position - GlobalReferences.thePlayer.transform.position).magnitude <= 0.5f){
+        //last door action:
+        if((lastDoor.position - GlobalReferences.thePlayer.transform.position).magnitude <= lastDoorDetectionRadius){
             GetComponent<SceneReferencer>().LoadNextScene();
         }
+        Debug.DrawRay(lastDoor.position, Vector3.down*lastDoorDetectionRadius, Color.blue);
     }
 }

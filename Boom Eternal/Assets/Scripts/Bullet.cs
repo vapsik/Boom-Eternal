@@ -22,8 +22,9 @@ public class Bullet : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Wall")) //  || other.CompareTag("Ceiling") -- avastasin, et pole teinud sellist tagi
+        if (other.CompareTag("Wall")) //  || other.CompareTag("Ceiling") -- avastasin, et pole teinud sellist tagiaaaw
         {
+            Debug.Log(transform.position + " vasta seina ");
             Destroy(gameObject);
         }
         if (other.CompareTag(affectsTarget))

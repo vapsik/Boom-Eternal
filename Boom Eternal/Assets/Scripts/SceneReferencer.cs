@@ -8,7 +8,7 @@ public class SceneReferencer : MonoBehaviour
 {
     [SerializeField] GameObject ammoDropPrefab;
     [SerializeField] GameObject[] listOfEnemyPrefabs;
-    [SerializeField] bool lightsOff = true;
+    [SerializeField] bool iterateLights = false, lightsOff = true;
     [SerializeField] GameObject[] playerBulletPrefabs, enemyBulletPrefabs;
     [SerializeField] GameObject globalLight;
     void Awake(){
@@ -19,22 +19,25 @@ public class SceneReferencer : MonoBehaviour
         GlobalReferences.currentSceneLight = globalLight;
     }
     void Start(){
-        if(lightsOff){
-            foreach(var el in GlobalReferences.listOfEnemyPrefabs){
-                el.GetComponent<Light2D>().enabled = false;
+        if(iterateLights){
+            if(lightsOff){
+                foreach(var el in GlobalReferences.listOfEnemyPrefabs){
+                    el.GetComponent<Light2D>().enabled = false;
+                }
+                foreach(var el in GlobalReferences.playerBulletPrefabs){
+                    el.GetComponent<Light2D>().intensity = 0.05f;
+                }
             }
-            foreach(var el in GlobalReferences.playerBulletPrefabs){
-                el.GetComponent<Light2D>().intensity = 0.05f;
+            else{
+                foreach(var el in GlobalReferences.listOfEnemyPrefabs){
+                    el.GetComponent<Light2D>().enabled = true;
+                }
+                foreach(var el in GlobalReferences.playerBulletPrefabs){
+                    el.GetComponent<Light2D>().intensity = 0.5f;
+                }
             }
         }
-        else{
-            foreach(var el in GlobalReferences.listOfEnemyPrefabs){
-                el.GetComponent<Light2D>().enabled = true;
-            }
-            foreach(var el in GlobalReferences.playerBulletPrefabs){
-                el.GetComponent<Light2D>().intensity = 0.5f;
-            }
-        }
+        
     }
     public void LoadNextScene(){
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);

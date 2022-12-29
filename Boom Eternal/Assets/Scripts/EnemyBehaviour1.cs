@@ -6,7 +6,7 @@ public class EnemyBehaviour1 : MonoBehaviour
 {
     // siia tuleb lihtsaim enemy behaviour: liigub ringi suvaliselt mängija ümber ja laseb suvaliste intervallide taga 3 kuuli
     bool lineOfSight = false, shooting = false;
-    public float detectionRadius = 15f, shootingRadius = 7.5f, shootingDuration = 2f, detonationRadius = 3f;
+    public float detectionRadius = 15f, shootingRadius = 7f, shootingDuration = 2f, detonationRadius = 3f;
     public int numberOfRicochets = 16; 
     public float shootingSlowDown = 0.5f; // aeglustus laskmise ja sihtimise ajal
     public float reloadingDuration = 2f;
@@ -68,7 +68,7 @@ public class EnemyBehaviour1 : MonoBehaviour
             else
             {
                 //Random.Range(0f, maxBehaviourTime);
-                Debug.Log("ei tulista ja ideaalis jooksen mängija vaatesse");
+                //Debug.Log("ei tulista ja ideaalis jooksen mängija vaatesse");
                 //shooting = false;
 
             }
@@ -114,8 +114,8 @@ public class EnemyBehaviour1 : MonoBehaviour
             {
                 lineOfSight = false;
             }
-            Debug.Log("lineOfSight: " + lineOfSight);
-            Debug.Log(hit.transform.tag + " " + transform.position);
+            //Debug.Log("lineOfSight: " + lineOfSight);
+            //Debug.Log(hit.transform.tag + " " + transform.position);
         }
     }
     public void Detonate(int numberOfRicochets){
