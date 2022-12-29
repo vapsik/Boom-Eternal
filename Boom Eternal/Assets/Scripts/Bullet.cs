@@ -22,7 +22,7 @@ public class Bullet : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Wall") || other.CompareTag("Ceiling"))
+        if (other.CompareTag("Wall")) //  || other.CompareTag("Ceiling") -- avastasin, et pole teinud sellist tagi
         {
             Destroy(gameObject);
         }

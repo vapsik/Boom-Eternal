@@ -10,11 +10,13 @@ public class SceneReferencer : MonoBehaviour
     [SerializeField] GameObject[] listOfEnemyPrefabs;
     [SerializeField] bool lightsOff = true;
     [SerializeField] GameObject[] playerBulletPrefabs, enemyBulletPrefabs;
+    [SerializeField] GameObject globalLight;
     void Awake(){
         GlobalReferences.ammoDropPrefab = ammoDropPrefab;
         GlobalReferences.listOfEnemyPrefabs = listOfEnemyPrefabs;
         GlobalReferences.playerBulletPrefabs = playerBulletPrefabs;
         GlobalReferences.enemyBulletPrefabs = enemyBulletPrefabs;
+        GlobalReferences.currentSceneLight = globalLight;
     }
     void Start(){
         if(lightsOff){

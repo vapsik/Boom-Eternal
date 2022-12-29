@@ -17,7 +17,7 @@ public static class GlobalReferences
 
     public static int bulletCount;
     public static int maxBulletCount;
-
+    public static GameObject currentSceneLight;
     public static GameObject ammoDropPrefab;
     public static GameObject[] listOfEnemyPrefabs;
     public static class Tags
