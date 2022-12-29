@@ -24,7 +24,7 @@ public class Bullet : MonoBehaviour
     {
         if (other.CompareTag("Wall")) //  || other.CompareTag("Ceiling") -- avastasin, et pole teinud sellist tagiaaaw
         {
-            Debug.Log(transform.position + " vasta seina ");
+            //Debug.Log(transform.position + " vasta seina ");
             Destroy(gameObject);
         }
         if (other.CompareTag(affectsTarget))
@@ -42,7 +42,7 @@ public class Bullet : MonoBehaviour
             if (affectsTarget == "Enemy")
             {
                 other.GetComponent<EnemyHP>().hp -= damage;
-                other.GetComponent<EnemyHP>().OnDamageTaken();
+                other.GetComponent<EnemyHP>().OnDamageTaken(GetComponent<Rigidbody2D>().velocity);
 
                 Destroy(gameObject);
             }

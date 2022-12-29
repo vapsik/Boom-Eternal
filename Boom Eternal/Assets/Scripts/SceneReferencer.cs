@@ -17,6 +17,7 @@ public class SceneReferencer : MonoBehaviour
         GlobalReferences.playerBulletPrefabs = playerBulletPrefabs;
         GlobalReferences.enemyBulletPrefabs = enemyBulletPrefabs;
         GlobalReferences.currentSceneLight = globalLight;
+        GlobalReferences.healthKitPrefab = healthKitPrefab;
     }
     void Start(){
         if(iterateLights){
@@ -41,5 +42,8 @@ public class SceneReferencer : MonoBehaviour
     }
     public void LoadNextScene(){
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+    public void RestartScene(){
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

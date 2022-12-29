@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 3959303671832627536}
   - component: {fileID: -4795496186441579181}
   - component: {fileID: 2991268718270455286}
+  - component: {fileID: -2218848520797238263}
   m_Layer: 6
   m_Name: Enemy 3
   m_TagString: Enemy
@@ -128,14 +129,15 @@ MonoBehaviour:
   maxBehaviourTime: 4
   speed: 1
   monkeMode: 1
-  canShoot: 1
-  isGranade: 0
+  isGrenade: 0
   gunPivot: {fileID: 0}
   gunBarrel: {fileID: 0}
   spinningGun: 0
   clamped: 1
   maxAngle: 0
   minAngle: 0
+  additionalVelocity: {x: 0, y: 0}
+  additionalVelocityDampeningRate: 10
 --- !u!114 &1333859005802756456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -303,3 +305,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lookLeft: 1
   animator: {fileID: 0}
+--- !u!50 &-2218848520797238263
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2034928674955330399}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 4

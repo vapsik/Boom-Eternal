@@ -10,6 +10,8 @@ public class AmmoDrop : MonoBehaviour
     float timer = 0;
     bool intitated = false;
 
+    [SerializeField] bool isHealthKitActually = false;
+
     // Update is called once per frame
     void Update()
     {
@@ -25,11 +27,20 @@ public class AmmoDrop : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
+        
         if (other.transform.tag == "Player")
         {
-            if(GlobalReferences.AddAmmo(false)){
+            if(!isHealthKitActually){
+                if(GlobalReferences.AddAmmo(false)){
+                    Destroy(gameObject);
+                }
+            }
+            else{
+                GlobalReferences.hp += 2;
                 Destroy(gameObject);
             }
+            
+            
         }
     }
 }

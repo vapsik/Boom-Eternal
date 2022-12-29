@@ -14,21 +14,21 @@ public class EnemyBehaviour1 : MonoBehaviour
     int bulletCounter = 0;
     float counter = 0;    
     bool isRunning = false;
-
     [SerializeField] LayerMask layerMask;
 
     [SerializeField]
     float maxBehaviourTime = 4f, speed = 2f; //phmst max aeg, mille jooksul ta teeb midagi (4 sekundit jooksu suvalises suunas, 4 sekundit seistes tulistamist, 4 sekundit ns passimist jms)
-    [SerializeField] bool monkeMode = true;
-    [SerializeField] bool canShoot = false, isGranade = false;
+    [SerializeField] bool isGrenade = false;
     //animeeritud relva parameetrid:
     [SerializeField] Transform gunPivot, gunBarrel; 
     [SerializeField] bool spinningGun = false, clamped = true;
     [SerializeField] float maxAngle, minAngle;
-    
+    Rigidbody2D rb;
     GameObject player;
-    Vector2 enemyToPlayerVector;
-
+    Vector2 enemyToPlayerVector; 
+    // knockback dampening:
+    [HideInInspector] public Vector2 additionalVelocity = Vector2.zero;
+    [SerializeField] float additionalVelocityDampeningRate = 0.5f;
     
     void Start()
     {
@@ -36,15 +36,15 @@ public class EnemyBehaviour1 : MonoBehaviour
         if(gunBarrel == null){
             gunBarrel = transform;
         }
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
         enemyToPlayerVector = player.transform.position - transform.position;
-        if(enemyToPlayerVector.magnitude < shootingRadius && canShoot && !isGranade){
-            // kordamööda:
-            // kui lineOfSight = true, siis tulistab Random(0, maxBehaviourTime) aja kestel mängijat
+        // tulistamine
+        if(enemyToPlayerVector.magnitude < shootingRadius  && !isGrenade){
             if (lineOfSight && counter < Time.time)
             {
                 Debug.Log("tulistan");
@@ -72,24 +72,35 @@ public class EnemyBehaviour1 : MonoBehaviour
                 //shooting = false;
 
             }
-            // kui laskmine läbi või lineOfSight = false jookseb suvalises suunas mängija 
         }
         else {
             shooting = false;
         }
 
-        if (monkeMode && lineOfSight)
+        if (lineOfSight)
         {
-            if(shooting || !isGranade){
-                transform.Translate(enemyToPlayerVector.normalized * shootingSlowDown * speed * Time.deltaTime);
+            if(shooting || !isGrenade){
+                //transform.Translate(enemyToPlayerVector.normalized * shootingSlowDown * speed * Time.deltaTime);
+                rb.velocity = enemyToPlayerVector.normalized * shootingSlowDown * speed + additionalVelocity;
             }
             else if(enemyToPlayerVector.magnitude < detectionRadius){
-                transform.Translate(enemyToPlayerVector.normalized * speed * Time.deltaTime);
+                rb.velocity = enemyToPlayerVector.normalized * speed + additionalVelocity;
             }
-            if(enemyToPlayerVector.magnitude < detonationRadius && isGranade){
+            if(enemyToPlayerVector.magnitude < detonationRadius && isGrenade){
                 Detonate(numberOfRicochets);
             }
         }
+        else{
+            rb.velocity = additionalVelocity;
+        }
+        
+
+        // additionalVelocity on KnockBackVelocity, mis sumbub ajas
+        Debug.Log("AdditionalVelocity" + additionalVelocity);
+        if(additionalVelocity.magnitude > 0.1f)
+            additionalVelocity *= (1 - additionalVelocityDampeningRate * Time.deltaTime);
+        else
+            additionalVelocity = Vector2.zero;
 
         if(spinningGun){
             float angle = Mathf.Atan(enemyToPlayerVector.y/enemyToPlayerVector.x)*Mathf.Rad2Deg;

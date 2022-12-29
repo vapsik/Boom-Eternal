@@ -33,5 +33,8 @@ public class ThirdLevelSequence : MonoBehaviour
         if((GlobalReferences.thePlayer.transform.position - lastDoor.transform.position).magnitude < lastDoorDetectionRadius)
             GetComponent<SceneReferencer>().LoadNextScene();
         Debug.DrawRay(lastDoor.position, Vector3.down*lastDoorDetectionRadius, Color.blue);
+
+        if(GlobalReferences.hp <= 0)
+            GetComponent<SceneReferencer>().RestartScene();
     }
 }

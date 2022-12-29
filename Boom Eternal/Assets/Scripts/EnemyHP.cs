@@ -8,11 +8,19 @@ public class EnemyHP : MonoBehaviour
     public float spawnDistance;
     public int maxDropAmount;
     GameObject testAmmoDropPrefab, healthKitPrefab;
+    public float knockBackForce = 2;
     void Start(){
         testAmmoDropPrefab = GlobalReferences.ammoDropPrefab;
+        healthKitPrefab = GlobalReferences.healthKitPrefab;
     }
-    public void OnDamageTaken() //siia saab knockbacki ka lisada
+    public void OnDamageTaken(Vector2 bulletVelocity) //siia saab knockbacki ka lisada
     {
+        Vector2 knockBack = knockBackForce * bulletVelocity.normalized;
+        if(gameObject.GetComponent<EnemyBehaviour1>() != null)
+            gameObject.GetComponent<EnemyBehaviour1>().additionalVelocity += knockBack;
+        // kui on veel mingi skript, mis liikumist mõjutab lisada sinna additionalVelocity ja siia viide 
+        // siis tuleb teha eelnevalt näidatud null exception if-lausega
+        
         if (hp <= 0)
         {
             //loot drops
@@ -25,11 +33,12 @@ public class EnemyHP : MonoBehaviour
                 //instantiate ammo drop
                 GameObject ammoDrop = Instantiate(testAmmoDropPrefab, new Vector2(gameObject.transform.position.x
                 + Random.Range(-1.5f, 1.5f), gameObject.transform.position.y + Random.Range(-1.5f, 1.5f)), Quaternion.identity);
-                // praegu 100% tõenäosus healthkiti dropimiseks, kui hp <= 0.5 * maxHP
-                if(GlobalReferences.hp <= GlobalReferences.maxHP * 0.5){
-                    GameObject hpAdd = Instantiate(healthKitPrefab, new Vector2(gameObject.transform.position.x
+                
+            }
+            // praegu 100% tõenäosus healthkiti dropimiseks, kui hp <= 0.5 * maxHP
+            if(GlobalReferences.hp <= GlobalReferences.maxHP / 2){
+                GameObject hpAdd = Instantiate(healthKitPrefab, new Vector2(gameObject.transform.position.x
                 + Random.Range(-1.5f, 1.5f), gameObject.transform.position.y + Random.Range(-1.5f, 1.5f)), Quaternion.identity);
-                }
             }
             Destroy(gameObject);
         }
