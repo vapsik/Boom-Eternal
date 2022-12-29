@@ -21,6 +21,10 @@ public class EnemyBehaviour1 : MonoBehaviour
     float maxBehaviourTime = 4f, speed = 2f; //phmst max aeg, mille jooksul ta teeb midagi (4 sekundit jooksu suvalises suunas, 4 sekundit seistes tulistamist, 4 sekundit ns passimist jms)
     [SerializeField] bool monkeMode = true;
     [SerializeField] bool canShoot = false, isGranade = false;
+    //animeeritud relva parameetrid:
+    [SerializeField] Transform gunPivot, gunBarrel; 
+    [SerializeField] bool spinningGun = false, clamped = true;
+    [SerializeField] float maxAngle, minAngle;
     
     GameObject player;
     Vector2 enemyToPlayerVector;
@@ -29,6 +33,9 @@ public class EnemyBehaviour1 : MonoBehaviour
     void Start()
     {
         player = GlobalReferences.thePlayer;
+        if(gunBarrel == null){
+            gunBarrel = transform;
+        }
     }
 
     // Update is called once per frame
@@ -41,7 +48,7 @@ public class EnemyBehaviour1 : MonoBehaviour
             if (lineOfSight && counter < Time.time)
             {
                 Debug.Log("tulistan");
-                GameObject bullet = Instantiate(GlobalReferences.enemyBulletPrefabs[0], transform.position, Quaternion.identity);
+                GameObject bullet = Instantiate(GlobalReferences.enemyBulletPrefabs[0], gunBarrel.position, Quaternion.identity);
                 bullet.GetComponent<Rigidbody2D>().velocity = enemyToPlayerVector.normalized * 10f;
                 bullet.GetComponent<Bullet>().affectsTarget = "Player";
                 bulletCounter += 1;
@@ -84,7 +91,14 @@ public class EnemyBehaviour1 : MonoBehaviour
             }
         }
 
-        // praegu ei arvesta see sellega, et vastasel endal ka collider:
+        if(spinningGun){
+            float angle = Mathf.Atan(enemyToPlayerVector.y/enemyToPlayerVector.x)*Mathf.Rad2Deg;
+            if(clamped){
+                angle = Mathf.Clamp(angle, minAngle, maxAngle);
+            }
+            gunPivot.transform.rotation = Quaternion.Euler(0,0,angle);
+        }
+        
         RaycastHit2D hit = Physics2D.Raycast(transform.position, enemyToPlayerVector.normalized, Mathf.Infinity, layerMask);
         Debug.DrawRay(transform.position, enemyToPlayerVector, Color.red);
         Debug.DrawRay(transform.position, enemyToPlayerVector.normalized * shootingRadius, Color.blue);

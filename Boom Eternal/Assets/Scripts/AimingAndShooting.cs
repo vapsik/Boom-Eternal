@@ -25,7 +25,6 @@ public class AimingAndShooting : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GlobalReferences.bulletCount = GlobalReferences.maxBulletCount;
         //crosshair = GlobalReferences.crosshair; on vist siiski aeglane
 
         Cursor.visible = false;

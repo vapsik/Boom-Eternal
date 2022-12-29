@@ -6,6 +6,13 @@ public class FirstLevelSequence : MonoBehaviour
 {
     public Transform firstEnemies, secondEnemies, lastDoor;
     [SerializeField] DoorRotate door1, door2;
+    // initialize some values:
+    void Awake(){
+        GlobalReferences.hp = 15;
+        GlobalReferences.maxHP = 15;
+        GlobalReferences.bulletCount = 20;
+        GlobalReferences.maxBulletCount = 20;
+    }    
     void Update ()
     {
         if(firstEnemies.childCount == 0){
