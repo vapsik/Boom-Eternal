@@ -128,7 +128,6 @@ MonoBehaviour:
     m_Bits: 9
   maxBehaviourTime: 4
   speed: 1
-  monkeMode: 1
   isGrenade: 0
   gunPivot: {fileID: 0}
   gunBarrel: {fileID: 0}
@@ -153,6 +152,7 @@ MonoBehaviour:
   hp: 3
   spawnDistance: 4
   maxDropAmount: 3
+  knockBackForce: 2
 --- !u!60 &-21358614612331649
 PolygonCollider2D:
   m_ObjectHideFlags: 0

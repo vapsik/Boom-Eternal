@@ -10,19 +10,21 @@ public class AmmoDrop : MonoBehaviour
     float timer = 0;
     bool intitated = false;
 
-    [SerializeField] bool isHealthKitActually = false;
+    [SerializeField] bool isHealthKitActually = false, expires = true;
 
     // Update is called once per frame
     void Update()
     {
-        if (gameObject != null && !intitated)
-        {
-            timer = Time.time + maxAmmoDropDuration;
-            intitated = true;
-        }
+        if(expires){
+            if (gameObject != null && !intitated)
+            {
+                timer = Time.time + maxAmmoDropDuration;
+                intitated = true;
+            }
         if (timer < Time.time && intitated)
-        {
-            Destroy(gameObject);
+            {
+                Destroy(gameObject);
+            }
         }
     }
     private void OnTriggerEnter2D(Collider2D other)

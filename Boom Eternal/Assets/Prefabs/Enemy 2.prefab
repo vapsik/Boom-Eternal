@@ -161,7 +161,6 @@ MonoBehaviour:
     m_Bits: 9
   maxBehaviourTime: 4
   speed: 1
-  monkeMode: 1
   isGrenade: 0
   gunPivot: {fileID: 4002927327699745633}
   gunBarrel: {fileID: 4834135911942959194}
@@ -186,6 +185,7 @@ MonoBehaviour:
   hp: 3
   spawnDistance: 4
   maxDropAmount: 3
+  knockBackForce: 2
 --- !u!60 &-21358614612331649
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -264,7 +264,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2034928674955330399}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
   m_Name: 
