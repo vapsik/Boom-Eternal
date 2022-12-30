@@ -25,7 +25,23 @@ public class EnemyHP : MonoBehaviour
                 //instantiate ammo drop
                 GameObject ammoDrop = Instantiate(testAmmoDropPrefab, new Vector2(gameObject.transform.position.x
                 + Random.Range(-1.5f, 1.5f), gameObject.transform.position.y + Random.Range(-1.5f, 1.5f)), Quaternion.identity);
+<<<<<<< Updated upstream
+=======
+                
             }
+            // praegu ei teki rohkem kui 1 healthdrop per kill
+            if(Random.Range(0f,100f)<((maxDropAmount+GlobalReferences.killsSinceHealthDrop)* GlobalReferences.maxHP /GlobalReferences.hp))
+            {
+                GameObject hpAdd = Instantiate(healthKitPrefab, new Vector2(gameObject.transform.position.x
+                + Random.Range(-1.5f, 1.5f), gameObject.transform.position.y + Random.Range(-1.5f, 1.5f)), Quaternion.identity);
+                GlobalReferences.killsSinceHealthDrop = 0;
+            }
+            else
+            {
+                GlobalReferences.killsSinceHealthDrop++;
+>>>>>>> Stashed changes
+            }
+            GlobalReferences.score += maxDropAmount;
             Destroy(gameObject);
         }
     }

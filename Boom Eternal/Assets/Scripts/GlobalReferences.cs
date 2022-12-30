@@ -9,6 +9,9 @@ public static class GlobalReferences
     public static bool onPause = false;
     public static int score = 0;
     public static bool thePlayerIsInvincible;
+
+    public static int killsSinceHealthDrop = 0;
+
     //Scene Referencer seab selle
     public static GameObject[] playerBulletPrefabs, enemyBulletPrefabs;
     
