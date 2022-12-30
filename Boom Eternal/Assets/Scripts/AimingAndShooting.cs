@@ -87,6 +87,7 @@ public class AimingAndShooting : MonoBehaviour
             bullet.GetComponent<Bullet>().affectsTarget = "Enemy"; //iseendale dammi ei tee
 
             GlobalReferences.bulletCount -= 1;
+            GlobalReferences.audioManager.playSound("playerShoot");
         }
     }
 }
