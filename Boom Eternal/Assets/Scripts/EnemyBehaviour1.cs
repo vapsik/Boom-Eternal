@@ -54,6 +54,12 @@ public class EnemyBehaviour1 : MonoBehaviour
                 bulletCounter += 1;
                 counter = Time.time + shootingDuration;
 
+                Vector3 posDifference = transform.position - GlobalReferences.thePlayer.transform.position;
+                float distanceSquared = posDifference.x * posDifference.x + posDifference.y * posDifference.y;
+                float volume = 8 - Mathf.Sqrt(distanceSquared);
+                if (volume > 0)
+                    GlobalReferences.audioManager.playSound("enemyShoot", volume, 1);
+
                 if(bulletCounter == bulletsPerMagazine){
                     counter = Time.time + reloadingDuration;
                     bulletCounter = 0;
