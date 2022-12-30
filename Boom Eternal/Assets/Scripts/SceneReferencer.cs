@@ -12,12 +12,25 @@ public class SceneReferencer : MonoBehaviour
     [SerializeField] GameObject[] playerBulletPrefabs, enemyBulletPrefabs;
     [SerializeField] GameObject globalLight;
     void Awake(){
-        GlobalReferences.ammoDropPrefab = ammoDropPrefab;
         GlobalReferences.listOfEnemyPrefabs = listOfEnemyPrefabs;
-        GlobalReferences.playerBulletPrefabs = playerBulletPrefabs;
-        GlobalReferences.enemyBulletPrefabs = enemyBulletPrefabs;
+        
+        // tegelt jäägu samad prefabid: kõigile stseenidele:
+        if(SceneManager.GetActiveScene().name == "FirstLevel"){
+            GlobalReferences.ammoDropPrefab = ammoDropPrefab;
+            GlobalReferences.healthKitPrefab = healthKitPrefab;
+            GlobalReferences.playerBulletPrefabs = playerBulletPrefabs;
+            GlobalReferences.enemyBulletPrefabs = enemyBulletPrefabs;
+        }
+        // for debugging:
+        else{
+            GlobalReferences.ammoDropPrefab = GlobalReferences.ammoDropPrefab == null ? ammoDropPrefab : GlobalReferences.ammoDropPrefab;
+            GlobalReferences.healthKitPrefab = GlobalReferences.healthKitPrefab == null ? healthKitPrefab : GlobalReferences.healthKitPrefab;
+            GlobalReferences.playerBulletPrefabs = GlobalReferences.playerBulletPrefabs == null ? playerBulletPrefabs : GlobalReferences.playerBulletPrefabs;
+            GlobalReferences.enemyBulletPrefabs = GlobalReferences.enemyBulletPrefabs == null ? enemyBulletPrefabs : GlobalReferences.enemyBulletPrefabs;
+        }
+        
+
         GlobalReferences.currentSceneLight = globalLight;
-        GlobalReferences.healthKitPrefab = healthKitPrefab;
     }
     void Start(){
         if(iterateLights){
