@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,20 +20,6 @@ public class StartMenuManager : MonoBehaviour
         startMenuPanel.SetActive(true);
         settingsMenuPanel.SetActive(false);
     }
-
-    public static void hoverSound()
-    {
-        GlobalReferences.audioManager.playSound("menuButtonHover");
-    }
-
-    public static void clickSound(Boolean startButton)
-    {
-        if (startButton)
-            GlobalReferences.audioManager.playSound("menuButtonStart");
-        else
-            GlobalReferences.audioManager.playSound("menuButtonClick");
-    }
-
     public void QuitGame()
     {
         Application.Quit();

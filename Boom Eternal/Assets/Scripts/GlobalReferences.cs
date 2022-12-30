@@ -6,8 +6,6 @@ public static class GlobalReferences
 {
     public static Camera mainCamera;
     public static GameObject thePlayer;
-    public static AudioManager audioManager;
-
     public static bool onPause = false;
     public static int score = 0;
     public static bool thePlayerIsInvincible;
@@ -34,14 +32,12 @@ public static class GlobalReferences
     public static bool AddAmmo(bool eatLead){
         if(bulletCount < maxBulletCount){
             bulletCount += 1;
-            GlobalReferences.audioManager.playSound("pickUpBullet");
             return true;
         }
         else if(eatLead){
             bulletCount += 1;
             //mängu disaini küsimus: kas magazine'i suurust ka eatlead'iga suurendada?
             maxBulletCount += 1;
-            GlobalReferences.audioManager.playSound("pickUpBullet");
             return true;
         }
         else{
