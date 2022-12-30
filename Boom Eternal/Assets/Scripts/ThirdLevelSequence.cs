@@ -13,13 +13,6 @@ public class ThirdLevelSequence : MonoBehaviour
     float initialIntensity = 0.85f, finalIntensity = 0.5f;
     Light2D globalLight; Color finalColor;*/
     
-    void Awake(){
-        //for debugging:
-        GlobalReferences.hp = GlobalReferences.hp == 0 ? 15 : GlobalReferences.hp;
-        GlobalReferences.bulletCount = GlobalReferences.bulletCount == 0 ? 20 : GlobalReferences.bulletCount;
-        GlobalReferences.maxBulletCount = GlobalReferences.maxBulletCount == 0 ? 20 : GlobalReferences.maxBulletCount;
-        GlobalReferences.maxHP = GlobalReferences.maxHP == 0 ? 15 : GlobalReferences.maxHP;
-    }
     void Update ()
     {
         for(int i = 0; i < setsOfEnemies.Length; i++ ){
@@ -27,6 +20,7 @@ public class ThirdLevelSequence : MonoBehaviour
                 doors[i].open = true;
             }
             else {
+                GlobalReferences.enemiesLeft = setsOfEnemies[i].childCount;
                 break;
             }
         }

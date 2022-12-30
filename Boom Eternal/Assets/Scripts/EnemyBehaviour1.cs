@@ -96,7 +96,7 @@ public class EnemyBehaviour1 : MonoBehaviour
         
 
         // additionalVelocity on KnockBackVelocity, mis sumbub ajas
-        Debug.Log("AdditionalVelocity" + additionalVelocity);
+        //Debug.Log("AdditionalVelocity" + additionalVelocity);
         if(additionalVelocity.magnitude > 0.1f)
             additionalVelocity *= (1 - additionalVelocityDampeningRate * Time.deltaTime);
         else

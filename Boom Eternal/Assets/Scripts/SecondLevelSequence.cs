@@ -13,13 +13,6 @@ public class SecondLevelSequence : MonoBehaviour
     float initialIntensity = 0.85f, finalIntensity = 0.5f;
     Light2D globalLight; Color finalColor;
     
-    void Awake(){
-        //for debugging:
-        GlobalReferences.hp = GlobalReferences.hp == 0 ? 15 : GlobalReferences.hp;
-        GlobalReferences.bulletCount = GlobalReferences.bulletCount == 0 ? 20 : GlobalReferences.bulletCount;
-        GlobalReferences.maxBulletCount = GlobalReferences.maxBulletCount == 0 ? 20 : GlobalReferences.maxBulletCount;
-        GlobalReferences.maxHP = GlobalReferences.maxHP == 0 ? 15 : GlobalReferences.maxHP;
-    }
     // Start() currently only exclusive to Second Scene:
     void Start(){
         globalLight = GlobalReferences.currentSceneLight.GetComponent<Light2D>();
@@ -34,6 +27,7 @@ public class SecondLevelSequence : MonoBehaviour
                 doors[i].open = true;
             }
             else {
+                GlobalReferences.enemiesLeft = setsOfEnemies[i].childCount;
                 break;
             }
         }

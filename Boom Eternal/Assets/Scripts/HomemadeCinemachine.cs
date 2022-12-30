@@ -6,8 +6,8 @@ public class HomemadeCinemachine : MonoBehaviour
 {
     AimingAndShooting aimingAndShooting;
     GameObject player;
-    [SerializeField]
-    private float maxDisplacementRadius = 10f;
+    //[SerializeField]
+    private float maxDisplacementRadius = 2f;
     private Vector2 cameraPos2D;
     // Start is called before the first frame update
     void Awake(){
