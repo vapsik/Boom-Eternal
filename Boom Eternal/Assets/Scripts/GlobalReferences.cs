@@ -14,7 +14,7 @@ public static class GlobalReferences
     
     public static int hp;
     public static int maxHP;
-
+    public static int killsSinceHealthDrop = 0;
     public static int bulletCount;
     public static int maxBulletCount;
     public static GameObject currentSceneLight;
