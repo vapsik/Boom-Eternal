@@ -5,10 +5,11 @@ using TMPro;
 using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] TMPro.TextMeshProUGUI hpText, scoreText, bulletsText;
+    [SerializeField] TMPro.TextMeshProUGUI hpText, scoreText, bulletsText, enemiesLeftText;
     [SerializeField] GameObject pauseMenu;
     [SerializeField] Image crosshair;
     [HideInInspector] public bool onPause = false;
+    bool killedAllEnemies;
     // Start is called before the first frame update
     /*void Awake()
     {
@@ -20,7 +21,13 @@ public class UIManager : MonoBehaviour
     {
         hpText.text = "hp: " + GlobalReferences.hp.ToString() + " / " + GlobalReferences.maxHP.ToString();
         bulletsText.text = "bullets: " + GlobalReferences.bulletCount.ToString() + " / " + GlobalReferences.maxBulletCount.ToString();
-        scoreText.text = GlobalReferences.score.ToString();
+        scoreText.text = "score: " + GlobalReferences.score.ToString();
+        enemiesLeftText.text = "# of enemies to kill: " + GlobalReferences.enemiesLeft.ToString();
+
+        if (GlobalReferences.enemiesLeft == 0){
+            killedAllEnemies = true;
+            Debug.Log("killed all enemies");
+        }
         if(Input.GetKeyDown(KeyCode.Escape)){
             SetOnPause();
         }

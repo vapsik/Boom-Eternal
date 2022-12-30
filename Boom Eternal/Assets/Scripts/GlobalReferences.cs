@@ -11,12 +11,15 @@ public static class GlobalReferences
     public static bool thePlayerIsInvincible;
     //Scene Referencer seab selle
     public static GameObject[] playerBulletPrefabs, enemyBulletPrefabs;
-    
     public static int hp;
-    public static int maxHP;
+
+    public static int enemiesLeft = 0;
+
+    // maxHP ja maxBulletCount seame siin
+    public static int maxHP = 15;
+    public static int maxBulletCount = 20;
     public static int killsSinceHealthDrop = 0;
     public static int bulletCount;
-    public static int maxBulletCount;
     public static GameObject currentSceneLight;
     public static GameObject ammoDropPrefab, healthKitPrefab;
     public static GameObject[] listOfEnemyPrefabs;
@@ -38,6 +41,20 @@ public static class GlobalReferences
             bulletCount += 1;
             //mängu disaini küsimus: kas magazine'i suurust ka eatlead'iga suurendada?
             maxBulletCount += 1;
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    public static bool AddHP(int hpAdded = 2, bool maxCanIncrease = false){
+        if(hp + hpAdded <= maxHP){
+            hp += hpAdded;
+            return true;
+        }
+        else if (maxCanIncrease){
+            hp += hpAdded;
+            maxHP += hpAdded;
             return true;
         }
         else{

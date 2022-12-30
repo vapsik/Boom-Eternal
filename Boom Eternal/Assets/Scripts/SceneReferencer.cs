@@ -20,6 +20,12 @@ public class SceneReferencer : MonoBehaviour
             GlobalReferences.healthKitPrefab = healthKitPrefab;
             GlobalReferences.playerBulletPrefabs = playerBulletPrefabs;
             GlobalReferences.enemyBulletPrefabs = enemyBulletPrefabs;
+
+            // toon ka level sequence skriptidest bulletcount ja hp modifikatsioonid siia
+            GlobalReferences.hp = GlobalReferences.maxHP;
+            //GlobalReferences.maxHP = 15;
+            GlobalReferences.bulletCount = GlobalReferences.maxBulletCount;
+            //GlobalReferences.maxBulletCount = 20;
         }
         // for debugging:
         else{
@@ -27,10 +33,16 @@ public class SceneReferencer : MonoBehaviour
             GlobalReferences.healthKitPrefab = GlobalReferences.healthKitPrefab == null ? healthKitPrefab : GlobalReferences.healthKitPrefab;
             GlobalReferences.playerBulletPrefabs = GlobalReferences.playerBulletPrefabs == null ? playerBulletPrefabs : GlobalReferences.playerBulletPrefabs;
             GlobalReferences.enemyBulletPrefabs = GlobalReferences.enemyBulletPrefabs == null ? enemyBulletPrefabs : GlobalReferences.enemyBulletPrefabs;
-        }
-        
 
+            // toon ka level sequence skriptidest bulletcount ja hp modifikatsioonid siia
+            GlobalReferences.hp = GlobalReferences.hp == 0 ? 15 : GlobalReferences.hp;
+            GlobalReferences.bulletCount = GlobalReferences.bulletCount == 0 ? GlobalReferences.maxBulletCount : GlobalReferences.bulletCount;
+        }
         GlobalReferences.currentSceneLight = globalLight;
+    }
+    void Update(){
+        if(GlobalReferences.hp <= 0)
+            RestartScene();
     }
     void Start(){
         if(iterateLights){
