@@ -8,6 +8,10 @@ public class DoorRotate : MonoBehaviour
     [SerializeField] GameObject children;
     [SerializeField] Animator animator;
 
+    void Start() {
+        
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -16,10 +20,13 @@ public class DoorRotate : MonoBehaviour
         }
     }
     void OpenSequence(){
+
         GetComponent<SpriteRenderer>().enabled = true;
         GetComponent<Collider2D>().enabled = false;
+        
         animator.SetBool("Open", true);
-        children.SetActive(false);
+        children.SetActive(false);   
+
     }
 
 }

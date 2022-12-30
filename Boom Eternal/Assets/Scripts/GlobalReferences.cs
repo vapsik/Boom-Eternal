@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Tilemaps;
 public static class GlobalReferences 
 {
     public static Camera mainCamera;
     public static GameObject thePlayer;
     public static AudioManager audioManager;
-
+    public static Tilemap[] floorWallCeilingTiles;
     public static bool onPause = false;
     public static int score = 0;
     public static bool thePlayerIsInvincible;
@@ -37,14 +38,14 @@ public static class GlobalReferences
     public static bool AddAmmo(bool eatLead){
         if(bulletCount < maxBulletCount){
             bulletCount += 1;
-            GlobalReferences.audioManager.playSound("pickUpBullet");
+            audioManager.playSound("pickUpBullet");
             return true;
         }
         else if(eatLead){
             bulletCount += 1;
             //mängu disaini küsimus: kas magazine'i suurust ka eatlead'iga suurendada?
             maxBulletCount += 1;
-            GlobalReferences.audioManager.playSound("pickUpBullet");
+            audioManager.playSound("pickUpBullet");
             return true;
         }
         else{
@@ -54,11 +55,23 @@ public static class GlobalReferences
     public static bool AddHP(int hpAdded = 2, bool maxCanIncrease = false){
         if(hp + hpAdded <= maxHP){
             hp += hpAdded;
+            audioManager.playSound("pickUpBullet");
             return true;
         }
         else if (maxCanIncrease){
             hp += hpAdded;
             maxHP += hpAdded;
+            audioManager.playSound("pickUpBullet");
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    public static bool CheckTile(Vector2 pos){
+        if(floorWallCeilingTiles[0].HasTile(floorWallCeilingTiles[0].WorldToCell(pos))
+        && !floorWallCeilingTiles[1].HasTile(floorWallCeilingTiles[1].WorldToCell(pos))
+        && !floorWallCeilingTiles[2].HasTile(floorWallCeilingTiles[2].WorldToCell(pos))){
             return true;
         }
         else{

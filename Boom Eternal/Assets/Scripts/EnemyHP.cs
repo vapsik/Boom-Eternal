@@ -31,14 +31,28 @@ public class EnemyHP : MonoBehaviour
             for (int i = 0; i < Mathf.Min(dropAmount, maxDropAmount); i++)
             {
                 //instantiate ammo drop
-                GameObject ammoDrop = Instantiate(testAmmoDropPrefab, new Vector2(gameObject.transform.position.x
-                + Random.Range(-1.5f, 1.5f), gameObject.transform.position.y + Random.Range(-1.5f, 1.5f)), Quaternion.identity);
+                Vector2 newPos = new Vector2(gameObject.transform.position.x
+                + Random.Range(-1.5f, 1.5f), gameObject.transform.position.y + Random.Range(-1.5f, 1.5f));
+                while(!GlobalReferences.CheckTile(newPos)){
+                    newPos = new Vector2(gameObject.transform.position.x
+                + Random.Range(-1.5f, 1.5f), gameObject.transform.position.y + Random.Range(-1.5f, 1.5f));
+                }
+
+                GameObject ammoDrop = Instantiate(testAmmoDropPrefab, transform.position, Quaternion.identity);
+                ammoDrop.GetComponent<AmmoDrop>().FallToNewPosition(newPos);
             }
             // praegu ei teki rohkem kui 1 healthdrop per kill
             if(Random.Range(0f,100f)<((maxDropAmount+GlobalReferences.killsSinceHealthDrop)* GlobalReferences.maxHP /GlobalReferences.hp))
             {
-                GameObject hpAdd = Instantiate(healthKitPrefab, new Vector2(gameObject.transform.position.x
-                + Random.Range(-1.5f, 1.5f), gameObject.transform.position.y + Random.Range(-1.5f, 1.5f)), Quaternion.identity);
+                Vector2 newPos = new Vector2(gameObject.transform.position.x
+                + Random.Range(-1.5f, 1.5f), gameObject.transform.position.y + Random.Range(-1.5f, 1.5f));
+                // selleks, et seina sisse ei tekiks dropid
+                while(!GlobalReferences.CheckTile(newPos)){
+                    newPos = new Vector2(gameObject.transform.position.x
+                + Random.Range(-1.5f, 1.5f), gameObject.transform.position.y + Random.Range(-1.5f, 1.5f));
+                }
+                GameObject hpAdd = Instantiate(healthKitPrefab, transform.position, Quaternion.identity);
+                hpAdd.GetComponent<AmmoDrop>().FallToNewPosition(newPos);
                 GlobalReferences.killsSinceHealthDrop = 0;
             }
             else

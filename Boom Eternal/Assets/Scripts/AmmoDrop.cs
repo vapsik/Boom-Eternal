@@ -8,9 +8,12 @@ public class AmmoDrop : MonoBehaviour
     [SerializeField]
     float maxAmmoDropDuration = 20f;
     float timer = 0;
-    bool intitated = false;
-
+    bool intitated = false; 
     [SerializeField] bool isHealthKitActually = false, expires = true;
+    // kukkumine:
+    [SerializeField] float fallingDuration = 0.3f;
+    Vector2 initialPos, finalPos;
+    bool falling = false;
 
     // Update is called once per frame
     void Update()
@@ -26,6 +29,16 @@ public class AmmoDrop : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+        // ammoDrop tekib alguses initialPositionile (EnemyHP.transform.position) 
+        // ja liigub uuele suvalisele asukohale, mille EnemyHP välja annab
+        if (falling){
+            transform.Translate(Time.deltaTime * (finalPos - initialPos).normalized * (finalPos - initialPos).magnitude / fallingDuration);
+        }
+        if((new Vector2 (transform.position.x, transform.position.y) - initialPos).magnitude 
+        >= (finalPos - initialPos).magnitude){
+            falling = false;
+        }
+        
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -43,5 +56,10 @@ public class AmmoDrop : MonoBehaviour
                 }
             }
         }
+    }
+    public void FallToNewPosition(Vector2 newPos){
+        falling = true;
+        finalPos = newPos;
+        initialPos = transform.position;
     }
 }

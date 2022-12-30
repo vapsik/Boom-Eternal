@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Experimental.Rendering.Universal;
+using UnityEngine.Tilemaps;
 public class SceneReferencer : MonoBehaviour
 // ma pole veel kindel selles, mida veel võiks see skript teha ja kas see võiks jääda esimeselt levelilt viitajaks või igal stseenil olla kasulik
 {
@@ -11,9 +12,10 @@ public class SceneReferencer : MonoBehaviour
     [SerializeField] bool iterateLights = false, lightsOff = true;
     [SerializeField] GameObject[] playerBulletPrefabs, enemyBulletPrefabs;
     [SerializeField] GameObject globalLight;
+    [SerializeField] Tilemap[] floorWallCeilingTiles;
     void Awake(){
         GlobalReferences.listOfEnemyPrefabs = listOfEnemyPrefabs;
-        
+        GlobalReferences.floorWallCeilingTiles= floorWallCeilingTiles;
         // tegelt jäägu samad prefabid: kõigile stseenidele:
         if(SceneManager.GetActiveScene().name == "FirstLevel"){
             GlobalReferences.ammoDropPrefab = ammoDropPrefab;

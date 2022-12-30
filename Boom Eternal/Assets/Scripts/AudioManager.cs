@@ -12,7 +12,7 @@ public class AudioManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        DontDestroyOnLoad(this);
+        //DontDestroyOnLoad(this);
         GlobalReferences.audioManager = this;
         foreach(Sound sound in sounds)
         {
