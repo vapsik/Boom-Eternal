@@ -9,9 +9,9 @@ public class EnemySpawner : MonoBehaviour
 {
     //suvalistame spawnimist:
     GameObject[] randomEnemyPrefab;
-    [SerializeField] bool spawnRandomly = true;
+    public bool spawnRandomly = true;
     //spawnimiste vahelised intervallid:
-    public float minSpawnInterval = 4f, maxSpawnInterval = 5f;
+    public float minSpawnInterval = 0.5f, maxSpawnInterval = 2f;
     
     public Tilemap floorTiles;
     public Tilemap wallTiles;
@@ -19,6 +19,7 @@ public class EnemySpawner : MonoBehaviour
 
     public float minDistance = 3f;
     public float maxDistance = 5f;
+    [HideInInspector] public int numberOfSpawned = 0;
     
     private void Awake()
     {
@@ -52,6 +53,7 @@ public class EnemySpawner : MonoBehaviour
                 if (CanSpawnAt(vec))
                 {
                     if(spawnRandomly){
+                        numberOfSpawned += 1;
                         Instantiate(randomEnemyPrefab[UnityEngine.Random.Range(0,randomEnemyPrefab.Length)], vec, new Quaternion(), transform);
                         break;
                     }

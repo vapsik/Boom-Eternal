@@ -27,10 +27,13 @@ public class BossBehaviour : MonoBehaviour
 
     GameObject player;
     Vector2 enemyToPlayerVector, homeVector;
-
+    
+    Rigidbody2D rb;
 
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
+
         homePosition = transform.position; //koht kus ta spawnitakse
         player = GlobalReferences.thePlayer;
         if (gunBarrel == null)
@@ -62,6 +65,12 @@ public class BossBehaviour : MonoBehaviour
                 counter = Time.time + shootingDuration;
                 shooting = true;
 
+                Vector3 posDifference = transform.position - GlobalReferences.thePlayer.transform.position;
+                float distanceSquared = posDifference.x * posDifference.x + posDifference.y * posDifference.y;
+                float volume = 8 - Mathf.Sqrt(distanceSquared);
+                if (volume > 0)
+                    GlobalReferences.audioManager.playSound("enemyShoot", volume, 1);
+
             }
             else
             {
@@ -69,8 +78,6 @@ public class BossBehaviour : MonoBehaviour
                 Debug.Log("ei tulista ja liigun tagasi algusesse");
                 shooting = false;
             }
-
-            // kui laskmine l�bi v�i lineOfSight = false jookseb suvalises suunas m�ngija 
         }
         else
         {
@@ -81,11 +88,11 @@ public class BossBehaviour : MonoBehaviour
         {
             if (shooting)
             {
-                transform.Translate(enemyToPlayerVector.normalized * shootingSlowDown * speed * Time.deltaTime * -1f); //recoil pushes back
+                transform.Translate(enemyToPlayerVector.normalized * shootingSlowDown * speed * -1f * Time.deltaTime) ; //recoil pushes back
             }
             else if (homeVector.magnitude > 3f) //pole kodus
             {
-                transform.Translate(homeVector.normalized * speed * Time.deltaTime); //liigub algusesse
+                rb.velocity = homeVector.normalized * speed; //liigub algusesse
             }
 
         }
@@ -120,9 +127,9 @@ public class BossBehaviour : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D other) //crashib seina ja hakkab reset'ima
+    private void OnCollisionEnter2D(Collision2D other) //crashib seina ja hakkab reset'ima
     {
-        if (other.CompareTag("Wall") || other.CompareTag("Ceiling")) //hetkel pole Ceiling tag'i, aga igaks juhuks
+        if (other.transform.CompareTag("Wall")) 
         {
             canShoot = false;
             shooting = false;
