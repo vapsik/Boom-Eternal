@@ -13,6 +13,9 @@ public class SceneReferencer : MonoBehaviour
     [SerializeField] GameObject[] playerBulletPrefabs, enemyBulletPrefabs;
     [SerializeField] GameObject globalLight;
     [SerializeField] Tilemap[] floorWallCeilingTiles;
+    int hpAtStart, bulletCountAtStart;
+    [SerializeField] bool SantaHasCome = false;
+    [SerializeField] Transform christmasTree;
     void Awake(){
         GlobalReferences.listOfEnemyPrefabs = listOfEnemyPrefabs;
         GlobalReferences.floorWallCeilingTiles= floorWallCeilingTiles;
@@ -47,6 +50,10 @@ public class SceneReferencer : MonoBehaviour
             RestartScene();
     }
     void Start(){
+        
+        hpAtStart = GlobalReferences.hp;
+        bulletCountAtStart = GlobalReferences.bulletCount;
+
         if(iterateLights){
             if(lightsOff){
                 foreach(var el in GlobalReferences.listOfEnemyPrefabs){
@@ -66,11 +73,49 @@ public class SceneReferencer : MonoBehaviour
             }
         }
         
+        //
+        if(SantaHasCome){
+            // siia tuleb ammo dropide ja health kitide spawnimine
+        int m = GlobalReferences.maxHP/2 - GlobalReferences.hp > 0 ?
+         GlobalReferences.maxHP/2 - GlobalReferences.hp : 1;
+        int n = GlobalReferences.maxBulletCount/2 - GlobalReferences.bulletCount > 0 ? 
+         GlobalReferences.maxBulletCount/2 - GlobalReferences.bulletCount : 3;
+        
+        // hp increment (+=2, sest healthkit annab praegu 2 juurde)
+        for(int i = 0; i < m; i+=2){
+            Vector2 newPos = new Vector2(christmasTree.position.x
+                + Random.Range(-1.5f, 1.5f), christmasTree.position.y + Random.Range(-1.5f, 1.5f));
+                // selleks, et seina sisse ei tekiks dropid:
+            while(!GlobalReferences.CheckTile(newPos)){
+                    newPos = new Vector2(christmasTree.position.x
+                + Random.Range(-1.5f, 1.5f), christmasTree.position.y + Random.Range(-1.5f, 1.5f));
+            }
+            GameObject hpAdd = Instantiate(GlobalReferences.healthKitPrefab, christmasTree.transform.position, Quaternion.identity, transform);
+            hpAdd.GetComponent<AmmoDrop>().FallToNewPosition(newPos);
+        }
+        // 
+        for(int i = 0; i < n; i++){
+            Vector2 newPos = new Vector2(christmasTree.position.x
+                + Random.Range(-1.5f, 1.5f), christmasTree.position.y + Random.Range(-1.5f, 1.5f));
+                // selleks, et seina sisse ei tekiks dropid:
+            while(!GlobalReferences.CheckTile(newPos)){
+                    newPos = new Vector2(christmasTree.position.x
+                + Random.Range(-1.5f, 1.5f), christmasTree.position.y + Random.Range(-1.5f, 1.5f));
+            }
+            GameObject ammoDrop = Instantiate(GlobalReferences.ammoDropPrefab, christmasTree.transform.position, Quaternion.identity, transform);
+            ammoDrop.GetComponent<AmmoDrop>().FallToNewPosition(newPos);
+        }
+        }
+        
+        
+
     }
     public void LoadNextScene(){
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
     public void RestartScene(){
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        GlobalReferences.hp = hpAtStart;
+        GlobalReferences.bulletCount = bulletCountAtStart;
     }
 }

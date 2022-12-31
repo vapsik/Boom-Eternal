@@ -15,7 +15,6 @@ public static class GlobalReferences
     //Scene Referencer seab selle
     public static GameObject[] playerBulletPrefabs, enemyBulletPrefabs;
     public static int hp;
-
     public static int enemiesLeft = 0;
 
     // maxHP ja maxBulletCount seame siin

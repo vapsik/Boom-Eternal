@@ -51,8 +51,8 @@ public class BossBehaviour : MonoBehaviour
 
         if (enemyToPlayerVector.magnitude < shootingRadius && canShoot)
         {
-            // kordamööda:
-            // kui lineOfSight = true, siis tulistab kuni crashib seina, siis ootab kuni algusesse jõuab
+            // kordamï¿½ï¿½da:
+            // kui lineOfSight = true, siis tulistab kuni crashib seina, siis ootab kuni algusesse jï¿½uab
             if (lineOfSight && counter < Time.time)
             {
                 Debug.Log("tulistan");
@@ -68,11 +68,9 @@ public class BossBehaviour : MonoBehaviour
                 //Random.Range(0f, maxBehaviourTime);
                 Debug.Log("ei tulista ja liigun tagasi algusesse");
                 shooting = false;
-
-
             }
 
-            // kui laskmine läbi või lineOfSight = false jookseb suvalises suunas mängija 
+            // kui laskmine lï¿½bi vï¿½i lineOfSight = false jookseb suvalises suunas mï¿½ngija 
         }
         else
         {
