@@ -41,6 +41,40 @@ public static class GlobalReferences
             bulletCount += 1;
             //mängu disaini küsimus: kas magazine'i suurust ka eatlead'iga suurendada?
             maxBulletCount += 1;
+<<<<<<< Updated upstream
+=======
+            audioManager.playSound("pickUpBullet");
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    public static bool AddHP(int hpAdded = 2, bool maxCanIncrease = false){
+        if(hp < maxHP){
+            hp += hpAdded;
+            if (hp > maxHP)
+            {
+                hp = maxHP;
+            }
+            audioManager.playSound("pickUpBullet");
+            return true;
+        }
+        else if (maxCanIncrease){
+            hp += hpAdded;
+            maxHP += hpAdded;
+            audioManager.playSound("pickUpBullet");
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    public static bool CheckTile(Vector2 pos){
+        if(floorWallCeilingTiles[0].HasTile(floorWallCeilingTiles[0].WorldToCell(pos))
+        && !floorWallCeilingTiles[1].HasTile(floorWallCeilingTiles[1].WorldToCell(pos))
+        && !floorWallCeilingTiles[2].HasTile(floorWallCeilingTiles[2].WorldToCell(pos))){
+>>>>>>> Stashed changes
             return true;
         }
         else{

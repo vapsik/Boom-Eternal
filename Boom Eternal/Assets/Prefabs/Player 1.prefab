@@ -359,7 +359,11 @@ MonoBehaviour:
   - {x: -0.41, y: 0, z: 0}
   m_ShapePathHash: -1100962395
   m_Mesh: {fileID: 0}
+<<<<<<< Updated upstream
   m_InstanceId: -1938
+=======
+  m_InstanceId: 24130
+>>>>>>> Stashed changes
 --- !u!95 &2645120675254371985
 Animator:
   serializedVersion: 3

@@ -25,7 +25,12 @@ public class AmmoDrop : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
+<<<<<<< Updated upstream
         if (other.transform.tag == "Player")
+=======
+        
+        if (other.CompareTag("Player"))
+>>>>>>> Stashed changes
         {
             if(GlobalReferences.AddAmmo(false)){
                 Destroy(gameObject);
