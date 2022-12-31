@@ -3,18 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] TMPro.TextMeshProUGUI hpText, scoreText, bulletsText, enemiesLeftText;
+    [SerializeField] TMPro.TextMeshProUGUI hpText, scoreText, bulletsText, enemiesLeftText, staminaText;
     [SerializeField] GameObject pauseMenu;
     [SerializeField] Image crosshair;
     [HideInInspector] public bool onPause = false;
     bool killedAllEnemies;
+
+    bool lastScene;
     // Start is called before the first frame update
-    /*void Awake()
+    void Awake()
     {
-        GlobalReferences.crosshair = crosshair;
-    }*/
+        lastScene = SceneManager.GetActiveScene().name == "SampleScene" ? true : false;  
+    }
 
     // Update is called once per frame
     void Update()
@@ -22,11 +25,12 @@ public class UIManager : MonoBehaviour
         hpText.text = "hp: " + GlobalReferences.hp.ToString() + " / " + GlobalReferences.maxHP.ToString();
         bulletsText.text = "bullets: " + GlobalReferences.bulletCount.ToString() + " / " + GlobalReferences.maxBulletCount.ToString();
         scoreText.text = "score: " + GlobalReferences.score.ToString();
-        enemiesLeftText.text = "# of enemies to kill: " + GlobalReferences.enemiesLeft.ToString();
-
+        enemiesLeftText.text = !lastScene ?  "# of enemies to kill: " + GlobalReferences.enemiesLeft.ToString()
+         : "# of enemies killed: " + GlobalReferences.enemiesLeft + "/20";
+        staminaText.text =  "can leap: " + GlobalReferences.leapCount;
         if (GlobalReferences.enemiesLeft == 0){
             killedAllEnemies = true;
-            Debug.Log("killed all enemies");
+            //Debug.Log("killed all enemies");
         }
         if(Input.GetKeyDown(KeyCode.Escape)){
             SetOnPause();

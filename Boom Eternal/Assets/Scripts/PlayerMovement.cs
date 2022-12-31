@@ -6,6 +6,8 @@ public class PlayerMovement : MonoBehaviour
 {
     float inputX;
     float inputY;
+    float leapingCounter = 0; bool startedCountingLeapTime = false;
+    public float leapingCoolDown = 4f;
     // jääl kõndimise asjandus:
     bool onIce = false; Vector2 lastFrameInput; float inputDelay = 0.05f, inputDelayCounter; List<Vector2> savedInputs; int i = 0;
     public float speed;
@@ -30,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Mouse1) && rb.velocity.magnitude != 0){
+        if(Input.GetKeyDown(KeyCode.Mouse1) && rb.velocity.magnitude != 0 && GlobalReferences.leapCount > 0){
             isDodgeLeaping = true;
             //disainiküsimus: kas dodgeDirection on sihtimise suund või viimatise liikumise suund? 
             //dodgeDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
@@ -38,19 +40,32 @@ public class PlayerMovement : MonoBehaviour
             dodgeTimer = Time.time + dodgeDuration;
             // invincibility peale
             GlobalReferences.thePlayerIsInvincible = true;
+            GlobalReferences.leapCount -= 1;
+        }
+
+        if(GlobalReferences.leapCount < 3 && !startedCountingLeapTime){
+            startedCountingLeapTime = true;
+            leapingCounter = Time.time + leapingCoolDown;
+        }
+        if(startedCountingLeapTime && leapingCounter < Time.time){
+            GlobalReferences.leapCount += 1;
+            startedCountingLeapTime = false;
+        }
+        if(GlobalReferences.leapCount == 3){
+            
+            startedCountingLeapTime = false;
         }
     }
-    
     void FixedUpdate() {
         
         inputX = Input.GetAxisRaw("Horizontal");
         inputY = Input.GetAxisRaw("Vertical");
         Vector2 movementInput = new Vector2(inputX, inputY);
-        if(!isDodgeLeaping && !onIce){
+        if(!isDodgeLeaping){
             // fikseeritud max kiirusega
             rb.velocity = movementInput.normalized * speed;
         }
-        if(isDodgeLeaping && !onIce){
+        if(isDodgeLeaping){
             if(dodgeTimer > Time.time){
                 rb.velocity = 10f * dodgeDirection;
             }
