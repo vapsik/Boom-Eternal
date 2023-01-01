@@ -48,7 +48,19 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Mouse1) && rb.velocity.magnitude != 0 && GlobalReferences.leapCount > 0){
+        GlobalReferences.thePlayerIsInvincible = (isDodgeLeaping || timeSlowed);
+
+        if (timeSlowed && !UIManager.onPause)
+        {
+            Time.timeScale += 1f / 3f * Time.unscaledDeltaTime;
+            Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 1f);
+            if (Time.timeScale == 1)
+            {
+                timeSlowed = false;
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse1) && rb.velocity.magnitude != 0 && GlobalReferences.leapCount > 0){
             isDodgeLeaping = true;
             //disainiküsimus: kas dodgeDirection on sihtimise suund või viimatise liikumise suund? 
             //dodgeDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
@@ -102,8 +114,6 @@ public class PlayerMovement : MonoBehaviour
             else{
                 rb.velocity = Vector2.zero;
                 isDodgeLeaping = false;
-                // invincibility maha
-                GlobalReferences.thePlayerIsInvincible = false;
             }
         }
         // ei tea kas järgmise lõigu peaks panema Update-i???

@@ -35,6 +35,7 @@ public class Bullet : MonoBehaviour
                     GlobalReferences.hp -= 1;
                     GlobalReferences.thePlayer.gameObject.GetComponent<PlayerMovement>().timeSinceDamage = 0f;
                     GlobalReferences.audioManager.playSound("loseLife");
+                    other.GetComponent<PlayerMovement>().OnDamageTaken();
                     //proc slowdown
                 }
                 //eat lead, töötab ka :
