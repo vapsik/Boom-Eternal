@@ -26,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     void Awake() {
+        Time.timeScale = 1f;
         rb = gameObject.GetComponent<Rigidbody2D>();
         GlobalReferences.thePlayer = gameObject;
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
