@@ -45,7 +45,7 @@ public static class GlobalReferences
             bulletCount += 1;
             //mängu disaini küsimus: kas magazine'i suurust ka eatlead'iga suurendada?
             maxBulletCount += 1;
-            audioManager.playSound("pickUpBullet");
+            audioManager.playSound("pickUpBullet", 0.8f, 0.8f);
             return true;
         }
         else{
@@ -56,12 +56,14 @@ public static class GlobalReferences
         if(hp + 1 <= maxHP){
             hp += hpAdded;
             audioManager.playSound("pickUpBullet");
+            audioManager.playSound("playerHeal");
             return true;
         }
         else if (maxCanIncrease){
             hp += hpAdded;
             maxHP += hpAdded;
             audioManager.playSound("pickUpBullet");
+            audioManager.playSound("playerHeal");
             return true;
         }
         else{

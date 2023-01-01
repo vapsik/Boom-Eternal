@@ -60,7 +60,13 @@ public class EnemyHP : MonoBehaviour
                 GlobalReferences.killsSinceHealthDrop++;
             }
             GlobalReferences.score += maxDropAmount;
+
+            GlobalReferences.audioManager.playSound("enemyDeath" + Random.Range(1, 3));
             Destroy(gameObject);
+        }
+        else
+        {
+            GlobalReferences.audioManager.playSound("enemyDamage" + Random.Range(1, 3));
         }
     }
 }
