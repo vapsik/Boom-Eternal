@@ -5,7 +5,8 @@ using UnityEngine;
 public class EnemyBehaviour1 : MonoBehaviour
 {
     // siia tuleb lihtsaim enemy behaviour: liigub ringi suvaliselt mängija ümber ja laseb suvaliste intervallide taga 3 kuuli
-    bool lineOfSight = false, shooting = false;
+    bool lineOfSight = false, shooting = false, hasSpottedPlayer = false;
+    [SerializeField] float memoryDuration = 7f; float memoryCounter; bool startedMemorizing = false;
     public float detectionRadius = 15f, shootingRadius = 7f, shootingDuration = 2f, detonationRadius = 3f;
     public int numberOfRicochets = 16; 
     public float shootingSlowDown = 0.5f; // aeglustus laskmise ja sihtimise ajal
@@ -92,9 +93,21 @@ public class EnemyBehaviour1 : MonoBehaviour
                 Detonate(numberOfRicochets);
             }
         }
-        else{
-            rb.velocity = additionalVelocity;
+        else if(hasSpottedPlayer){
+            if(!startedMemorizing)
+            {
+                memoryCounter = Time.time + memoryDuration;
+                startedMemorizing = true;
+            }
+            rb.velocity = additionalVelocity; //  siia tuleb see pathfinding algorithmi osa
+
+
         }
+        if(hasSpottedPlayer && startedMemorizing && memoryCounter < Time.time){
+            hasSpottedPlayer = false;
+            startedMemorizing = false;
+        }
+
         
 
         // additionalVelocity on KnockBackVelocity, mis sumbub ajas
