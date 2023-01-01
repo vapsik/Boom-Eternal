@@ -13,7 +13,7 @@ public class SceneReferencer : MonoBehaviour
     [SerializeField] GameObject[] playerBulletPrefabs, enemyBulletPrefabs;
     [SerializeField] GameObject globalLight;
     [SerializeField] Tilemap[] floorWallCeilingTiles;
-    int hpAtStart, bulletCountAtStart;
+    int hpAtStart, bulletCountAtStart, maxBulletCountAtStart;
     [SerializeField] bool SantaHasCome = false;
     [SerializeField] Transform christmasTree;
     void Awake(){
@@ -53,6 +53,7 @@ public class SceneReferencer : MonoBehaviour
         
         hpAtStart = GlobalReferences.hp;
         bulletCountAtStart = GlobalReferences.bulletCount;
+        maxBulletCountAtStart = GlobalReferences.maxBulletCount;
 
         if(iterateLights){
             if(lightsOff){
@@ -107,15 +108,16 @@ public class SceneReferencer : MonoBehaviour
         }
         }
         
-        
-
     }
     public void LoadNextScene(){
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
     public void RestartScene(){
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        GlobalReferences.hp = hpAtStart;
+        //GlobalReferences.hp = hpAtStart;
+        //GlobalReferences.hp = GlobalReferences.maxHP;
+        GlobalReferences.maxBulletCount = maxBulletCountAtStart;
+        GlobalReferences.bulletCount = GlobalReferences.maxBulletCount;
         GlobalReferences.bulletCount = bulletCountAtStart;
     }
 }
