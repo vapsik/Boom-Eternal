@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
     // jääl kõndimise asjandus:
     bool onIce = false; Vector2 lastFrameInput; float inputDelay = 0.05f, inputDelayCounter; List<Vector2> savedInputs; int i = 0;
     public float speed;
+    bool timeSlowed = false;
     Rigidbody2D rb;
     //leaping stuff:
     [HideInInspector] public bool isDodgeLeaping = false;
@@ -27,10 +28,36 @@ public class PlayerMovement : MonoBehaviour
         aimingAndShooting = GetComponent<AimingAndShooting>();
     }
 
+    public void OnDamageTaken()
+    {
+        GlobalReferences.thePlayerIsInvincible = true;
+        Time.timeScale = 0.2f;
+        timeSlowed = true;
+        //GlobalReferences.score -= 1; me mby tahame seda
+        Time.fixedDeltaTime = Time.timeScale * .02f;
+        
+    }
+
     // Update is called once per frame
     void Update()
     {
+<<<<<<< Updated upstream
         if(Input.GetKeyDown(KeyCode.Mouse1) && rb.velocity.magnitude != 0){
+=======
+        Debug.Log(Time.timeScale);
+        if (timeSlowed && !UIManager.onPause)
+        {
+            Time.timeScale += (1f / 3f) * Time.unscaledDeltaTime;
+            Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 1f);
+            if (Time.timeScale == 1)
+            {
+                timeSlowed = false;
+                GlobalReferences.thePlayerIsInvincible = false;
+            }
+        }
+
+        if(Input.GetKeyDown(KeyCode.Mouse1) && rb.velocity.magnitude != 0 && GlobalReferences.leapCount > 0){
+>>>>>>> Stashed changes
             isDodgeLeaping = true;
             //disainiküsimus: kas dodgeDirection on sihtimise suund või viimatise liikumise suund? 
             //dodgeDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
