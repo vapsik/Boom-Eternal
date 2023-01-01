@@ -13,7 +13,8 @@ public class FinalLevelSequencer : MonoBehaviour
     EnemySpawner enemySpawner;
     [SerializeField] GameObject bossPrefab;
     [SerializeField] Transform startPoint;
-    bool started = false;
+    bool started = false, bossFightHasStarted = false;
+    public static bool bossIsAlive = false;
     void Start()
     {
         enemySpawner = enemySpawnerObject.GetComponent<EnemySpawner>();
@@ -31,15 +32,21 @@ public class FinalLevelSequencer : MonoBehaviour
             enemySpawner.spawnRandomly = true;
             killCount = enemySpawner.numberOfSpawned 
             - enemySpawnerObject.transform.childCount;
-            if(killCount >= n){
+            if(killCount >= n && !bossFightHasStarted){
                 enemySpawner.minSpawnInterval = 3f;
                 enemySpawner.maxSpawnInterval = 4f;
 
-                bossPrefab.SetActive(true);    
+                bossPrefab.SetActive(true);
+                bossFightHasStarted = true;
+                bossIsAlive = true;
+                  
+            }
+            if(bossFightHasStarted){
+                if(bossPrefab.gameObject.activeSelf == false){
+                    bossIsAlive = false;
+                }
             }
         }
         GlobalReferences.enemiesLeft = killCount;
-
-        Debug.Log(started);
     }
 }
