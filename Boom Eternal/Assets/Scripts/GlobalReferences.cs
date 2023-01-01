@@ -26,6 +26,9 @@ public static class GlobalReferences
     public static GameObject currentSceneLight;
     public static GameObject ammoDropPrefab, healthKitPrefab;
     public static GameObject[] listOfEnemyPrefabs;
+
+    public static DamageTint damageTint;
+
     public static class Tags
     {
         public const string PlayerBullet = "Bullet";

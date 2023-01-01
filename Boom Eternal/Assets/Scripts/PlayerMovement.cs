@@ -20,9 +20,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float dodgeDuration = 0.5f;
     float dodgeTimer = 0;
     AimingAndShooting aimingAndShooting;
+
+    [HideInInspector]
+    public float timeSinceDamage = 100000f;
+    private SpriteRenderer spriteRenderer;
+
     void Awake() {
         rb = gameObject.GetComponent<Rigidbody2D>();
         GlobalReferences.thePlayer = gameObject;
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
     // Start is called before the first frame update
@@ -65,6 +71,20 @@ public class PlayerMovement : MonoBehaviour
             
             startedCountingLeapTime = false;
         }
+
+        timeSinceDamage += Time.deltaTime;
+
+        float damageTintTime = 0.6f;
+        if (timeSinceDamage >= damageTintTime)
+        {
+            spriteRenderer.color = Color.white;
+        }
+        else
+        {
+            float redNess = 1f * (damageTintTime - timeSinceDamage);
+            spriteRenderer.color = new Color(1f, 1f - redNess, 1f - redNess);
+        }
+
     }
     void FixedUpdate() {
         
