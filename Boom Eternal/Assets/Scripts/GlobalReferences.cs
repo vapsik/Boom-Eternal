@@ -53,7 +53,7 @@ public static class GlobalReferences
         }
     }
     public static bool AddHP(int hpAdded = 2, bool maxCanIncrease = false){
-        if(hp + hpAdded <= maxHP){
+        if(hp + 1 <= maxHP){
             hp += hpAdded;
             audioManager.playSound("pickUpBullet");
             return true;
