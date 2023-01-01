@@ -5,7 +5,7 @@ public class Bullet : MonoBehaviour
     public string affectsTarget;
     int damage = 1;
     [SerializeField]
-    float maxBulletDuration = 10f;
+    float maxBulletDuration = 2f;
     float timer = 0;
     bool intitated = false;
     void Update()
