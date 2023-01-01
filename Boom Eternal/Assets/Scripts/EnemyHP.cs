@@ -9,6 +9,15 @@ public class EnemyHP : MonoBehaviour
     public int maxDropAmount;
     GameObject testAmmoDropPrefab, healthKitPrefab;
     public float knockBackForce = 2;
+
+    private float timeSinceDamage = 100000f;
+    private SpriteRenderer spriteRenderer;
+
+    private void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
     void Start(){
         testAmmoDropPrefab = GlobalReferences.ammoDropPrefab;
         healthKitPrefab = GlobalReferences.healthKitPrefab;
@@ -20,6 +29,8 @@ public class EnemyHP : MonoBehaviour
             gameObject.GetComponent<EnemyBehaviour1>().additionalVelocity += knockBack;
         // kui on veel mingi skript, mis liikumist mõjutab lisada sinna additionalVelocity ja siia viide 
         // siis tuleb teha eelnevalt näidatud null exception if-lausega
+
+        timeSinceDamage = 0f;
         
         if (hp <= 0)
         {
@@ -69,4 +80,21 @@ public class EnemyHP : MonoBehaviour
             GlobalReferences.audioManager.playSound("enemyDamage" + Random.Range(1, 3));
         }
     }
+
+    public void Update()
+    {
+        timeSinceDamage += Time.deltaTime;
+
+        float damageTintTime = 0.4f;
+        if (timeSinceDamage >= damageTintTime)
+        {
+            spriteRenderer.color = Color.white;
+        }
+        else
+        {
+            float redNess = 1f * (damageTintTime - timeSinceDamage);
+            spriteRenderer.color = new Color(1f, 1f - redNess, 1f - redNess);
+        }
+    }
+
 }
