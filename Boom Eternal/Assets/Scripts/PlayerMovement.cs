@@ -20,9 +20,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float dodgeDuration = 0.5f;
     float dodgeTimer = 0;
     AimingAndShooting aimingAndShooting;
+
+    [HideInInspector]
+    public float timeSinceDamage = 100000f;
+    private SpriteRenderer spriteRenderer;
+
     void Awake() {
         rb = gameObject.GetComponent<Rigidbody2D>();
         GlobalReferences.thePlayer = gameObject;
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
     // Start is called before the first frame update
@@ -42,7 +48,19 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Mouse1) && rb.velocity.magnitude != 0 && GlobalReferences.leapCount > 0){
+        GlobalReferences.thePlayerIsInvincible = (isDodgeLeaping || timeSlowed);
+
+        if (timeSlowed && !UIManager.onPause)
+        {
+            Time.timeScale += 1f / 3f * Time.unscaledDeltaTime;
+            Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 1f);
+            if (Time.timeScale == 1)
+            {
+                timeSlowed = false;
+            }
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse1) && rb.velocity.magnitude != 0 && GlobalReferences.leapCount > 0){
             isDodgeLeaping = true;
             //disainiküsimus: kas dodgeDirection on sihtimise suund või viimatise liikumise suund? 
             //dodgeDirection = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
@@ -65,6 +83,20 @@ public class PlayerMovement : MonoBehaviour
             
             startedCountingLeapTime = false;
         }
+
+        timeSinceDamage += Time.deltaTime;
+
+        float damageTintTime = 0.6f;
+        if (timeSinceDamage >= damageTintTime)
+        {
+            spriteRenderer.color = Color.white;
+        }
+        else
+        {
+            float redNess = 1f * (damageTintTime - timeSinceDamage);
+            spriteRenderer.color = new Color(1f, 1f - redNess, 1f - redNess);
+        }
+
     }
     void FixedUpdate() {
         
@@ -82,8 +114,6 @@ public class PlayerMovement : MonoBehaviour
             else{
                 rb.velocity = Vector2.zero;
                 isDodgeLeaping = false;
-                // invincibility maha
-                GlobalReferences.thePlayerIsInvincible = false;
             }
         }
         // ei tea kas järgmise lõigu peaks panema Update-i???
