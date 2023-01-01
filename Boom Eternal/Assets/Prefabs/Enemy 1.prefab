@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: -4795496186441579181}
   - component: {fileID: -2247162936644241139}
   - component: {fileID: -8672926594415087966}
-  - component: {fileID: -7035829550546349774}
+  - component: {fileID: 7378346292788968297}
   m_Layer: 6
   m_Name: Enemy 1
   m_TagString: Enemy
@@ -60,7 +60,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -137,7 +137,7 @@ MonoBehaviour:
   maxAngle: 0
   minAngle: 0
   additionalVelocity: {x: 0, y: 0}
-  additionalVelocityDampeningRate: 10
+  additionalVelocityDampeningRate: 0.5
 --- !u!114 &1333859005802756456
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,7 +291,7 @@ MonoBehaviour:
   - {x: -0.25, y: 0.22070312, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 43904
+  m_InstanceId: 22906
 --- !u!60 &-2247162936644241139
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -317,14 +317,14 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.28125, y: 0.3125}
-      - {x: -0.53125, y: 0.1875}
-      - {x: -0.53125, y: -0.28125}
-      - {x: -0.46875, y: -0.40625}
-      - {x: -0.40625, y: -0.75}
-      - {x: -0.34375, y: -0.8125}
-      - {x: 0.40625, y: -0.8125}
-      - {x: 0.40625, y: 0.3125}
+    - - {x: -0.33266252, y: 0.46985966}
+      - {x: -0.5108901, y: 0.16240035}
+      - {x: -1.0625, y: -0.5625}
+      - {x: -0.3119458, y: -0.6639309}
+      - {x: -0.50754225, y: -1.1012093}
+      - {x: -0.60930574, y: -1.5077087}
+      - {x: 0.6248337, y: -1.4529727}
+      - {x: 0.44824424, y: 0.46362078}
 --- !u!114 &-8672926594415087966
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -339,7 +339,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lookLeft: 1
   animator: {fileID: 0}
---- !u!50 &-7035829550546349774
+--- !u!50 &7378346292788968297
 Rigidbody2D:
   serializedVersion: 4
   m_ObjectHideFlags: 0
