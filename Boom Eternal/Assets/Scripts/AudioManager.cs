@@ -48,12 +48,12 @@ public class AudioManager : MonoBehaviour
             AudioSource menuMusicSource = soundsDict["menuMusic"].audioSource;
             menuMusicSource.Stop();
 
-            AudioSource gameMusicSource = soundsDict["gameMusic1"].audioSource;
-            if (!gameMusicSource.isPlaying)
+            Sound gameMusic = soundsDict["gameMusic1"];
+            if (!gameMusic.audioSource.isPlaying)
             {
-                gameMusicSource.loop = true;
-                gameMusicSource.Play();
-            }           
+                gameMusic.audioSource.loop = true;
+                playSound(gameMusic.name);
+            }
         }
     }
 
