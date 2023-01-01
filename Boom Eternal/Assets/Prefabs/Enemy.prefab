@@ -127,7 +127,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 265
   maxBehaviourTime: 4
-  speed: 10
+  speed: 8
   isGrenade: 1
   gunPivot: {fileID: 0}
   gunBarrel: {fileID: 0}

@@ -79,7 +79,7 @@ public class AimingAndShooting : MonoBehaviour
             aimingVectorFromBarrel = new Vector2(crosshairPosition.x - barrelPosOnCanvas.x, crosshairPosition.y - barrelPosOnCanvas.y).normalized;
             //selline instantiate'imine toimib ainult puhul ümara kuuli puhul: 
             GameObject bullet = Instantiate(GlobalReferences.playerBulletPrefabs[0], gunBarrel.position, Quaternion.identity, playerBullets.transform);
-            bullet.GetComponent<Rigidbody2D>().velocity = aimingVectorFromBarrel * 12f;
+            bullet.GetComponent<Rigidbody2D>().velocity = aimingVectorFromBarrel * 9f;
             bullet.transform.rotation = Quaternion.Euler(0, 0, Mathf.Atan(aimingVector.y/aimingVector.x)*Mathf.Rad2Deg);
             ////kuulikujulise kuuli puhul:
             //GameObject bullet = Instantiate(testBulletPrefab, gunBarrel.position, Quaternion.identity);

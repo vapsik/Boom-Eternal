@@ -59,7 +59,7 @@ public class EnemyBehaviour1 : MonoBehaviour
             {
                 Debug.Log("tulistan");
                 GameObject bullet = Instantiate(GlobalReferences.enemyBulletPrefabs[0], gunBarrel.position, Quaternion.identity);
-                bullet.GetComponent<Rigidbody2D>().velocity = enemyToPlayerVector.normalized * 10f;
+                bullet.GetComponent<Rigidbody2D>().velocity = enemyToPlayerVector.normalized * 8f;
                 bullet.GetComponent<Bullet>().affectsTarget = "Player";
                 bulletCounter += 1;
                 counter = Time.time + shootingDuration;
@@ -158,7 +158,7 @@ public class EnemyBehaviour1 : MonoBehaviour
             float angle = 360f / numberOfRicochets;
             GameObject bullet = Instantiate(GlobalReferences.enemyBulletPrefabs[0], transform.position, Quaternion.identity);
             Vector2 directionVector = new Vector2(Mathf.Cos((i * angle) * Mathf.Deg2Rad), Mathf.Sin((i * angle) * Mathf.Deg2Rad));
-            bullet.GetComponent<Rigidbody2D>().velocity = directionVector * 10f;
+            bullet.GetComponent<Rigidbody2D>().velocity = directionVector * 8f;
             bullet.GetComponent<Bullet>().affectsTarget = "Player";
             bullet.transform.rotation = Quaternion.Euler(0, 0, angle * i);
         }

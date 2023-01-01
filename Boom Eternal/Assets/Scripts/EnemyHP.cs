@@ -53,7 +53,7 @@ public class EnemyHP : MonoBehaviour
                 ammoDrop.GetComponent<AmmoDrop>().FallToNewPosition(newPos);
             }
             // praegu ei teki rohkem kui 1 healthdrop per kill
-            if(Random.Range(0f,100f)<((maxDropAmount+GlobalReferences.killsSinceHealthDrop)* GlobalReferences.maxHP /GlobalReferences.hp))
+            if(Random.Range(0f,100f)<((maxDropAmount+GlobalReferences.killsSinceHealthDrop)* 2*GlobalReferences.maxHP /GlobalReferences.hp))
             {
                 Vector2 newPos = new Vector2(gameObject.transform.position.x
                 + Random.Range(-1.5f, 1.5f), gameObject.transform.position.y + Random.Range(-1.5f, 1.5f));

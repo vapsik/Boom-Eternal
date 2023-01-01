@@ -51,7 +51,7 @@ public class AmmoDrop : MonoBehaviour
                 }
             }
             else{
-                if(GlobalReferences.AddHP(2, false)){
+                if(GlobalReferences.AddHP(1, false)){
                     Destroy(gameObject);
                 }
             }

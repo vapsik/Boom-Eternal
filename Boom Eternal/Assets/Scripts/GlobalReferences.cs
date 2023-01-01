@@ -19,7 +19,7 @@ public static class GlobalReferences
     public static int enemiesLeft = 0;
 
     // maxHP ja maxBulletCount seame siin
-    public static int maxHP = 15;
+    public static int maxHP = 7;
     public static int maxBulletCount = 20;
     public static int killsSinceHealthDrop = 0;
     public static int bulletCount;
@@ -55,7 +55,7 @@ public static class GlobalReferences
             return false;
         }
     }
-    public static bool AddHP(int hpAdded = 2, bool maxCanIncrease = false){
+    public static bool AddHP(int hpAdded = 1, bool maxCanIncrease = false){
         if(hp + 1 <= maxHP){
             hp += hpAdded;
             audioManager.playSound("pickUpBullet");

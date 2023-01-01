@@ -63,7 +63,7 @@ public class EnemySpawner : MonoBehaviour
                 }
             }
 
-            yield return new WaitForSeconds(UnityEngine.Random.Range(minSpawnInterval, maxSpawnInterval) * 150f /(150f + GlobalReferences.score));
+            yield return new WaitForSeconds(UnityEngine.Random.Range(minSpawnInterval, maxSpawnInterval) * 200f /(100f + GlobalReferences.score));
         }
     }
 
