@@ -8,6 +8,7 @@ public class AudioManager : MonoBehaviour
 
     public Sound[] sounds;
     public Dictionary<string, Sound> soundsDict = new Dictionary<string, Sound>();
+    public float masterVolume = 1f;
 
     // Start is called before the first frame update
     void Awake()
@@ -31,11 +32,13 @@ public class AudioManager : MonoBehaviour
 
     public void playSound(string name)
     {
-        playSound(name, 1, 1);
+        playSound(name, GlobalReferences.Settings.volume, 1);
     }
 
     public void playSound(string name, float volumeChange, float pitchChange)
     {
+        volumeChange = GlobalReferences.Settings.volume;
+
         Sound sound = soundsDict[name];
         sound.audioSource.volume = sound.volume * volumeChange;
         sound.audioSource.pitch = sound.pitch * pitchChange;

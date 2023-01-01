@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class SettingsManager : MonoBehaviour
 {
     [SerializeField] Slider sensSlider, volumeSlider;
+    [SerializeField] Transform audioManager;
 
     void Awake(){
         //et algsed näidud ühtiksid slideri näiduga:
@@ -13,6 +14,7 @@ public class SettingsManager : MonoBehaviour
         volumeSlider.value = GlobalReferences.Settings.volume;
         sensSlider.minValue = 500f;
         sensSlider.maxValue = 10000f;
+        
     }
     public void OnChange(){
         GlobalReferences.Settings.sensitivity = sensSlider.value;
