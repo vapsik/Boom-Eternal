@@ -62,7 +62,7 @@ MonoBehaviour:
   - name: pickUpBullet
     clip: {fileID: 8300000, guid: 81aa28c593eb9214f94382848233da33, type: 3}
     volume: 1
-    pitch: 1
+    pitch: 1.1
     audioSource: {fileID: 0}
   - name: playerShoot
     clip: {fileID: 8300000, guid: 903a785538ef096489ec05154e08de1b, type: 3}
@@ -71,7 +71,7 @@ MonoBehaviour:
     audioSource: {fileID: 0}
   - name: enemyShoot
     clip: {fileID: 8300000, guid: 903a785538ef096489ec05154e08de1b, type: 3}
-    volume: 0.2
+    volume: 0.3
     pitch: 0.75
     audioSource: {fileID: 0}
   - name: menuMusic
@@ -83,4 +83,49 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: f59630dec8ddf7349a3864f11687cbae, type: 3}
     volume: 0.75
     pitch: 1
+    audioSource: {fileID: 0}
+  - name: loseLife
+    clip: {fileID: 8300000, guid: 4afbd91c7f5deb14ca3277283f6cf012, type: 3}
+    volume: 1
+    pitch: 1
+    audioSource: {fileID: 0}
+  - name: enemyDetonate
+    clip: {fileID: 8300000, guid: 2ceca86b92f618045aeab361561a24cc, type: 3}
+    volume: 1
+    pitch: 1
+    audioSource: {fileID: 0}
+  - name: playerHeal
+    clip: {fileID: 8300000, guid: 0cd81fafa4d2f6640908e9bf469161d5, type: 3}
+    volume: 0.25
+    pitch: 1
+    audioSource: {fileID: 0}
+  - name: enemyDamage1
+    clip: {fileID: 8300000, guid: 8d44a30901edffc4595ee28460ef05d4, type: 3}
+    volume: 0.75
+    pitch: 0.8
+    audioSource: {fileID: 0}
+  - name: enemyDamage2
+    clip: {fileID: 8300000, guid: 9bee8a96cf1578444bc57d7c3afbec8a, type: 3}
+    volume: 0.7
+    pitch: 0.85
+    audioSource: {fileID: 0}
+  - name: enemyDamage3
+    clip: {fileID: 8300000, guid: 400f22eb8331e1d47a8bdea74ae5659d, type: 3}
+    volume: 0.7
+    pitch: 0.8
+    audioSource: {fileID: 0}
+  - name: enemyDeath1
+    clip: {fileID: 8300000, guid: 43f7c1726c97c0c428c63d4e2f7cd04a, type: 3}
+    volume: 0.8
+    pitch: 0.8
+    audioSource: {fileID: 0}
+  - name: enemyDeath2
+    clip: {fileID: 8300000, guid: 9f58827fab026aa43924401e1baf4fc7, type: 3}
+    volume: 0.8
+    pitch: 0.8
+    audioSource: {fileID: 0}
+  - name: enemyDeath3
+    clip: {fileID: 8300000, guid: e8be0efd6c49b5b4884a15b0a31d9eb5, type: 3}
+    volume: 0.8
+    pitch: 0.8
     audioSource: {fileID: 0}

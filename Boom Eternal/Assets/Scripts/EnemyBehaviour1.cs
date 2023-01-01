@@ -54,11 +54,7 @@ public class EnemyBehaviour1 : MonoBehaviour
                 bulletCounter += 1;
                 counter = Time.time + shootingDuration;
 
-                Vector3 posDifference = transform.position - GlobalReferences.thePlayer.transform.position;
-                float distanceSquared = posDifference.x * posDifference.x + posDifference.y * posDifference.y;
-                float volume = 8 - Mathf.Sqrt(distanceSquared);
-                if (volume > 0)
-                    GlobalReferences.audioManager.playSound("enemyShoot", volume, 1);
+                GlobalReferences.audioManager.playSound("enemyShoot");
 
                 if(bulletCounter == bulletsPerMagazine){
                     counter = Time.time + reloadingDuration;
@@ -143,7 +139,8 @@ public class EnemyBehaviour1 : MonoBehaviour
             bullet.GetComponent<Rigidbody2D>().velocity = directionVector * 10f;
             bullet.GetComponent<Bullet>().affectsTarget = "Player";
             bullet.transform.rotation = Quaternion.Euler(0, 0, angle * i);
-            Destroy(gameObject);
         }
+        Destroy(gameObject);
+        GlobalReferences.audioManager.playSound("enemyDetonate");
     }
 }

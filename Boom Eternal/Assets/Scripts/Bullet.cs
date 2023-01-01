@@ -33,6 +33,7 @@ public class Bullet : MonoBehaviour
             {
                 if(!GlobalReferences.thePlayerIsInvincible){
                     GlobalReferences.hp -= 1;
+                    GlobalReferences.audioManager.playSound("loseLife");
                     //proc slowdown
                 }
                 //eat lead, töötab ka :
