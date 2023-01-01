@@ -18,13 +18,8 @@ public class BossBehaviour : MonoBehaviour
     [SerializeField] LayerMask layerMask;
 
     [SerializeField]
-<<<<<<< HEAD
-    float speed = 2f; //phmst max aeg, mille jooksul ta teeb midagi (4 sekundit jooksu suvalises suunas, 4 sekundit seistes tulistamist, 4 sekundit ns passimist jms)
-    [SerializeField] bool moving = true;
-=======
     float speed = 2f; 
     [SerializeField] bool canMove = true;
->>>>>>> 979d154 (updated boss)
     [SerializeField] bool canShoot = true;
     //animeeritud relva parameetrid:
     [SerializeField] Transform gunPivot, gunBarrel;
@@ -33,13 +28,10 @@ public class BossBehaviour : MonoBehaviour
 
     GameObject player;
     Vector2 enemyToPlayerVector, homeVector;
-    
-    Rigidbody2D rb;
+
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-
         homePosition = transform.position; //koht kus ta spawnitakse
         player = GlobalReferences.thePlayer;
         if (gunBarrel == null)
@@ -53,9 +45,6 @@ public class BossBehaviour : MonoBehaviour
     {
         enemyToPlayerVector = player.transform.position - transform.position;
         homeVector = homePosition - transform.position;
-<<<<<<< HEAD
-        if (homeVector.magnitude < 4f)
-=======
         if (!canMove)
         {
             if (counter + Time.deltaTime < Time.time)
@@ -71,15 +60,14 @@ public class BossBehaviour : MonoBehaviour
         }
 
         if (homeVector.magnitude < 1f && canMove)
->>>>>>> 979d154 (updated boss)
         {
             canShoot = true;
         }
 
         if (enemyToPlayerVector.magnitude < shootingRadius && canShoot)
         {
-            // kordam��da:
-            // kui lineOfSight = true, siis tulistab kuni crashib seina, siis ootab kuni algusesse j�uab
+            // kordamööda:
+            // kui lineOfSight = true, siis tulistab kuni crashib seina, siis ootab kuni algusesse jõuab
             if (lineOfSight && counter < Time.time)
             {
                 //Debug.Log("tulistan");
@@ -89,19 +77,14 @@ public class BossBehaviour : MonoBehaviour
                 counter = Time.time + shootingDuration;
                 shooting = true;
 
-                Vector3 posDifference = transform.position - GlobalReferences.thePlayer.transform.position;
-                float distanceSquared = posDifference.x * posDifference.x + posDifference.y * posDifference.y;
-                float volume = 8 - Mathf.Sqrt(distanceSquared);
-                if (volume > 0)
-                    GlobalReferences.audioManager.playSound("enemyShoot", volume, 1);
-
             }
             else
             {
-                //Random.Range(0f, maxBehaviourTime);
-                Debug.Log("ei tulista ja liigun tagasi algusesse");
-                shooting = false;
-            }
+                shooting = lineOfSight; //ta laseb seni kuni enam ei n�e
+
+
+            } //mul pole slowdowni vaja
+
         }
         else
         {
@@ -112,11 +95,11 @@ public class BossBehaviour : MonoBehaviour
         {
             if (shooting)
             {
-                transform.Translate(enemyToPlayerVector.normalized * shootingSlowDown * speed * -1f * Time.deltaTime) ; //recoil pushes back
+                transform.Translate(enemyToPlayerVector.normalized * speed * Time.deltaTime * -1f); //recoil pushes back
             }
-            else if (homeVector.magnitude > 3f) //pole kodus
+            else if (homeVector.magnitude > 0.5f) //pole kodus
             {
-                rb.velocity = homeVector.normalized * speed; //liigub algusesse
+                transform.Translate(homeVector.normalized * speed * Time.deltaTime); //liigub algusesse
             }
 
         }
@@ -132,10 +115,10 @@ public class BossBehaviour : MonoBehaviour
         }
 
         RaycastHit2D hit = Physics2D.Raycast(transform.position, enemyToPlayerVector.normalized, Mathf.Infinity, layerMask);
-        Debug.DrawRay(transform.position, enemyToPlayerVector, Color.red);
+        /*Debug.DrawRay(transform.position, enemyToPlayerVector, Color.red);
         Debug.DrawRay(transform.position, enemyToPlayerVector.normalized * shootingRadius, Color.blue);
         Debug.DrawRay(transform.position, enemyToPlayerVector.normalized * detectionRadius, Color.yellow);
-        Debug.DrawRay(transform.position, enemyToPlayerVector.normalized * detonationRadius, Color.red);
+        Debug.DrawRay(transform.position, enemyToPlayerVector.normalized * detonationRadius, Color.red);*/
         if (hit.transform != null)
         {
             if (hit.transform.tag == "Player")
@@ -151,9 +134,9 @@ public class BossBehaviour : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D other) //crashib seina ja hakkab reset'ima
+    private void OnTriggerEnter2D(Collider2D other) //crashib seina ja hakkab reset'ima
     {
-        if (other.transform.CompareTag("Wall")) 
+        if (other.CompareTag("Wall")) 
         {
             canShoot = false;
             shooting = false;

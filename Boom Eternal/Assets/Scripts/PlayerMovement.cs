@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
     public float speed;
     Rigidbody2D rb;
     //leaping stuff:
+    
+    bool timeSlowed = false;
     [HideInInspector] public bool isDodgeLeaping = false;
     Vector2 dodgeDirection;
     [SerializeField] float dodgeDuration = 0.5f;
@@ -28,7 +30,15 @@ public class PlayerMovement : MonoBehaviour
     {
         aimingAndShooting = GetComponent<AimingAndShooting>();
     }
+    public void OnDamageTaken()
+    {
+        GlobalReferences.thePlayerIsInvincible = true;
+        Time.timeScale = 0.2f;
+        timeSlowed = true;
+        //GlobalReferences.score -= 1; me mby tahame seda
+        Time.fixedDeltaTime = Time.timeScale * .02f;
 
+    }
     // Update is called once per frame
     void Update()
     {
