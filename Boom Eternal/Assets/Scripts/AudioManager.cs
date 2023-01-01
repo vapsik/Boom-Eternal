@@ -13,17 +13,14 @@ public class AudioManager : MonoBehaviour
 
     void Awake()
     {
-        Debug.Log(10);
-        DontDestroyOnLoad(this);
+        DontDestroyOnLoad(this.gameObject);
         if (GlobalReferences.audioManager == null)
         {
-            Debug.Log(20);
             GlobalReferences.audioManager = this;
         }
         else
         {
             Destroy(gameObject);
-            Debug.Log(30);
             GlobalReferences.audioManager.PlayMusic();        
             return;
         }
@@ -37,28 +34,23 @@ public class AudioManager : MonoBehaviour
             sound.audioSource.pitch = sound.pitch;
             soundsDict.Add(sound.name, sound);
         }
-        Debug.Log(40);
         PlayMusic();
     }
 
     private void PlayMusic()
     {
-        Debug.Log(50);
         if (SceneManager.GetActiveScene().name == "StartMenu2")
         {
-            Debug.Log(60);
             playSound("menuMusic");
         }
         else
         {
-            Debug.Log(70);
             AudioSource menuMusicSource = soundsDict["menuMusic"].audioSource;
             menuMusicSource.Stop();
 
             AudioSource gameMusicSource = soundsDict["gameMusic1"].audioSource;
             if (!gameMusicSource.isPlaying)
             {
-                Debug.Log(80);
                 gameMusicSource.loop = true;
                 gameMusicSource.Play();
             }           
@@ -67,15 +59,13 @@ public class AudioManager : MonoBehaviour
 
     public void playSound(string name)
     {
-        playSound(name, GlobalReferences.Settings.volume, 1);
+        playSound(name, 1, 1);
     }
 
     public void playSound(string name, float volumeChange, float pitchChange)
     {
-        volumeChange = GlobalReferences.Settings.volume;
-
         Sound sound = soundsDict[name];
-        sound.audioSource.volume = sound.volume * volumeChange;
+        sound.audioSource.volume = sound.volume * volumeChange * GlobalReferences.Settings.volume;
         sound.audioSource.pitch = sound.pitch * pitchChange;
         sound.audioSource.Play();
     }
