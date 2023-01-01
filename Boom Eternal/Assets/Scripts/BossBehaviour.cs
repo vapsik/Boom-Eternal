@@ -49,9 +49,9 @@ public class BossBehaviour : MonoBehaviour
         {
             if (counter + Time.deltaTime < Time.time)
             {
-                Detonate(numberOfRicochets + fury);
+                Detonate(numberOfRicochets + fury, fury);
                 fury++;
-                counter = Time.time;
+                counter = Time.time+ 1.3f;
             }
             if (currentFury <= fury)
             {
@@ -145,13 +145,13 @@ public class BossBehaviour : MonoBehaviour
             currentFury = fury + 3;
         }
     }
-    public void Detonate(int numberOfRicochets)
+    public void Detonate(int numberOfRicochets, int fury)
     {
         for (int i = 0; i < numberOfRicochets; i++)
         {
             float angle = 360f / numberOfRicochets;
             GameObject bullet = Instantiate(GlobalReferences.enemyBulletPrefabs[0], transform.position, Quaternion.identity);
-            Vector2 directionVector = new Vector2(Mathf.Cos((i * angle) * Mathf.Deg2Rad), Mathf.Sin((i * angle) * Mathf.Deg2Rad));
+            Vector2 directionVector = new Vector2(Mathf.Cos((i * angle + fury*3) * Mathf.Deg2Rad), Mathf.Sin((i * angle + fury * 3) * Mathf.Deg2Rad));
             bullet.GetComponent<Rigidbody2D>().velocity = directionVector * 10f;
             bullet.GetComponent<Bullet>().affectsTarget = "Player";
             bullet.transform.rotation = Quaternion.Euler(0, 0, angle * i);
