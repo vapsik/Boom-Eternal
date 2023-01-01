@@ -74,3 +74,13 @@ MonoBehaviour:
     volume: 0.2
     pitch: 0.75
     audioSource: {fileID: 0}
+  - name: menuMusic
+    clip: {fileID: 8300000, guid: 9433755727e14154dae011802f5bbe0c, type: 3}
+    volume: 0.75
+    pitch: 1
+    audioSource: {fileID: 0}
+  - name: gameMusic1
+    clip: {fileID: 8300000, guid: f59630dec8ddf7349a3864f11687cbae, type: 3}
+    volume: 0.75
+    pitch: 1
+    audioSource: {fileID: 0}
