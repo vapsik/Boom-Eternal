@@ -10,6 +10,7 @@ public class BossBehaviour : MonoBehaviour
     public int numberOfRicochets = 16;
     public float shootingSlowDown = 0.5f; // aeglustus laskmise ja sihtimise ajal
     float counter = 0;
+    int fury, currentFury = 0;
 
 
     private Vector3 homePosition;
@@ -17,8 +18,13 @@ public class BossBehaviour : MonoBehaviour
     [SerializeField] LayerMask layerMask;
 
     [SerializeField]
+<<<<<<< HEAD
     float speed = 2f; //phmst max aeg, mille jooksul ta teeb midagi (4 sekundit jooksu suvalises suunas, 4 sekundit seistes tulistamist, 4 sekundit ns passimist jms)
     [SerializeField] bool moving = true;
+=======
+    float speed = 2f; 
+    [SerializeField] bool canMove = true;
+>>>>>>> 979d154 (updated boss)
     [SerializeField] bool canShoot = true;
     //animeeritud relva parameetrid:
     [SerializeField] Transform gunPivot, gunBarrel;
@@ -47,7 +53,25 @@ public class BossBehaviour : MonoBehaviour
     {
         enemyToPlayerVector = player.transform.position - transform.position;
         homeVector = homePosition - transform.position;
+<<<<<<< HEAD
         if (homeVector.magnitude < 4f)
+=======
+        if (!canMove)
+        {
+            if (counter + Time.deltaTime < Time.time)
+            {
+                Detonate(numberOfRicochets + fury);
+                fury++;
+                counter = Time.time;
+            }
+            if (currentFury <= fury)
+            {
+                canMove = true;
+            }
+        }
+
+        if (homeVector.magnitude < 1f && canMove)
+>>>>>>> 979d154 (updated boss)
         {
             canShoot = true;
         }
@@ -58,7 +82,7 @@ public class BossBehaviour : MonoBehaviour
             // kui lineOfSight = true, siis tulistab kuni crashib seina, siis ootab kuni algusesse j�uab
             if (lineOfSight && counter < Time.time)
             {
-                Debug.Log("tulistan");
+                //Debug.Log("tulistan");
                 GameObject bullet = Instantiate(GlobalReferences.enemyBulletPrefabs[0], gunBarrel.position, Quaternion.identity);
                 bullet.GetComponent<Rigidbody2D>().velocity = enemyToPlayerVector.normalized * 12f;
                 bullet.GetComponent<Bullet>().affectsTarget = "Player";
@@ -84,7 +108,7 @@ public class BossBehaviour : MonoBehaviour
             shooting = false;
         }
 
-        if (moving)
+        if (canMove)
         {
             if (shooting)
             {
@@ -133,9 +157,12 @@ public class BossBehaviour : MonoBehaviour
         {
             canShoot = false;
             shooting = false;
+            canMove = false;
+            counter = Time.time + 3/(3 + fury);
+            currentFury = fury + 3;
         }
     }
-    /*public void Detonate(int numberOfRicochets)
+    public void Detonate(int numberOfRicochets)
     {
         for (int i = 0; i < numberOfRicochets; i++)
         {
@@ -145,7 +172,6 @@ public class BossBehaviour : MonoBehaviour
             bullet.GetComponent<Rigidbody2D>().velocity = directionVector * 10f;
             bullet.GetComponent<Bullet>().affectsTarget = "Player";
             bullet.transform.rotation = Quaternion.Euler(0, 0, angle * i);
-            Destroy(gameObject);
         }
-    }*/
+    }
 }
