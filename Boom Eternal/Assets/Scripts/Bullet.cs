@@ -32,7 +32,14 @@ public class Bullet : MonoBehaviour
             {
                 if(!GlobalReferences.thePlayerIsInvincible){
                     GlobalReferences.hp -= 1;
+<<<<<<< Updated upstream
                     other.GetComponent<PlayerMovement>().OnDamageTaken();//proc slowdown
+=======
+                    GlobalReferences.thePlayer.gameObject.GetComponent<PlayerMovement>().timeSinceDamage = 0f;
+                    GlobalReferences.audioManager.playSound("loseLife");
+                    //proc slowdown
+                    other.GetComponent<PlayerMovement>().OnDamageTaken();
+>>>>>>> Stashed changes
                 }
                 //eat lead, töötab ka :
                 GlobalReferences.AddAmmo(true);

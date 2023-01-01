@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
         GlobalReferences.thePlayerIsInvincible = true;
         Time.timeScale = 0.2f;
         timeSlowed = true;
-        //GlobalReferences.score -= 1; me mby tahame seda
+        GlobalReferences.score -= 2;
         Time.fixedDeltaTime = Time.timeScale * .02f;
         
     }
@@ -42,20 +42,34 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         if(Input.GetKeyDown(KeyCode.Mouse1) && rb.velocity.magnitude != 0){
 =======
         Debug.Log(Time.timeScale);
         if (timeSlowed && !UIManager.onPause)
         {
             Time.timeScale += (1f / 3f) * Time.unscaledDeltaTime;
+=======
+        // invincibility maha/peale
+        GlobalReferences.thePlayerIsInvincible = (timeSlowed || isDodgeLeaping);
+
+        if (timeSlowed && !UIManager.onPause)
+        {
+            Time.timeScale += 1 / 3f* Time.unscaledDeltaTime;
+>>>>>>> Stashed changes
             Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 1f);
             if (Time.timeScale == 1)
             {
                 timeSlowed = false;
+<<<<<<< Updated upstream
                 GlobalReferences.thePlayerIsInvincible = false;
             }
         }
 
+=======
+            }
+        }
+>>>>>>> Stashed changes
         if(Input.GetKeyDown(KeyCode.Mouse1) && rb.velocity.magnitude != 0 && GlobalReferences.leapCount > 0){
 >>>>>>> Stashed changes
             isDodgeLeaping = true;
@@ -84,8 +98,6 @@ public class PlayerMovement : MonoBehaviour
             else{
                 rb.velocity = Vector2.zero;
                 isDodgeLeaping = false;
-                // invincibility maha
-                GlobalReferences.thePlayerIsInvincible = false;
             }
         }
         // ei tea kas järgmise lõigu peaks panema Update-i???
