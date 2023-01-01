@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Pathfinding;
 
 public class EnemyBehaviour1 : MonoBehaviour
 {
@@ -31,6 +32,8 @@ public class EnemyBehaviour1 : MonoBehaviour
     [HideInInspector] public Vector2 additionalVelocity = Vector2.zero;
     [SerializeField] float additionalVelocityDampeningRate = 0.5f;
     
+    //Pathfinding viitamised
+    AIPath aiPath;
     void Start()
     {
         player = GlobalReferences.thePlayer;
@@ -38,6 +41,12 @@ public class EnemyBehaviour1 : MonoBehaviour
             gunBarrel = transform;
         }
         rb = GetComponent<Rigidbody2D>();
+
+        GetComponentInChildren<AIDestinationSetter>().target = GlobalReferences.thePlayer.transform;
+        
+        aiPath = GetComponentInChildren<AIPath>();
+        aiPath.canMove = false;
+
     }
 
     // Update is called once per frame
@@ -99,17 +108,17 @@ public class EnemyBehaviour1 : MonoBehaviour
                 memoryCounter = Time.time + memoryDuration;
                 startedMemorizing = true;
             }
-            rb.velocity = additionalVelocity; //  siia tuleb see pathfinding algorithmi osa
-
+            rb.velocity = additionalVelocity; 
+            //  siia tuleb see pathfinding algorithmi osa
+            aiPath.canMove = true;
 
         }
         if(hasSpottedPlayer && startedMemorizing && memoryCounter < Time.time){
             hasSpottedPlayer = false;
             startedMemorizing = false;
+            aiPath.canMove = false;
         }
-
         
-
         // additionalVelocity on KnockBackVelocity, mis sumbub ajas
         //Debug.Log("AdditionalVelocity" + additionalVelocity);
         if(additionalVelocity.magnitude > 0.1f)

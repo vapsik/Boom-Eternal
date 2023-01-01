@@ -114,6 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e18d9dcc9b0cc14dabb546bffa44b2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  memoryDuration: 7
   detectionRadius: 15
   shootingRadius: 7.5
   shootingDuration: 2
@@ -124,7 +125,7 @@ MonoBehaviour:
   bulletsPerMagazine: 12
   layerMask:
     serializedVersion: 2
-    m_Bits: 9
+    m_Bits: 265
   maxBehaviourTime: 4
   speed: 10
   isGrenade: 1

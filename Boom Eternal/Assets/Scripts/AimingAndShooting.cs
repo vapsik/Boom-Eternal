@@ -45,7 +45,7 @@ public class AimingAndShooting : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        sensX = sensY = GlobalReferences.Settings.sensitivity / Time.timeScale;
+        sensX = sensY = Time.timeScale != 0 ? GlobalReferences.Settings.sensitivity / Time.timeScale : GlobalReferences.Settings.sensitivity;
 
         //järgnev kood töötab, sest Canvas UI Scale Mode = Scale With Screen Size
         mouseX += sensX * Time.deltaTime * Input.GetAxis("Mouse X");
