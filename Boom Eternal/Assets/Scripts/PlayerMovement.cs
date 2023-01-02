@@ -55,17 +55,23 @@ public class PlayerMovement : MonoBehaviour
 
         GlobalReferences.thePlayerIsInvincible = (isDodgeLeaping || timeSinceSlowdown < slowdownTime);
 
-        if (timeSinceSlowdown >= slowdownTime)
+        if (!UIManager.onPause)
         {
-            Time.timeScale = 1f;
-        }
-        else if (timeSinceSlowdown >= slowdownTime - slowdownEndSmoothTime)
-        {
-            float timeScaling = (slowdownTime - timeSinceSlowdown) / slowdownEndSmoothTime;
-            Time.timeScale = slowDown + (1f - slowDown) * (1f - timeScaling);
-        } else
-        {
-            Time.timeScale = slowDown;
+
+            if (timeSinceSlowdown >= slowdownTime)
+            {
+                Time.timeScale = 1f;
+            }
+            else if (timeSinceSlowdown >= slowdownTime - slowdownEndSmoothTime)
+            {
+                float timeScaling = (slowdownTime - timeSinceSlowdown) / slowdownEndSmoothTime;
+                Time.timeScale = slowDown + (1f - slowDown) * (1f - timeScaling);
+            }
+            else
+            {
+                Time.timeScale = slowDown;
+            }
+
         }
         Time.fixedDeltaTime = Time.timeScale * 0.02f;
 
