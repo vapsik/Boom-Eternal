@@ -12,7 +12,8 @@ public static class GlobalReferences
     public static bool onPause = false;
     public static int score = 0;
     public static bool thePlayerIsInvincible;
-    public static int leapCount = 3;
+    public static int maxLeapCount = 3;
+    public static int leapCount = maxLeapCount;
     //Scene Referencer seab selle
     public static GameObject[] playerBulletPrefabs, enemyBulletPrefabs;
     public static int hp;

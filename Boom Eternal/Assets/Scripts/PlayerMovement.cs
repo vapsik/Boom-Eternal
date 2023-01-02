@@ -92,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
             GlobalReferences.audioManager.playSound("playerLeap");
         }
 
-        if(GlobalReferences.leapCount < 3 && !startedCountingLeapTime){
+        if(GlobalReferences.leapCount < GlobalReferences.maxLeapCount && !startedCountingLeapTime){
             startedCountingLeapTime = true;
             leapingCounter = Time.time + leapingCoolDown;
         }
@@ -100,8 +100,8 @@ public class PlayerMovement : MonoBehaviour
             GlobalReferences.leapCount += 1;
             startedCountingLeapTime = false;
         }
-        if(GlobalReferences.leapCount == 3){
-            
+        if(GlobalReferences.leapCount == GlobalReferences.maxLeapCount)
+        {            
             startedCountingLeapTime = false;
         }
 
