@@ -40,7 +40,7 @@ public class SceneReferencer : MonoBehaviour
             GlobalReferences.enemyBulletPrefabs = GlobalReferences.enemyBulletPrefabs == null ? enemyBulletPrefabs : GlobalReferences.enemyBulletPrefabs;
 
             // toon ka level sequence skriptidest bulletcount ja hp modifikatsioonid siia
-            GlobalReferences.hp = GlobalReferences.hp == 0 ? 15 : GlobalReferences.hp;
+            GlobalReferences.hp = GlobalReferences.hp == 0 ? GlobalReferences.maxHP : GlobalReferences.hp;
             GlobalReferences.bulletCount = GlobalReferences.bulletCount == 0 ? GlobalReferences.maxBulletCount : GlobalReferences.bulletCount;
         }
         GlobalReferences.currentSceneLight = globalLight;
@@ -87,7 +87,11 @@ public class SceneReferencer : MonoBehaviour
             Vector2 newPos = new Vector2(christmasTree.position.x
                 + Random.Range(-1.5f, 1.5f), christmasTree.position.y + Random.Range(-1.5f, 1.5f));
                 // selleks, et seina sisse ei tekiks dropid:
+            int failSafe = 0;
             while(!GlobalReferences.CheckTile(newPos)){
+                failSafe++;
+                if(failSafe > 1000)
+                    break;
                     newPos = new Vector2(christmasTree.position.x
                 + Random.Range(-1.5f, 1.5f), christmasTree.position.y + Random.Range(-1.5f, 1.5f));
             }
@@ -99,7 +103,11 @@ public class SceneReferencer : MonoBehaviour
             Vector2 newPos = new Vector2(christmasTree.position.x
                 + Random.Range(-1.5f, 1.5f), christmasTree.position.y + Random.Range(-1.5f, 1.5f));
                 // selleks, et seina sisse ei tekiks dropid:
+            int failSafe = 0;
             while(!GlobalReferences.CheckTile(newPos)){
+                failSafe++;
+                if(failSafe > 1000)
+                    break;
                     newPos = new Vector2(christmasTree.position.x
                 + Random.Range(-1.5f, 1.5f), christmasTree.position.y + Random.Range(-1.5f, 1.5f));
             }

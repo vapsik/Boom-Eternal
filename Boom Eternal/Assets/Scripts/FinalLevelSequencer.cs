@@ -15,6 +15,8 @@ public class FinalLevelSequencer : MonoBehaviour
     [SerializeField] Transform startPoint;
     bool started = false, bossFightHasStarted = false;
     public static bool bossIsAlive = false;
+
+    [SerializeField] Transform christmasTreesParent;
     void Start()
     {
         enemySpawner = enemySpawnerObject.GetComponent<EnemySpawner>();
@@ -42,11 +44,18 @@ public class FinalLevelSequencer : MonoBehaviour
                   
             }
             if(bossFightHasStarted){
-                if(bossPrefab.gameObject.activeSelf == false){
+                if(bossPrefab == null){
                     bossIsAlive = false;
                 }
             }
         }
         GlobalReferences.enemiesLeft = killCount;
+
+        foreach(Transform T in christmasTreesParent){
+            if(T.childCount == 0){
+                ChristmasTree c = T.gameObject.GetComponent<ChristmasTree>();
+                c.started = c.pleaseCheck == true ? true : c.started;
+            }
+        }
     }
 }

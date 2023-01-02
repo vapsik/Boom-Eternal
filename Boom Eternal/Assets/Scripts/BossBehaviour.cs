@@ -129,8 +129,8 @@ public class BossBehaviour : MonoBehaviour
             {
                 lineOfSight = false;
             }
-            Debug.Log("lineOfSight: " + lineOfSight);
-            Debug.Log(hit.transform.tag + " " + transform.position);
+            //Debug.Log("lineOfSight: " + lineOfSight);
+            //Debug.Log(hit.transform.tag + " " + transform.position);
         }
     }
 
