@@ -277,7 +277,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -321,9 +321,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a99f186ebeede543b1dd739e4bdf644, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  leapingCoolDown: 4
   speed: 5
   isDodgeLeaping: 0
   dodgeDuration: 0.5
+  timeSinceDamage: 100000
 --- !u!50 &1109487290325655160
 Rigidbody2D:
   serializedVersion: 4
@@ -377,7 +379,6 @@ MonoBehaviour:
   sensX: 6000
   sensY: 6000
   reach: 0.34
-  testBulletPrefab: {fileID: 6138206662412576712, guid: ad39b959380f9a8479025b3e9d7acb8a, type: 3}
   gunBarrel: {fileID: 1109487289349757818}
   gunPivot: {fileID: 0}
   playerBullets: {fileID: 0}

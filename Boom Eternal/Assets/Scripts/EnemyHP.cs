@@ -44,7 +44,11 @@ public class EnemyHP : MonoBehaviour
                 //instantiate ammo drop
                 Vector2 newPos = new Vector2(gameObject.transform.position.x
                 + Random.Range(-1.5f, 1.5f), gameObject.transform.position.y + Random.Range(-1.5f, 1.5f));
+                int failSafe = 0;
                 while(!GlobalReferences.CheckTile(newPos)){
+                    failSafe++;
+                    if(failSafe > 1000)
+                        break;
                     newPos = new Vector2(gameObject.transform.position.x
                 + Random.Range(-1.5f, 1.5f), gameObject.transform.position.y + Random.Range(-1.5f, 1.5f));
                 }
@@ -58,7 +62,11 @@ public class EnemyHP : MonoBehaviour
                 Vector2 newPos = new Vector2(gameObject.transform.position.x
                 + Random.Range(-1.5f, 1.5f), gameObject.transform.position.y + Random.Range(-1.5f, 1.5f));
                 // selleks, et seina sisse ei tekiks dropid
+                int failSafe = 0;
                 while(!GlobalReferences.CheckTile(newPos)){
+                    failSafe++;
+                    if(failSafe > 1000)
+                        break;
                     newPos = new Vector2(gameObject.transform.position.x
                 + Random.Range(-1.5f, 1.5f), gameObject.transform.position.y + Random.Range(-1.5f, 1.5f));
                 }

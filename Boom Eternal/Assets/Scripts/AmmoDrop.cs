@@ -9,7 +9,7 @@ public class AmmoDrop : MonoBehaviour
     float maxAmmoDropDuration = 20f;
     float timer = 0;
     bool intitated = false; 
-    [SerializeField] bool isHealthKitActually = false, expires = true;
+    [SerializeField] public bool isHealthKitActually = false, expires = true;
     // kukkumine:
     [SerializeField] float fallingDuration = 0.3f;
     Vector2 initialPos, finalPos;

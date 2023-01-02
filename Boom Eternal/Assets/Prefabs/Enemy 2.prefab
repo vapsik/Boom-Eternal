@@ -160,7 +160,7 @@ MonoBehaviour:
   bulletsPerMagazine: 12
   layerMask:
     serializedVersion: 2
-    m_Bits: 9
+    m_Bits: 265
   maxBehaviourTime: 4
   speed: 1
   isGrenade: 0
