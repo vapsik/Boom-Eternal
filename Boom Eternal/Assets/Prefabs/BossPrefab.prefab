@@ -131,7 +131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9b1415f8ca11c84b9e553a543739beb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hp: 20
+  hp: 30
   spawnDistance: 4
   maxDropAmount: 8
   knockBackForce: 2
