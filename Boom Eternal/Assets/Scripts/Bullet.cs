@@ -31,7 +31,10 @@ public class Bullet : MonoBehaviour
         {
             if (affectsTarget == "Player")
             {
+                bool tookDamage = false;
+
                 if(!GlobalReferences.thePlayerIsInvincible){
+                    tookDamage = true;
                     GlobalReferences.hp -= 1;
                     GlobalReferences.thePlayer.gameObject.GetComponent<PlayerMovement>().timeSinceDamage = 0f;
                     GlobalReferences.audioManager.playSound("loseLife");

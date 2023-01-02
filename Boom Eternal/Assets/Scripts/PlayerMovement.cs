@@ -14,14 +14,13 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D rb;
     //leaping stuff:
     
-    bool timeSlowed = false;
     [HideInInspector] public bool isDodgeLeaping = false;
     Vector2 dodgeDirection;
     [SerializeField] float dodgeDuration = 0.5f;
     float dodgeTimer = 0;
     AimingAndShooting aimingAndShooting;
 
-    private const float slowdownTime = 1.75f;
+    private const float slowdownTime = 1.5f;
     private const float slowdownEndSmoothTime = 0.5f;
     private float timeSinceSlowdown = 1000000f;
     private const float slowDown = 0.3f;
@@ -70,6 +69,7 @@ public class PlayerMovement : MonoBehaviour
         }
         Time.fixedDeltaTime = Time.timeScale * 0.02f;
 
+        // Kusti kood
         /*if (timeSinceSlowdown < slowdownTime && !UIManager.onPause)
         {
             Time.timeScale += 1f / 3f * Time.unscaledDeltaTime;
