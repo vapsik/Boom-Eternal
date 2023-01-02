@@ -115,6 +115,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e18d9dcc9b0cc14dabb546bffa44b2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lineOfSight: 0
+  shooting: 0
+  hasSpottedPlayer: 0
   memoryDuration: 7
   detectionRadius: 15
   shootingRadius: 7.5

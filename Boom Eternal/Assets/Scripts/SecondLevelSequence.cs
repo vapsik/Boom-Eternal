@@ -25,6 +25,8 @@ public class SecondLevelSequence : MonoBehaviour
         for(int i = 0; i < setsOfEnemies.Length; i++ ){
             if(setsOfEnemies[i].childCount == 0){
                 doors[i].open = true;
+                if(i == setsOfEnemies.Length - 1)
+                    GlobalReferences.enemiesLeft = 0;
             }
             else {
                 GlobalReferences.enemiesLeft = setsOfEnemies[i].childCount;
