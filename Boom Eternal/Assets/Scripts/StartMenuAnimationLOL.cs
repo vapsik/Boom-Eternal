@@ -26,14 +26,23 @@ public class StartMenuAnimationLOL : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(panels[0].rectTransform.localPosition.y >= y1){
-            panels[0].rectTransform.localPosition += Vector3.down * Time.deltaTime * 5000f;
+        if(panels[0].rectTransform.localPosition.y > y1){
+            Vector3 vec = panels[0].rectTransform.localPosition + Vector3.down * Time.deltaTime * 5000f;
+            if (vec.y < y1)
+                vec.y = y1;
+            panels[0].rectTransform.localPosition = vec;
         }
-        else if(panels[1].rectTransform.localPosition.x >= x2){
-            panels[1].rectTransform.localPosition += Vector3.left * Time.deltaTime * 5000f;
+        else if(panels[1].rectTransform.localPosition.x > x2){
+            Vector3 vec = panels[1].rectTransform.localPosition + Vector3.left * Time.deltaTime * 5000f;
+            if (vec.x < x2)
+                vec.x = x2;
+            panels[1].rectTransform.localPosition = vec;
         }
-        else if(panels[2].rectTransform.localPosition.y <= y3){
-            panels[2].rectTransform.localPosition += Vector3.up * Time.deltaTime * 5000f;
+        else if(panels[2].rectTransform.localPosition.y < y3){
+            Vector3 vec = panels[2].rectTransform.localPosition + Vector3.up * Time.deltaTime * 5000f;
+            if (vec.y > y3)
+                vec.y = y3;
+            panels[2].rectTransform.localPosition = vec;
         }
         
     }
