@@ -58,7 +58,7 @@ MonoBehaviour:
   - {x: 0.24679756, y: 0.23838043, z: 0}
   m_ShapePathHash: -1237035314
   m_Mesh: {fileID: 0}
-  m_InstanceId: 156860
+  m_InstanceId: 177850
 --- !u!212 &2921692410590426951
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -181,7 +181,7 @@ MonoBehaviour:
   - {x: 0.24679756, y: 0.23838043, z: 0}
   m_ShapePathHash: -1237035314
   m_Mesh: {fileID: 0}
-  m_InstanceId: 156870
+  m_InstanceId: 177860
 --- !u!212 &2921692410712189595
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -328,6 +328,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2921692411351228144}
   - component: {fileID: 2921692411351228145}
+  - component: {fileID: 5643602519675859724}
   m_Layer: 7
   m_Name: Flame
   m_TagString: Untagged
@@ -368,7 +369,7 @@ MonoBehaviour:
   m_Intensity: 0.75
   m_LightVolumeOpacity: 0.11
   m_ApplyToSortingLayers: 00000000
-  m_LightCookieSprite: {fileID: 0}
+  m_LightCookieSprite: {fileID: 21300000, guid: 49b0a982e0fc6894086d1ab4d605ea80, type: 3}
   m_UseNormalMap: 0
   m_LightOrder: 0
   m_AlphaBlendOnOverlap: 0
@@ -390,6 +391,19 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!114 &5643602519675859724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2921692411351228151}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0402566451ad6984489a55cecd9de665, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  light2D: {fileID: 2921692411351228145}
 --- !u!1 &2921692412338796217
 GameObject:
   m_ObjectHideFlags: 0
