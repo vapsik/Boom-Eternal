@@ -19,6 +19,8 @@ public class StartMenuAnimationLOL : MonoBehaviour
         panels[0].rectTransform.localPosition += new Vector3(0, 5000f, 0);
         panels[1].rectTransform.localPosition += new Vector3(5000f, 0, 0);
         panels[2].rectTransform.localPosition += new Vector3(0, -5000, 0);
+
+        StartCoroutine(PlaySounds());
     }
 
     // Update is called once per frame
@@ -35,4 +37,17 @@ public class StartMenuAnimationLOL : MonoBehaviour
         }
         
     }
+
+    IEnumerator PlaySounds()
+    {
+        yield return new WaitForSeconds(0.5f);
+        GlobalReferences.audioManager.playSound("menuWhoosh", 0.75f, 0.5f);
+        yield return new WaitForSeconds(0.4f);
+        GlobalReferences.audioManager.playSound("enemyDetonate");
+        yield return new WaitForSeconds(0.8f);
+        GlobalReferences.audioManager.playSound("menuWhoosh");
+        yield return new WaitForSeconds(0.9f);
+        GlobalReferences.audioManager.playSound("menuWhoosh", 1, 0.6f);
+    }
+
 }
