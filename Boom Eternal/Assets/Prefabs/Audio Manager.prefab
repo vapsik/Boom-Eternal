@@ -139,4 +139,9 @@ MonoBehaviour:
     volume: 1
     pitch: 1.1
     audioSource: {fileID: 0}
+  - name: earthquake
+    clip: {fileID: 8300000, guid: ad8d59bf90a4896439bc4af9ed348757, type: 3}
+    volume: 1
+    pitch: 1
+    audioSource: {fileID: 0}
   masterVolume: 1

@@ -41,6 +41,7 @@ public class FinalLevelSequencer : MonoBehaviour
                 bossPrefab.SetActive(true);
                 bossFightHasStarted = true;
                 bossIsAlive = true;
+                GlobalReferences.mainCamera.GetComponent<HomemadeCinemachine>().cameraShake = true;
                   
             }
             if(bossFightHasStarted){
