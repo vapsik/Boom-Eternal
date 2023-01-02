@@ -16,6 +16,7 @@ public class SceneReferencer : MonoBehaviour
     int hpAtStart, bulletCountAtStart, maxBulletCountAtStart;
     [SerializeField] bool SantaHasCome = false;
     [SerializeField] Transform christmasTree;
+    int scoreAtStart;
     void Awake(){
         GlobalReferences.listOfEnemyPrefabs = listOfEnemyPrefabs;
         GlobalReferences.floorWallCeilingTiles= floorWallCeilingTiles;
@@ -73,6 +74,10 @@ public class SceneReferencer : MonoBehaviour
                 }
             }
         }
+
+        
+        GlobalReferences.score = GlobalReferences.score < 0 ? 0 : GlobalReferences.score; 
+        scoreAtStart = GlobalReferences.score;
         
         //
         if(SantaHasCome){
@@ -127,5 +132,7 @@ public class SceneReferencer : MonoBehaviour
         GlobalReferences.maxBulletCount = maxBulletCountAtStart;
         GlobalReferences.bulletCount = GlobalReferences.maxBulletCount;
         GlobalReferences.bulletCount = bulletCountAtStart;
+        GlobalReferences.score = scoreAtStart;
+        
     }
 }
