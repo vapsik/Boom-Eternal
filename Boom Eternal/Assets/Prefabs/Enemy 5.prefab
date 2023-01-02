@@ -116,6 +116,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e18d9dcc9b0cc14dabb546bffa44b2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lineOfSight: 0
+  shooting: 0
+  hasSpottedPlayer: 0
   memoryDuration: 7
   detectionRadius: 15
   shootingRadius: 7.5
@@ -196,9 +199,9 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2034928674955330399}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 9085cc3270a5eb442a12120c903e4910, type: 2}
+  m_Controller: {fileID: 9100000, guid: 531c9df6d250a64408d2865e654fa380, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -273,7 +276,7 @@ MonoBehaviour:
   - {x: -0.25, y: 0.22070312, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 186456
+  m_InstanceId: 347786
 --- !u!114 &2991268718270455286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,7 +290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lookLeft: 1
-  animator: {fileID: 0}
+  animator: {fileID: 1917744265289970585}
 --- !u!50 &-5268674764446616086
 Rigidbody2D:
   serializedVersion: 4
