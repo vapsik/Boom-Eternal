@@ -22,12 +22,12 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        hpText.text = GlobalReferences.hp.ToString() + " | " + GlobalReferences.maxHP.ToString();
-        bulletsText.text = GlobalReferences.bulletCount.ToString() + " | " + GlobalReferences.maxBulletCount.ToString();
+        hpText.text = GlobalReferences.hp.ToString() + " I " + GlobalReferences.maxHP.ToString();
+        bulletsText.text = GlobalReferences.bulletCount.ToString() + " I " + GlobalReferences.maxBulletCount.ToString();
         scoreText.text = "Score - " + GlobalReferences.score.ToString();
         enemiesLeftText.text = !lastScene ?  "Enemies Left To Kill - " + GlobalReferences.enemiesLeft.ToString()
-         : "Enemies Killed - " + GlobalReferences.enemiesLeft + " | 20";
-        staminaText.text = GlobalReferences.leapCount.ToString() + " | " + GlobalReferences.maxLeapCount;
+         : "Enemies Killed - " + GlobalReferences.enemiesLeft + " I 20";
+        staminaText.text = GlobalReferences.leapCount.ToString() + " I " + GlobalReferences.maxLeapCount;
         if (GlobalReferences.enemiesLeft == 0){
             killedAllEnemies = true;
             //Debug.Log("killed all enemies");
