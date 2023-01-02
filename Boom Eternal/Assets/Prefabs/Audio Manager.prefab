@@ -129,3 +129,14 @@ MonoBehaviour:
     volume: 0.8
     pitch: 0.8
     audioSource: {fileID: 0}
+  - name: menuWhoosh
+    clip: {fileID: 8300000, guid: decb14e0f33d55f49a4c6f7e78e0d13a, type: 3}
+    volume: 1
+    pitch: 1.25
+    audioSource: {fileID: 0}
+  - name: playerLeap
+    clip: {fileID: 8300000, guid: 20dd5a686a413e845b53e3aa3b80c186, type: 3}
+    volume: 1
+    pitch: 1.1
+    audioSource: {fileID: 0}
+  masterVolume: 1

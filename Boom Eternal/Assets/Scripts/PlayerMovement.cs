@@ -21,6 +21,11 @@ public class PlayerMovement : MonoBehaviour
     float dodgeTimer = 0;
     AimingAndShooting aimingAndShooting;
 
+    private const float slowdownTime = 1.75f;
+    private const float slowdownEndSmoothTime = 0.5f;
+    private float timeSinceSlowdown = 1000000f;
+    private const float slowDown = 0.3f;
+
     [HideInInspector]
     public float timeSinceDamage = 100000f;
     private SpriteRenderer spriteRenderer;
@@ -40,18 +45,32 @@ public class PlayerMovement : MonoBehaviour
     public void OnDamageTaken()
     {
         GlobalReferences.thePlayerIsInvincible = true;
-        Time.timeScale = 0.2f;
-        timeSlowed = true;
+        timeSinceSlowdown = 0f;
         //GlobalReferences.score -= 1; me mby tahame seda
-        Time.fixedDeltaTime = Time.timeScale * .02f;
 
     }
     // Update is called once per frame
     void Update()
     {
-        GlobalReferences.thePlayerIsInvincible = (isDodgeLeaping || timeSlowed);
+        timeSinceSlowdown += Time.unscaledDeltaTime;
 
-        if (timeSlowed && !UIManager.onPause)
+        GlobalReferences.thePlayerIsInvincible = (isDodgeLeaping || timeSinceSlowdown < slowdownTime);
+
+        if (timeSinceSlowdown >= slowdownTime)
+        {
+            Time.timeScale = 1f;
+        }
+        else if (timeSinceSlowdown >= slowdownTime - slowdownEndSmoothTime)
+        {
+            float timeScaling = (slowdownTime - timeSinceSlowdown) / slowdownEndSmoothTime;
+            Time.timeScale = slowDown + (1f - slowDown) * (1f - timeScaling);
+        } else
+        {
+            Time.timeScale = slowDown;
+        }
+        Time.fixedDeltaTime = Time.timeScale * 0.02f;
+
+        /*if (timeSinceSlowdown < slowdownTime && !UIManager.onPause)
         {
             Time.timeScale += 1f / 3f * Time.unscaledDeltaTime;
             Time.timeScale = Mathf.Clamp(Time.timeScale, 0f, 1f);
@@ -59,7 +78,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 timeSlowed = false;
             }
-        }
+        }*/
 
         if (Input.GetKeyDown(KeyCode.Mouse1) && rb.velocity.magnitude != 0 && GlobalReferences.leapCount > 0){
             isDodgeLeaping = true;
@@ -70,6 +89,7 @@ public class PlayerMovement : MonoBehaviour
             // invincibility peale
             GlobalReferences.thePlayerIsInvincible = true;
             GlobalReferences.leapCount -= 1;
+            GlobalReferences.audioManager.playSound("playerLeap");
         }
 
         if(GlobalReferences.leapCount < 3 && !startedCountingLeapTime){
