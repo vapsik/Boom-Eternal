@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
-    [SerializeField] TMPro.TextMeshProUGUI hpText, scoreText, bulletsText, enemiesLeftText, staminaText;
+    [SerializeField] public TMPro.TextMeshProUGUI hpText, scoreText, bulletsText, enemiesLeftText, staminaText;
     [SerializeField] GameObject pauseMenu;
     [SerializeField] Image crosshair;
     [HideInInspector] public static bool onPause = false;
@@ -16,7 +16,8 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        lastScene = SceneManager.GetActiveScene().name == "SampleScene" ? true : false;  
+        lastScene = SceneManager.GetActiveScene().name == "SampleScene" ? true : false;
+        GlobalReferences.uiManager = this;
     }
 
     // Update is called once per frame
@@ -25,9 +26,27 @@ public class UIManager : MonoBehaviour
         hpText.text = GlobalReferences.hp.ToString() + " I " + GlobalReferences.maxHP.ToString();
         bulletsText.text = GlobalReferences.bulletCount.ToString() + " I " + GlobalReferences.maxBulletCount.ToString();
         scoreText.text = "Score - " + GlobalReferences.score.ToString();
-        enemiesLeftText.text = !lastScene ?  "Enemies Left To Kill - " + GlobalReferences.enemiesLeft.ToString()
-         : "Enemies Killed - " + GlobalReferences.enemiesLeft + " I 20";
         staminaText.text = GlobalReferences.leapCount.ToString() + " I " + GlobalReferences.maxLeapCount;
+
+        if (lastScene)
+        {
+            if (FinalLevelSequencer.bossIsAlive)
+            {
+                enemiesLeftText.text = "Boss is alive!";
+            } else if (GlobalReferences.enemiesLeft <= 20)
+            {
+                enemiesLeftText.text = "Enemies Killed - " + GlobalReferences.enemiesLeft + " I 20";
+            }
+            else
+            {
+                enemiesLeftText.text = "The boss has been defeated!";
+            }
+        }
+        else
+        {
+            enemiesLeftText.text =  "Enemies Left To Kill - " + GlobalReferences.enemiesLeft.ToString();
+        }
+
         if (GlobalReferences.enemiesLeft == 0){
             killedAllEnemies = true;
             //Debug.Log("killed all enemies");

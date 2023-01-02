@@ -144,4 +144,9 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     audioSource: {fileID: 0}
+  - name: bossBullet
+    clip: {fileID: 8300000, guid: 903a785538ef096489ec05154e08de1b, type: 3}
+    volume: 0.3
+    pitch: 1.25
+    audioSource: {fileID: 0}
   masterVolume: 1
