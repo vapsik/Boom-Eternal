@@ -76,7 +76,7 @@ public class BossBehaviour : MonoBehaviour
                 bullet.GetComponent<Bullet>().affectsTarget = "Player";
                 counter = Time.time + shootingDuration;
                 shooting = true;
-
+                GlobalReferences.audioManager.playSound("bossBullet");
             }
             else
             {

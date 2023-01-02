@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 5577089407791038219}
   - component: {fileID: 611870851822603084}
-  - component: {fileID: 3935721213753736089}
   - component: {fileID: 5302860496633415749}
   - component: {fileID: -5991990475040778126}
   - component: {fileID: 4455800701893258106}
   - component: {fileID: 3793116269790712244}
   - component: {fileID: 2360929199751689315}
+  - component: {fileID: 2287914450170540856}
   m_Layer: 6
   m_Name: BossPrefab
   m_TagString: Enemy
@@ -89,22 +89,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &3935721213753736089
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7664205802245747811}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.5
 --- !u!114 &5302860496633415749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,6 +216,60 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!60 &2287914450170540856
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7664205802245747811}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 8, y: 4}
+    newSize: {x: 1, y: 0.8828125}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -2.190944, y: -0.54242355}
+      - {x: -1.2230358, y: -0.9042346}
+      - {x: -0.85492367, y: -0.61752564}
+      - {x: -0.14104593, y: -0.7035459}
+      - {x: 0.8125, y: -0.5716583}
+      - {x: 1.2757909, y: -0.90423465}
+      - {x: 2.540153, y: -1.1083674}
+      - {x: 2.740255, y: -0.31989813}
+      - {x: 3.753444, y: -1.7626022}
+      - {x: 4, y: -2}
+      - {x: 3.8681126, y: -0.71102035}
+      - {x: 3.7035463, y: -0.2075765}
+      - {x: 3.4506888, y: 0.36122456}
+      - {x: 3.0129602, y: 0.48677897}
+      - {x: 2.225184, y: 0.099310964}
+      - {x: 1.8590534, y: 0.5487592}
+      - {x: 1.5102022, y: 1.181296}
+      - {x: 0.94952154, y: 1.7021283}
+      - {x: -0.8279257, y: 1.7021283}
+      - {x: -1.4657446, y: 1.3760117}
+      - {x: -1.7740432, y: 0.8527661}
+      - {x: -2.3194313, y: 0.12940007}
+      - {x: -3.38257, y: 0.4375}
+      - {x: -3.797975, y: -0.43560752}
+      - {x: -4, y: -2}
+      - {x: -3.8894305, y: -2}
+      - {x: -2.64449, y: -0.34459198}
+      - {x: -2.479337, y: -0.3697961}
+      - {x: -2.5825768, y: -1.1410459}
 --- !u!1001 &5181187786556073150
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -8,6 +8,7 @@ public static class GlobalReferences
     public static Camera mainCamera;
     public static GameObject thePlayer;
     public static AudioManager audioManager;
+    public static UIManager uiManager;
     public static Tilemap[] floorWallCeilingTiles;
     public static bool onPause = false;
     public static int score = 0;
