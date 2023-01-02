@@ -19,6 +19,14 @@ public class SettingsManager : MonoBehaviour
     public void OnChange(){
         GlobalReferences.Settings.sensitivity = sensSlider.value;
         GlobalReferences.Settings.volume = volumeSlider.value;
+
+        AudioManager audioManager = GlobalReferences.audioManager;
+
+        Sound menuMusic = audioManager.soundsDict["menuMusic"];
+        menuMusic.audioSource.volume = GlobalReferences.Settings.volume * menuMusic.volume;
+
+        Sound gameMusic = audioManager.soundsDict["gameMusic1"];
+        menuMusic.audioSource.volume = GlobalReferences.Settings.volume * menuMusic.volume;
     }
     void Update(){
         //Debug.Log(GlobalReferences.Settings.sensitivity + " vs. " + sensSlider.value);
