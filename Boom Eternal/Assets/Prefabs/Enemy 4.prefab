@@ -120,7 +120,7 @@ MonoBehaviour:
   memoryDuration: 7
   detectionRadius: 15
   shootingRadius: 7.5
-  shootingDuration: 2
+  shootingDuration: 1.2
   detonationRadius: 3
   numberOfRicochets: 16
   shootingSlowDown: 0.5
@@ -274,7 +274,7 @@ MonoBehaviour:
   - {x: -0.25, y: 0.22070312, z: 0}
   m_ShapePathHash: 0
   m_Mesh: {fileID: 0}
-  m_InstanceId: 186360
+  m_InstanceId: 70664
 --- !u!114 &2991268718270455286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -361,7 +361,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
