@@ -184,7 +184,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: da9a8300e0c76364ea9d1e9d5ccb6ac0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4bf4c3027c937b049b288dbaf9002968, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -207,9 +207,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a99f186ebeede543b1dd739e4bdf644, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  leapingCoolDown: 4
   speed: 5
   isDodgeLeaping: 0
   dodgeDuration: 0.5
+  timeSinceDamage: 100000
 --- !u!50 &2645120675254371983
 Rigidbody2D:
   serializedVersion: 4
@@ -317,7 +319,7 @@ MonoBehaviour:
   - {x: -0.41, y: 0, z: 0}
   m_ShapePathHash: -1100962395
   m_Mesh: {fileID: 0}
-  m_InstanceId: 300620
+  m_InstanceId: 103434
 --- !u!95 &2645120675254371985
 Animator:
   serializedVersion: 3
@@ -450,7 +452,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 6
-  m_Sprite: {fileID: 21300000, guid: 445db560c4981ac4ea88fd6c83f9881d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 19cf2640eee299446958c5f056ce927d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

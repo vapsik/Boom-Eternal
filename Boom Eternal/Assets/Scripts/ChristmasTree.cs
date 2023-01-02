@@ -21,10 +21,10 @@ public class ChristmasTree : MonoBehaviour
         if(started && pleaseCheck){
             float d = Random.Range(10f, 15f);
             time = d + Time.time;
-            Debug.Log(d);
+            //Debug.Log(d);
             pleaseCheck = false;
         }
-        Debug.Log(time);
+        //Debug.Log(time);
         if(started && time < Time.time && !pleaseCheck){
             Debug.Log("jõuluvana tuli!");
             //spawnimine
