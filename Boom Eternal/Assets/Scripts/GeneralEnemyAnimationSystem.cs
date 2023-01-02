@@ -7,6 +7,7 @@ public class GeneralEnemyAnimationSystem : MonoBehaviour
     [SerializeField] bool lookLeft = true;
     [SerializeField] Animator animator;
     GameObject player;
+    EnemyBehaviour1 enemyBehaviour1;
 
     Vector3 initialSize, currentScale;
     // Start is called before the first frame update
@@ -15,6 +16,7 @@ public class GeneralEnemyAnimationSystem : MonoBehaviour
         player = GlobalReferences.thePlayer;
         initialSize = transform.localScale;
         currentScale = initialSize;
+        enemyBehaviour1 = GetComponent<EnemyBehaviour1>();
     }
 
     // Update is called once per frame
@@ -34,5 +36,9 @@ public class GeneralEnemyAnimationSystem : MonoBehaviour
             currentScale.x = -initialSize.x;
         }
         transform.localScale = currentScale;
+        if(animator != null){
+            animator.SetBool("HasSeenEnemy", enemyBehaviour1.lineOfSight);
+            animator.SetBool("Shooting", enemyBehaviour1.shooting);
+        }
     }
 }
