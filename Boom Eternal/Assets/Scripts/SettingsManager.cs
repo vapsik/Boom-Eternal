@@ -26,7 +26,7 @@ public class SettingsManager : MonoBehaviour
         menuMusic.audioSource.volume = GlobalReferences.Settings.volume * menuMusic.volume;
 
         Sound gameMusic = audioManager.soundsDict["gameMusic1"];
-        menuMusic.audioSource.volume = GlobalReferences.Settings.volume * menuMusic.volume;
+        gameMusic.audioSource.volume = GlobalReferences.Settings.volume * menuMusic.volume;
     }
     void Update(){
         //Debug.Log(GlobalReferences.Settings.sensitivity + " vs. " + sensSlider.value);
