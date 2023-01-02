@@ -9,7 +9,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] public TMPro.TextMeshProUGUI hpText, scoreText, bulletsText, enemiesLeftText, staminaText;
     [SerializeField] GameObject pauseMenu;
     [SerializeField] Image crosshair;
-    [HideInInspector] public static bool onPause = false;
+    [HideInInspector] public static bool onPause = false; 
     bool killedAllEnemies;
     private float gameTimeScale = 1;
     bool lastScene;
