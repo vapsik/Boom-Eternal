@@ -133,8 +133,6 @@ public class SceneReferencer : MonoBehaviour
         GlobalReferences.bulletCount = GlobalReferences.maxBulletCount;
         GlobalReferences.bulletCount = bulletCountAtStart;
         GlobalReferences.score = scoreAtStart;
-
-        FinalLevelSequencer.bossIsAlive = EnemyHP.bossHasBeenMurdered ? false : false;
         
     }
 }

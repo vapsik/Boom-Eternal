@@ -15,6 +15,7 @@ public class FinalLevelSequencer : MonoBehaviour
     [SerializeField] Transform startPoint;
     bool started = false, bossFightHasStarted = false;
     public static bool bossIsAlive = false;
+
     [SerializeField] Transform christmasTreesParent;
     void Start()
     {
@@ -46,7 +47,6 @@ public class FinalLevelSequencer : MonoBehaviour
             if(bossFightHasStarted){
                 if(bossPrefab == null){
                     bossIsAlive = false;
-                    EnemyHP.bossHasBeenMurdered = true;
                 }
             }
         }

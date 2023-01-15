@@ -13,7 +13,6 @@ public class EnemyHP : MonoBehaviour
     private float timeSinceDamage = 100000f;
     private SpriteRenderer spriteRenderer;
 
-    public static bool bossHasBeenMurdered = false;
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -82,8 +81,6 @@ public class EnemyHP : MonoBehaviour
             GlobalReferences.score += maxDropAmount;
 
             GlobalReferences.audioManager.playSound("enemyDeath" + Random.Range(1, 3));
-            if(GetComponent<BossBehaviour>() != null)
-                bossHasBeenMurdered = true;
             Destroy(gameObject);
         }
         else
